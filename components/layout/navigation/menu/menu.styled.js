@@ -6,14 +6,14 @@ export const StyledMenu = styled.nav`
   height: 100vh;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.mobileTransparentblack};
-  width: 100vw;
+  width: 20vw;
   text-align: left;
   padding: 10rem 2rem ;
   position: absolute;
   top: 0;
   right: 0;
   transition: transform 0.3s ease-in-out;
-  transform: ${({ open }) => open ? 'translateY(0)' : 'translateY(-100%)'};
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
   
   a {
     font-size: 3rem;
@@ -34,10 +34,9 @@ export const StyledMenu = styled.nav`
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
     padding: 2rem 10rem 2rem 2rem;
-    flex-direction: row;
-    height: auto;a {
-    font-size: 2rem;
-  }
+    a {
+      font-size: 2rem;
+    }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
     
