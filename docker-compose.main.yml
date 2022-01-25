@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    frontend:
+        image: familyresearchcouncil/acm:main
+        deploy:
+            replicas: 3
+            labels:
+                - "traefik.enable=true"
+                - "traefik.http.routers.acm-prod.rule=Host(`acm.frc.org`)"
+                - "traefik.http.services.acm-prod.loadbalancer.server.port=3000"
+            placement:
+                constraints:
+                    - node.role == worker
+        command: npm run start
+        networks:
+            - traefik
+            - default
+
+
+networks:
+    traefik:
+        external: true

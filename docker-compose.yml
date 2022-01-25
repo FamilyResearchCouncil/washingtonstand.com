@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+
+  frontend:
+    image: familyresearchcouncil/acm
+    build:
+      context: ./
+    restart: unless-stopped
+    volumes:
+      - "./:/var/www/html"
+    working_dir: "/var/www/html"
+    ports:
+      - "3000:3000"
+    command: bash -c "npm install && npm run dev"
+
+# Network.
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  appdb:
+    driver: local
+  appredis:
+    driver: local
