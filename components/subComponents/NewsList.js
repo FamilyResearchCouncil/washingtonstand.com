@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 
 const NewsItem = (props) => (
     <>
         <div>
-            <strong>{props.title}</strong>
+            <Link href={`/news/${props.itemCode}`}>
+                <a>
+                <strong>{props.title}</strong>
+                </a>
+            </Link>
             <p>{props.summary}</p>
         </div>
     </>
@@ -47,7 +52,7 @@ const NewsListing = () => {
     } else {
         return (
             items.map(item => (
-                <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT}/>
+                <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}/>
             ))
         );
     }
