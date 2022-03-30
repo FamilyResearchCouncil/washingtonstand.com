@@ -25,6 +25,9 @@ export default function siteTheme() {
             medium: '768px',
             large: '992px',
             xLarge: '1200px'
+        },
+        directories: {
+            news: 'news'
         }
     }
 }

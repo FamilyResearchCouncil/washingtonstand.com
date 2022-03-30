@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
+import appUrls from "../../storage/baseUrls.json";
 
 const NewsItem = (props) => (
     <>
         <div>
-            <Link href={`/news/${props.itemCode}`}>
+            <Link href={`/${appUrls.urlDirectories.news}/${props.itemCode}`}>
                 <a>
                 <strong>{props.title}</strong>
                 </a>
@@ -31,7 +31,6 @@ const NewsListing = () => {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
                     setIsLoaded(true);
                     setItems(result);
                 },
