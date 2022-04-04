@@ -23,7 +23,9 @@ node('master') {
 
         }
 
-        if ("$branch_name" == 'main' || "$branch_name" =~ 'staging'){
+        sh "echo 'running on branch ($branch_name)'"
+
+        if ("$branch_name" == 'main' || "$branch_name" == 'staging'){
 
             stage('build'){
                 // build the image tagged with the current branch name
