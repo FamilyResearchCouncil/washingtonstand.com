@@ -3,7 +3,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 BRANCH_NAME="$1"
 COMPOSE_FILE="$SCRIPT_DIR/docker-compose.$BRANCH_NAME.yml"
-STACK="acm-$BRANCH_NAME"
+STACK="washingtonstand-$BRANCH_NAME"
 
 
 test -f "$COMPOSE_FILE" && {

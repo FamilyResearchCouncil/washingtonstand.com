@@ -2,13 +2,13 @@ version: "3.8"
 
 services:
     frontend:
-        image: familyresearchcouncil/acm:staging
+        image: familyresearchcouncil/washingtonstand:staging
         deploy:
             replicas: 1
             labels:
                 - "traefik.enable=true"
-                - "traefik.http.routers.acm-prod.rule=Host(`staging.acm.frc.org`)"
-                - "traefik.http.services.acm-prod.loadbalancer.server.port=3000"
+                - "traefik.http.routers.washingtonstand-prod.rule=Host(`staging.washingtonstand.com`)"
+                - "traefik.http.services.washingtonstand-prod.loadbalancer.server.port=3000"
             placement:
                 constraints:
                     - node.role == worker
