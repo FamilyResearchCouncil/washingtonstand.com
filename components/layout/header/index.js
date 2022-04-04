@@ -6,6 +6,8 @@ import styles from './Header.module.css'
 import Image from "next/image";
 import Link from "next/link";
 
+import MainLogo from "../../../public/img/WashStand_v5.svg";
+
 
 
 const Header = () => {
@@ -24,7 +26,8 @@ const Header = () => {
         <header ref={node} className={styles.header}>
             <Link href={"/"}>
                 <a className={styles.logoLink}>
-                    <Image src="/img/generic-log.png" alt="Logo" width={190} height={100} layout='responsive' />
+                    {/*<Image src="/public/img/WashStand_v5.svg" alt="Logo" width={190} height={100} layout='responsive' />*/}
+                    <MainLogo />
                 </a>
             </Link>
             <Burger open={open} setOpen={setOpen} />

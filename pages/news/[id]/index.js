@@ -9,7 +9,6 @@ const Post = (props) => (
         <StyledContentContainer>
             <Image src={props.itemImageUrl} width={763} height={400} layout='responsive'/>
             <h1>{props.title}</h1>
-            <strong>{process.env.GOOGLE_API_KEY}</strong>
             <div dangerouslySetInnerHTML={props.displayHtml} />
         </StyledContentContainer>
     </>
