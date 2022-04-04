@@ -20,27 +20,29 @@ node('master') {
             branch_name = branch_name = scm.branches[0].name
 //            branch_name = sh (script: 'git symbolic-ref --short HEAD', returnStdout: true).trim()
             branch_compose_file = "docker-compose.${branch_name}.yml";
+            sh "echo 'running on branch ($branch_name)'"
 
         }
 
-        if ("$branch_name" == 'main' || "$branch_name" =~ 'staging'){
 
-            stage('build'){
-                // build the image tagged with the current branch name
-                sh "docker build -t familyresearchcouncil/washingtonstand:${branch_name} ."
-            }
+        stage('build'){
+            // build the image tagged with the current branch name
+            sh "docker build -t familyresearchcouncil/washingtonstand:${branch_name} ."
+        }
 
 
-            stage('deploy') {
+        stage('deploy') {
 
-                // push the image to dockerhub so it is available to pull
-                sh "docker push familyresearchcouncil/washingtonstand:${branch_name}"
+            if ("$branch_name" == 'main' || "$branch_name" == 'staging'){
 
-                // copy the files necessary to deploy the application
-                sh "scp deploy.sh docker-compose.*.yml docker01:/docker/containers/washingtonstand"
+            // push the image to dockerhub so it is available to pull
+            sh "docker push familyresearchcouncil/washingtonstand:${branch_name}"
 
-                // run the deploy script, passing the current branch as the argument
-                sh "ssh docker01 /docker/containers/washingtonstand/deploy.sh ${branch_name}"
+            // copy the files necessary to deploy the application
+            sh "scp deploy.sh docker-compose.*.yml docker01:/docker/containers/washingtonstand"
+
+            // run the deploy script, passing the current branch as the argument
+            sh "ssh docker01 /docker/containers/washingtonstand/deploy.sh ${branch_name}"
 
             }
         }
