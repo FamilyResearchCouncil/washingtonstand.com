@@ -18,7 +18,7 @@ node('master') {
                         replyTo: 'itadmin@frc.org'
 
             branch_name = scm.branches[0].name
-//            branch_name = sh (script: 'git symbolic-ref --short HEAD', returnStdout: true).trim()
+            branch_name = sh (script: 'git symbolic-ref --short HEAD', returnStdout: true).trim()
             branch_compose_file = "docker-compose.${branch_name}.yml";
             sh "echo 'running on branch ($branch_name)'"
 
