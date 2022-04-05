@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import theme from '../components/siteTheme'
 import '../styles/globals.css'
+import { NextResponse } from 'next/server'
+
 
 // log the pageview with their URL
 // const pageview = (url) => {
@@ -14,6 +16,11 @@ import '../styles/globals.css'
 // }
 
 export default function MyApp({ Component, pageProps }) {
+
+    useEffect(() => {
+        window.location.href = "https://www.frc.org/";
+    }, []);
+
     // const router = useRouter()
     // useEffect(() => {
     //     const handleRouteChange = (url) => {
@@ -33,10 +40,6 @@ export default function MyApp({ Component, pageProps }) {
     const getLayout = Component.getLayout || ((page) => page);
 
     return getLayout(
-        <ThemeProvider theme={theme}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </ThemeProvider>
+        <></>
     );
 }
