@@ -5,6 +5,8 @@ import {StyledContentContainer} from "../components/layout/sections/contentConta
 import VideoContainer from "../components/subComponents/videoContainer";
 import {StyledReadingSection} from "../components/subComponents/readingTextBlock";
 import styled from 'styled-components';
+import MainLogo from "../public/img/WashStand_v5.svg";
+import React from "react";
 
 const FourOhFourSection = styled.section`
   display: grid;
@@ -18,10 +20,14 @@ const FourOhFourSection = styled.section`
 
 const Home = () => (
   <>
-      <HeadTag title="Site Domain" description="Description of the site" />
+      <HeadTag title="The Washington Stand" description="" />
 
       <FourOhFourSection>
+            <StyledReadingSection style={{ textAlign: 'center' }}>
+            <MainLogo />
+            <h1 style={{ fontSize: '0px', display: "none" }}>The Washingoton Stand</h1>
             <h2>May 2022</h2>
+            </StyledReadingSection>
       </FourOhFourSection>
     </>
 );

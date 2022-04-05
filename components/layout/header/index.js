@@ -24,14 +24,14 @@ const Header = () => {
 
     return (
         <header ref={node} className={styles.header}>
-            <Link href={"/"}>
-                <a className={styles.logoLink}>
-                    {/*<Image src="/public/img/WashStand_v5.svg" alt="Logo" width={190} height={100} layout='responsive' />*/}
-                    <MainLogo />
-                </a>
-            </Link>
-            <Burger open={open} setOpen={setOpen} />
-            <Menu  open={open} setOpen={setOpen} />
+            {/*<Link href={"/"}>*/}
+            {/*    <a className={styles.logoLink}>*/}
+            {/*        /!*<Image src="/public/img/WashStand_v5.svg" alt="Logo" width={190} height={100} layout='responsive' />*!/*/}
+            {/*        <MainLogo />*/}
+            {/*    </a>*/}
+            {/*</Link>*/}
+            {/*<Burger open={open} setOpen={setOpen} />*/}
+            {/*<Menu  open={open} setOpen={setOpen} />*/}
         </header>
     );
 }
