@@ -5,11 +5,14 @@ import {StyledContentContainer} from "../../../components/layout/sections/conten
 
 const Post = (props) => (
     <>
-        <HeadTag title="Publication" description="A Summary" />
+        <HeadTag title={props.title} description="A Summary" />
         <StyledContentContainer>
             <Image src={props.itemImageUrl} width={763} height={400} layout='responsive'/>
             <h1>{props.title}</h1>
             <div dangerouslySetInnerHTML={props.displayHtml} />
+            <center>
+            <Image src="/img/Flame_icon.svg" height={50} width={50} />
+            </center>
         </StyledContentContainer>
     </>
 );
@@ -39,9 +42,6 @@ Post.getInitialProps = async ({query}) => {
                 // setError(error.message);
             }
         );
-
-
-    // pageProps.__html = (await (await fetch(`https://api.frc.org/api/webtext/${query.id}.cfm`)).text());
 
     return pageProps;
 }

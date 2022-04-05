@@ -5,8 +5,9 @@ import {StyledContentContainer} from "../components/layout/sections/contentConta
 import VideoContainer from "../components/subComponents/videoContainer";
 import {StyledReadingSection} from "../components/subComponents/readingTextBlock";
 import styled from 'styled-components';
-import MainLogo from "../public/img/WashStand_v5.svg";
-import React from "react";
+import Image from "next/image";
+// import MainLogo from "../public/img/WashStand_SVG1.1.svg"
+import MainLogo from "../public/img/WashStand_v5.svg"
 
 const FourOhFourSection = styled.section`
   display: grid;
@@ -24,6 +25,7 @@ const Home = () => (
 
       <FourOhFourSection>
             <StyledReadingSection style={{ textAlign: 'center' }}>
+            {/*<Image src="/img/WashStand_SVG1.1.svg" width={1280} height={720} layout='responsive'/>*/}
             <MainLogo />
             <h1 style={{ fontSize: '0px', display: "none" }}>The Washingoton Stand</h1>
             <h2>May 2022</h2>
