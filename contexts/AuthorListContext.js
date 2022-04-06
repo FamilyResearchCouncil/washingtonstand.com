@@ -13,7 +13,6 @@ function StaffContextProvider({ children }) {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
                 setStaff(result);
                 setIsLoading(false);
             },

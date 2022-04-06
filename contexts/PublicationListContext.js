@@ -13,7 +13,6 @@ function PublicationContextProvider({ children }) {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
                 setPublications(result);
                 setIsLoading(false);
             },
