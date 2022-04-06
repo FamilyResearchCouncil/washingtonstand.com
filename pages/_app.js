@@ -1,10 +1,12 @@
 import React from "react";
 import Layout from "../components/layout/mainLayout"
-import {ThemeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components'
+import APIContextProvider from "../contexts/PublicationListContext";
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import theme from '../components/siteTheme'
 import '../styles/globals.css'
+import publications from '../contexts/PublicationListContext'
 
 // log the pageview with their URL
 // const pageview = (url) => {
@@ -34,9 +36,11 @@ export default function MyApp({ Component, pageProps }) {
 
     return getLayout(
         <ThemeProvider theme={theme}>
+            <APIContextProvider>
             <Layout>
                 <Component {...pageProps} />
             </Layout>
+            </APIContextProvider>
         </ThemeProvider>
     );
 }
