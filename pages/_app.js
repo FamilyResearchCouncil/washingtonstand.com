@@ -1,7 +1,8 @@
 import React from "react";
 import Layout from "../components/layout/mainLayout"
 import {ThemeProvider} from 'styled-components'
-import APIContextProvider from "../contexts/PublicationListContext";
+import PublicationContextProvider from "../contexts/PublicationListContext";
+import StaffContextProvider from "../contexts/AuthorListContext";
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import theme from '../components/siteTheme'
@@ -36,11 +37,13 @@ export default function MyApp({ Component, pageProps }) {
 
     return getLayout(
         <ThemeProvider theme={theme}>
-            <APIContextProvider>
+            <PublicationContextProvider>
+            <StaffContextProvider>
             <Layout>
                 <Component {...pageProps} />
             </Layout>
-            </APIContextProvider>
+            </StaffContextProvider>
+            </PublicationContextProvider>
         </ThemeProvider>
     );
 }

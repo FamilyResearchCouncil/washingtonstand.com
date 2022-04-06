@@ -1,5 +1,6 @@
 {
     "urlDirectories": {
-        "news": "news"
+        "news": "news",
+        "staff": "staff"
     }
 }

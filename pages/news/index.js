@@ -1,11 +1,11 @@
 import HeadTag from "../../components/layout/HeadTag";
 import NewsList from "../../components/subComponents/NewsList";
 
-const NewPage = () => (
+const NewsPage = () => (
     <>
         <HeadTag title="News" description="" />
         <NewsList />
     </>
 );
 
-export default NewPage;
+export default NewsPage;

@@ -2,7 +2,6 @@ import styles from "../styles/Main.module.css";
 import HeadTag from "../components/layout/HeadTag"
 import {StyledContentContainer} from "../components/layout/sections/contentContainer";
 import {StyledPrimaryBlueSection} from "../components/layout/sections/primaryBlueSection";
-import StaffListing from "../components/subComponents/staffList";
 import {StyledReadingSection} from "../components/subComponents/readingTextBlock";
 
 const AboutUs = (props) => (
@@ -17,7 +16,7 @@ const AboutUs = (props) => (
             </StyledReadingSection>
             <StyledContentContainer>
                 <h2 className={` ${styles.h2} ${styles.h2NoMargin} `}>OUR STAFF</h2>
-                <StaffListing />
+
             </StyledContentContainer>
 
             <StyledReadingSection>
