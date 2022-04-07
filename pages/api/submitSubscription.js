@@ -1,31 +1,23 @@
 
 export default async function submitSubscription(req, res) {
     if (req.method === 'POST') {
-        // ${process.env.GOOGLE_API_KEY};
-        const headers = {
-            "client_id-type": `${process.env.FRC_API_CLIENT_ID}`,
-            "client_secret": `${process.env.FRC_API_CLIENT_SECRET}`,
-            "grant_type": "client_credentials"
-        }
 
-        //     [
-        //     ["client_id", `${process.env.FRC_API_CLIENT_ID}`],
-        //     ["client_secret", `${process.env.FRC_API_CLIENT_SECRET}`],
-        //     ["grant_type", "client_credentials"]
-        // ]
-        const OAuthHeaders = new Headers(headers);
-        console.log(headers);
+        const data = [
+            ["client_id", `${process.env.FRC_API_CLIENT_ID}`],
+            ["client_secret", `${process.env.FRC_API_CLIENT_SECRET}`],
+            ["grant_type", "client_credentials"]
+        ]
+
         const baseUrl = `https://api.frc.org/oauth/token`;
-        const response = await fetch(baseUrl, {
+        await fetch(baseUrl, {
             method: 'POST',
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: new Headers(headers),
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            //body: JSON.stringify(data) // body data type must match "Content-Type" header
-        }).then(res => res.json()).then(response => {
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        }).then(res => {
+            console.log(res);
+            return res.json();
+            })
+            .then(response => {
+            console.log(response);
             res.status(200).json({response})
         });
     } else {
@@ -33,9 +25,6 @@ export default async function submitSubscription(req, res) {
     }
 }
 
-
-
-// parses JSON res into native JavaScript objects
 
 // $request = Http::baseUrl('https://api.frc.org');
 //
