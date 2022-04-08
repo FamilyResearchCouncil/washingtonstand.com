@@ -5,34 +5,41 @@ export default async function submitSubscription(req, res) {
 
         const apiAuthToken = await getAPIToken();
 
-        const baseUrl = `https://api.frc.org/api/frc/new-accounts`;
+        const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&reportCode=WOTW`;
 
         const headers = {
             'Content-Type' : 'application/json',
             'Authorization' : `${apiAuthToken.token_type} ${apiAuthToken.access_token}`
         };
 
+        // all column names must be in lower case, or it will throw an error in the API, which take camelCase and
+        // changes it to snake_case for the sake of how database columns are defined.
         const data = {
                 "forceNew":"Y",
-                "RID":"",
-                "PERSONAL_ID":"",
+                "rid":"",
+                "personal_id":"",
+                "load_date": "2022-04-08",
                 // "STATUS_CODE":"NA_EXC",
                 // "ACCOUNT_TYPE":"PER",
                 // "ACCOUNT_SOURCE":"WEB",
-                "PERSON_FIRST_NAME":"Timothy",
-                "PERSON_LAST_NAME":"Daigle",
+                "person_first_name":"Timothy",
+                "person_last_name":"Daigle",
                 // "ADDR_1":"801 G Street NW",
                 // "CITY":"Washington",
                 // "STATE":"DC",
-                "ZIP":"20001",
-                "PHONE":"202-123-4567",
-                "EMAIL_ADDR":"tdaigle@frc.org",
-                "NEW_ACCOUNT_ITEMS":JSON.stringify(
-                    {"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"}
+                "zip":"20001",
+                "phone":"202-123-4567",
+                "email_addr":"tdaigle@frc.org",
+                "new_account_item"://JSON.stringify(
+                        {"item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"},
                     // {"ITEM_CODE":"WUSUB","SEND_CODE":"EM","QTY_REQUESTED":1,"WAREHOUSE":"CIS","REQUESTED_FLAG":"Y"}
-                )
+                // )
+                "confirmation":
+                    {"rid":"WUSUB","qty_requested":1,"warehouse":"CIS"}
+
             }
 
+            console.log(JSON.stringify(data));
 
         // let form_data = new FormData();
         //
@@ -100,6 +107,9 @@ const getAPIToken  = async (req, res) => {
 //     '{"forceNew":"Y","rid":"' . $ids[4] . '","personal_id":"","status_code":"NA_NEW","account_type":"PER","account_source":"MENC","person_salutation":"MR","person_first_name":"John","person_familiar":"Matt","person_last_name":"Brown","addr_1":"27121 Coyote Ridge Ln","addr_2":"","city":"Johnstown","state":"CO","zip":"80534","phone":"970-744-5783","phone_address_type":"M","email_addr":"mattdocbrown@gmail.com","person_birth_date":"","person_gender":"","user_id":"JNW","church_name":"","new_account_attendees":{"attendee_type":"R","event_code":"MC018","attendee_comment":"$Reprint name tag…printed wrong name"},"new_account_gifts":{"appeal_code":"21MC1F","gift_type":"R","card_number":"1234 5678 9000 0000","exp_date":"12/23","cid":"501","gift_amount":"60"}}'
 // ];
 
+
+let otherData = {"forceNew":"Y","rid":"","personal_id":"","status_code":"NA_NEW","account_type":"PER","account_source":"MENC","person_salutation":"MR","person_first_name":"","person_familiar":"Aaron","person_last_name":"Potter","addr_1":"1 Innovation Way Ste B","addr_2":"","city":"Woodland Park","state":"CO","zip":"80863","phone":"","phone_address_type":"","email_addr":"","person_birth_date":"","person_gender":"","user_id":"SEK","church_name":"","new_account_attendees":{"attendee_type":"V","event_code":"MC018","attendee_comment":"Volunteer Event Team - Complimentary"},"new_account_gifts":{"appeal_code":"21MC1F","gift_type":"A","card_number":"","exp_date":"","cid":"","gift_amount":"0"}}
+
 let data957 =
     {
           success: false,
@@ -133,25 +143,25 @@ let data957 =
 
 let data904 =
     {
-          success: false,
-  data: {
-        forceNew: 'Y',
-        RID: null,
-        PERSONAL_ID: null,
-        PERSON_FIRST_NAME: 'Timothy',
-        PERSON_LAST_NAME: 'Daigle',
-        ZIP: '20001',
-        PHONE: '202-123-4567',
-        EMAIL_ADDR: 'tdaigle@frc.org',
-        NEW_ACCOUNT_ITEMS: '{"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"}'
-      },
-  error: 'Error Code    : 904\n' +
-    'Error Message : ORA-00904: "NEW_ACCOUNT_ITEMS": invalid identifier\n' +
-    'Position      : 133\n' +
-    'Statement     : update "FRC"."NEW_ACCOUNTS" set "PERSON_FIRST_NAME" = :p0, "PERSON_LAST_NAME" = :p1, "ZIP" = :p2, "PHONE" = :p3, "EMAIL_ADDR" = :p4, "NEW_ACCOUNT_ITEMS" = :p5, "ACTIVITY_DATE" = :p6, "USER_ID" = :p7 where "RID" = :p8\n' +
-    'Bindings      : [Timothy,Daigle,20001,202-123-4567,tdaigle@frc.org,{"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"},2022-04-07 17:56:34,API,12403106]\n' +
-    ' (SQL: update "FRC"."NEW_ACCOUNTS" set "PERSON_FIRST_NAME" = Timothy, "PERSON_LAST_NAME" = Daigle, "ZIP" = 20001, "PHONE" = 202-123-4567, "EMAIL_ADDR" = tdaigle@frc.org, "NEW_ACCOUNT_ITEMS" = {"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"}, "ACTIVITY_DATE" = 2022-04-07 17:56:34, "USER_ID" = API where "RID" = 12403106)'
-}
+        success: false,
+        data: {
+            forceNew: 'Y',
+            RID: null,
+            PERSONAL_ID: null,
+            PERSON_FIRST_NAME: 'Timothy',
+            PERSON_LAST_NAME: 'Daigle',
+            ZIP: '20001',
+            PHONE: '202-123-4567',
+            EMAIL_ADDR: 'tdaigle@frc.org',
+            NEW_ACCOUNT_ITEMS: '{"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"}'
+          },
+      error: 'Error Code    : 904\n' +
+        'Error Message : ORA-00904: "NEW_ACCOUNT_ITEMS": invalid identifier\n' +
+        'Position      : 133\n' +
+        'Statement     : update "FRC"."NEW_ACCOUNTS" set "PERSON_FIRST_NAME" = :p0, "PERSON_LAST_NAME" = :p1, "ZIP" = :p2, "PHONE" = :p3, "EMAIL_ADDR" = :p4, "NEW_ACCOUNT_ITEMS" = :p5, "ACTIVITY_DATE" = :p6, "USER_ID" = :p7 where "RID" = :p8\n' +
+        'Bindings      : [Timothy,Daigle,20001,202-123-4567,tdaigle@frc.org,{"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"},2022-04-07 17:56:34,API,12403106]\n' +
+        ' (SQL: update "FRC"."NEW_ACCOUNTS" set "PERSON_FIRST_NAME" = Timothy, "PERSON_LAST_NAME" = Daigle, "ZIP" = 20001, "PHONE" = 202-123-4567, "EMAIL_ADDR" = tdaigle@frc.org, "NEW_ACCOUNT_ITEMS" = {"ITEM_CODE":"WUSUB","QTY_REQUESTED":1,"WAREHOUSE":"CIS"}, "ACTIVITY_DATE" = 2022-04-07 17:56:34, "USER_ID" = API where "RID" = 12403106)'
+    }
 
 
 
@@ -179,3 +189,81 @@ let data904 =
 //     {"ITEM_CODE":"WUSUB","SEND_CODE":"EM","QTY_REQUESTED":"1","WAREHOUSE":"CIS","USER_ID":"WEB","REQUESTED_FLAG":"Y"}
 // ]
 // }
+
+let data =
+    {
+        success: true,
+        data: {
+         rid: '12403835',
+         status_code: 'NA_NEW',
+         batch_no: null,
+         load_date: '1900-01-01T05:32:11.000000Z',
+         add_account: null,
+         account_id: null,
+         account_name: null,
+         account_type: 'PER',
+         account_source: 'WEB',
+         website_url: null,
+         external_uid: null,
+         exact_match_flag: null,
+         hostile_flag: null,
+         add_person: null,
+         personal_id: null,
+         function_code: 'SLF',
+         person_salutation: null,
+         person_first_name: 'Timothy',
+         person_middle_name: null,
+         person_last_name: 'Daigle',
+         person_suffix: null,
+         person_familiar: null,
+         person_title: null,
+         add_address: 'Y',
+         addr_seq_no: null,
+         address_type: 'H',
+         cass_certified_flag: null,
+         addr_1: null,
+         addr_2: null,
+         addr_3: null,
+         city: null,
+         state: null,
+         zip: '20001',
+         district_no: null,
+         country: null,
+         add_phone: 'Y',
+         phone_seq_no: null,
+         phone: '202-123-4567',
+         add_fax: null,
+         fax_seq_no: null,
+         fax: null,
+         add_email: 'Y',
+         email_seq_no: null,
+         email_addr: 'tdaigle@frc.org',
+         format_code: null,
+         ip_address: null,
+         user_id: 'API',
+         activity_date: '2022-04-08T14:53:07.000000Z',
+         person_gender: null,
+         school_name: null,
+         password_text: null,
+         item_code: null,
+         church_name: null,
+         year_earned: null,
+         person_birth_date: '1900-01-01T05:32:11.000000Z',
+         phone_address_type: null,
+         cass_certify_type: null,
+         occupation_code: null,
+         employer: null,
+         church_membership: null,
+         autoprocess_flag: null,
+         autoprocess_code: null,
+         twitter_handle: null,
+         employer_address: null,
+         add_mobile: null,
+         mobile_seq_no: null,
+         mobile: null,
+         attendee_person: null,
+         new_account_attendee: null,
+         new_account_gift: null
+       },
+   error: null
+ }
