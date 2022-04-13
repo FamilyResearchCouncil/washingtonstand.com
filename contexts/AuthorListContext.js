@@ -7,22 +7,23 @@ function StaffContextProvider({ children }) {
     const [staff, setStaff] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
-    // Fetch data
-    fetch("https://api.frc.org/api/webjson/frc/script-generated/news_author_details_array.json")
-        .then(res => res.json())
-        .then(
-            (result) => {
-                setStaff(result);
-                setIsLoading(false);
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                console.log(error);
-            }
-        );
+    if(isLoading) {
+        // Fetch data
+        fetch("https://api.frc.org/api/webjson/frc/script-generated/news_author_details_array.json")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setStaff(result);
+                    setIsLoading(false);
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
 
     return (
         <APIContext.Provider value={{ staff, isLoading }}>
