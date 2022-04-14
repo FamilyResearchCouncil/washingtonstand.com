@@ -28,7 +28,7 @@ export const StyledMenu = styled.nav`
     text-align: center;
     
     &:hover {
-      color: ${({ theme }) => theme.colors.altLightBlue};
+      color: ${({ theme }) => theme.colors.isWhite};
     }
   }
 

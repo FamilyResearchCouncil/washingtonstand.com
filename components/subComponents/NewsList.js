@@ -13,24 +13,36 @@ const NewsItem = (props) => (
                 <h2>{props.title}</h2>
                 </a>
             </Link>
-            <p>{props.summary}</p>
+            {
+                props.summaryInclude ? <p>{props.summary}</p> : <></>
+            }
         </div>
     </>
 );
 
-const NewsListing = () => {
-
+const NewsListing = (props) => {
+    console.log(props.summaryInclude)
     const { publications, isLoading } = useAPIPubs();
-    return (<>
-        {!isLoading ?
-            publications.map(item => (
-                <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE}/>
-            ))
-            :
-            <p>Loading...</p>
-        }
-
-    </>);
+    if(props.list) {
+        return (<>
+            {
+                props.list.map(item => (
+                    <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}
+                              imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
+                ))
+            }
+        </>);
+    } else {
+        return (<>
+            {!isLoading ?
+                publications.map(item => (
+                    <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
+                ))
+                :
+                <p>Loading...</p>
+            }
+        </>);
+    }
 }
 
 export default NewsListing;

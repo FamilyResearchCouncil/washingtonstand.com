@@ -1,11 +1,12 @@
 export default function siteTheme() {
     return {
         colors: {
-            primaryBlue: '#003366',
-            altDarkBlue: '#0c1527',
-            altLightBlue: '#6c97c6',
-            primaryGold: '#ddbb2b',
+            primaryBlue: '#4239F7',
+            primaryYellow: '#EAA53E',
+            primaryGrey: '#E5E5E4',
+            alternateGrey: '#727272',
             isWhite: '#ffffff',
+            isBlack: '#000000',
             transparentBlack: 'rgba(0,0,0,.7)',
             mobileTransparentblack: 'rgba(0,0,0,.85)',
         },
@@ -31,3 +32,4 @@ export default function siteTheme() {
         }
     }
 }
+

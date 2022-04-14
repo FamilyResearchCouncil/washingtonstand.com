@@ -39,9 +39,9 @@ export default function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
             <PublicationContextProvider>
             <StaffContextProvider>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
             </StaffContextProvider>
             </PublicationContextProvider>
         </ThemeProvider>

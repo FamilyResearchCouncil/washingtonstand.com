@@ -7,7 +7,7 @@ const NewsPage = () => (
     <>
         <HeadTag title="News" description="" />
         <StyledContentContainer>
-        <NewsList />
+        <NewsList summaryInclude={true} />
         </StyledContentContainer>
     </>
 );

@@ -15,7 +15,7 @@ const DisplayAuthors = (props) => {
             setPubAuthors(staff.filter(author => props.personalIdArray.includes(author.PERSONAL_ID)));
             // console.log(pubAuthors);
         }
-    }, [pubAuthors]);
+    }, []);
 
     if (!isLoading) {
 
@@ -43,7 +43,6 @@ const DisplayAuthors = (props) => {
 };
 
 const Post = (props) => {
-    console.log(props);
     return (
         <>
             <HeadTag title={props.pageProps.ITEM_DESC} description={props.pageProps.SUMMARY_TEXT}/>
@@ -87,17 +86,13 @@ const Post = (props) => {
 // }
 
 export async function getServerSideProps(context) {
-    // console.log(context.query);
     const pageId = context.query.id;
     let pageProps = {};
-
-    // console.log(pageId);
 
     await fetch(`https://api.frc.org/api/webtext/${pageId}.json`)
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
                 pageProps = result.pop();
             },
             // Note: it's important to handle errors here
