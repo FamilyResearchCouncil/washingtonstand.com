@@ -59,6 +59,7 @@ const Home = (props) => (
               <div />
               <div>
                   <h2>TRENDING</h2>
+                  <NewsList list={props.pageProps.trending}/>
               </div>
           </LeadingGrid>
       </StyledContentContainer>
@@ -73,85 +74,91 @@ const Home = (props) => (
 
 
 export async function getStaticProps(context) {
-    // const { res } = context;
-    // res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`);
 
+    let publication = {};
     let publications = [];
 
     let pageProps = {};
     let displayedItemsArray = [];
-    let pastItemsArray = [];
+    let trendingList = [];
 
     await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_featured_article.json`)
         .then(res => res.json())
         .then(
             (result) => {
-                pageProps.leadStory = result.pop();
+                pageProps.leadStory = result.shift();
                 displayedItemsArray.push(pageProps.leadStory.ITEM_CODE);
             },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
             (error) => {
-                console.log(error);
 
             }
         );
 
-      await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_top_articles.json`)
-          .then(res => res.json())
-          .then(
-              (result) => {
-                    pageProps.topStories = result;
-                    pageProps.topStories.forEach(item => {
-                       displayedItemsArray.push(item.ITEM_CODE);
+
+    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_top_articles.json`)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                pageProps.topStories = result;
+
+                pageProps.topStories.forEach(item => {
+                   displayedItemsArray.push(item.ITEM_CODE);
+                });
+            },
+            (error) => {
+                // console.log(error);
+            }
+        );
+
+    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                publications = result.filter(item =>
+                    !displayedItemsArray.includes(item.ITEM_CODE)
+                );
+
+                while (pageProps.topStories.length < 4) {
+                    publication = publications.shift();
+                    displayedItemsArray.push(publication.ITEM_CODE);
+                    pageProps.topStories.push(publication);
+                }
+
+            },
+            (error) => {
+
+            }
+        );
+
+    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_trending_list.json`)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                pageProps.trending = [];
+                trendingList = result;
+                trendingList = trendingList.splice(trendingList.length-4,trendingList.length);
+                trendingList.forEach(item => {
+                    publications.forEach((pub,index) => {
+                        if (pub.ITEM_CODE === item.ITEM_CODE && !displayedItemsArray.includes(pub.ITEM_CODE)) {
+                            pageProps.trending.push(pub);
+                            displayedItemsArray.push(pub.ITEM_CODE);
+                            publications.splice(index, 1);
+
+                        }
                     });
-              },
-              // Note: it's important to handle errors here
-              // instead of a catch() block so that we don't swallow
-              // exceptions from actual bugs in components.
-              (error) => {
-                    console.log(error);
-
-              }
-          );
-
-      await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`)
-          .then(res => res.json())
-          .then(
-              (result) => {
-                    console.log(result);
-                    publications = result;
-              },
-              // Note: it's important to handle errors here
-              // instead of a catch() block so that we don't swallow
-              // exceptions from actual bugs in components.
-              (error) => {
-                    console.log(error);
-
-              }
-          );
+                });
+            },
+            (error) => {
+                // console.log(error);
+            }
+        );
 
 
 
     pageProps.displayedItemsArray = displayedItemsArray;
 
 
-    console.log(publications);
-
-    pastItemsArray = publications.filter(item =>
-        !displayedItemsArray.includes(item.ITEM_CODE)
-    );
-
-    let item = {};
-
-    while (pageProps.topStories.length < 4) {
-        item = pastItemsArray.pop();
-        displayedItemsArray.push(item.ITEM_CODE);
-        pageProps.topStories.push(item);
-    }
-
-    pageProps.pastPublications = pastItemsArray;
+    pageProps.pastPublications = publications;
 
     return {
         props: {
