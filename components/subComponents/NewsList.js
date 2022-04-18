@@ -21,7 +21,6 @@ const NewsItem = (props) => (
 );
 
 const NewsListing = (props) => {
-    console.log(props.summaryInclude)
     const { publications, isLoading } = useAPIPubs();
     if(props.list) {
         return (<>

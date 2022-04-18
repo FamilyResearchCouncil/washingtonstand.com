@@ -72,9 +72,9 @@ const Home = (props) => (
 );
 
 
-export async function getServerSideProps(context) {
-    const { res } = context;
-    res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`);
+export async function getStaticProps(context) {
+    // const { res } = context;
+    // res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`);
 
     let publications = [];
 
@@ -153,7 +153,12 @@ export async function getServerSideProps(context) {
 
     pageProps.pastPublications = pastItemsArray;
 
-    return { props: { pageProps } };
+    return {
+        props: {
+            pageProps
+        },
+        revalidate: 10
+    };
 
 }
 
