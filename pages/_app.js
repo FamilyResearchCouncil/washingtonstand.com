@@ -6,8 +6,8 @@ import StaffContextProvider from "../contexts/AuthorListContext";
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import theme from '../components/siteTheme'
+import RootCssHeadTag from "../components/RootCssHeadTag";
 import '../styles/globals.css'
-import publications from '../contexts/PublicationListContext'
 
 // log the pageview with their URL
 // const pageview = (url) => {
@@ -37,6 +37,7 @@ export default function MyApp({ Component, pageProps }) {
 
     return getLayout(
         <ThemeProvider theme={theme}>
+            <RootCssHeadTag/>
             <PublicationContextProvider>
             <StaffContextProvider>
                 <Layout>

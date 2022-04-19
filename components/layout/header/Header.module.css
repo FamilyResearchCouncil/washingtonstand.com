@@ -10,3 +10,26 @@
     display: block;
     margin: 0 auto;
 }
+
+.leadTopics {
+
+}
+
+.leadTopics div {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+}
+
+.leadTopics div a {
+    flex: 1;
+    text-align: center;
+    transition: all .3s ease;
+    padding: .5rem .3rem;
+    font-weight: 600;
+}
+
+.leadTopics div a:hover {
+    transform: translateY(.4rem);
+}

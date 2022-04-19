@@ -1,14 +1,17 @@
 import HeadTag from "../components/layout/HeadTag"
-import styles from '../styles/Main.module.css'
+import styles from '../styles/Home.module.css'
 import {StyledContentContainer} from "../components/layout/sections/contentContainer";
 import {StyledGreySection} from "../components/layout/sections/GeySection";
 import styled from 'styled-components';
-import {useAPIPubs} from "../contexts/PublicationListContext";
 import TopItemsList from "../components/HomeTopStories";
 import FeaturedPublication from "../components/HomeFeaturedStory";
 import NewsList from "../components/subComponents/NewsList";
+import AroundTheWebCarousel from "../components/subComponents/AroundTheWebCarousel";
+import Link from "next/link";
+import appUrls from "../storage/baseUrls.json";
+import React from "react";
 
-const LeadingGrid = styled.div`
+const OffsetGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   
@@ -34,40 +37,43 @@ const Home = (props) => (
       <HeadTag title="The Washington Stand" description="" />
       <h1 style={{ fontSize: '0px', display: "none" }}>The Washington Stand</h1>
       <StyledContentContainer>
+          {/*{JSON.stringify(props)}*/}
           <h2>LATEST</h2>
-          <LeadingGrid>
-              <FeaturedPublication {...props.pageProps.leadStory} />
+          <OffsetGrid>
+              <FeaturedPublication {...props.leadStory} />
               <div />
               <div>
-                  <TopItemsList list={props.pageProps.topStories} />
+                  <TopItemsList list={props.topStories} />
               </div>
-          </LeadingGrid>
+          </OffsetGrid>
       </StyledContentContainer>
-      <StyledGreySection>
+      <StyledGreySection className={styles.newsLetterSection}>
           <StyledContentContainer>
               <h2>JOIN OUR NEWS LETTER</h2> email sign up
           </StyledContentContainer>
       </StyledGreySection>
       <StyledContentContainer>
-          <LeadingGrid>
+          <OffsetGrid>
               <div>
                   <h2>PREVIOUS ARTICLES</h2>
                   <PreviousNewsGrid>
-                      <NewsList list={props.pageProps.pastPublications}/>
+                      <NewsList list={props.pastPublications} displayImg={true}/>
                   </PreviousNewsGrid>
+                  <Link href={`/${appUrls.urlDirectories.news}`}>MORE</Link>
               </div>
               <div />
               <div>
                   <h2>TRENDING</h2>
-                  <NewsList list={props.pageProps.trending}/>
+                  <NewsList list={props.trending} displayImg={false}/>
               </div>
-          </LeadingGrid>
+          </OffsetGrid>
       </StyledContentContainer>
       <StyledContentContainer>
-          Promo Banners
+          <div dangerouslySetInnerHTML={props.bannerHtml} className={styles.bannerGrid} />
       </StyledContentContainer>
       <StyledContentContainer>
           <h2>AROUND THE WEB</h2>
+          <AroundTheWebCarousel linkArray={props.aroundTheWeb} />
       </StyledContentContainer>
   </>
 );
@@ -153,17 +159,35 @@ export async function getStaticProps(context) {
             }
         );
 
+    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_around_the_web.json`)
+        .then(res => res.json())
+        .then((result) => {
+                pageProps.aroundTheWeb = result;
+            },
+            (error) => {
 
+            }
+        );
 
-    pageProps.displayedItemsArray = displayedItemsArray;
+    await fetch(`https://api.frc.org/api/webtext/WX22D08.cfm`)
+        .then(res => res.text())
+        .then(
+            (result) => {
+                pageProps.bannerHtml = {
+                    __html: result
+                };
+            },
+            (error) => {
 
+            }
+        );
 
+    // publications.splice(0, 3);
+    publications = publications.filter((pub,idx) => idx < 4);
     pageProps.pastPublications = publications;
 
     return {
-        props: {
-            pageProps
-        },
+        props: {...pageProps},
         revalidate: 10
     };
 

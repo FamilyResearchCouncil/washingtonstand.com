@@ -9,7 +9,10 @@ const NewsItem = (props) => (
         <div>
             <Link href={`/${appUrls.urlDirectories.news}/${props.itemCode}`}>
                 <a>
-                    <Image src={props.imgUrl} width={763} height={400} layout='responsive'/>
+                    {
+
+                        props.displayImg ? <Image src={props.imgUrl} width={763} height={400} layout='responsive'/> : ""
+                    }
                 <h2>{props.title}</h2>
                 </a>
             </Link>
@@ -26,7 +29,7 @@ const NewsListing = (props) => {
         return (<>
             {
                 props.list.map(item => (
-                    <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}
+                    <NewsItem displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}
                               imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
                 ))
             }
@@ -35,7 +38,7 @@ const NewsListing = (props) => {
         return (<>
             {!isLoading ?
                 publications.map(item => (
-                    <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
+                    <NewsItem displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
                 ))
                 :
                 <p>Loading...</p>

@@ -1,0 +1,25 @@
+.newsLetterSection {
+    margin: 4rem 0rem;
+}
+
+.bannerGrid {
+    border-top: solid 2px var(--alternateGrey);
+    border-bottom: solid 2px var(--alternateGrey);
+    margin: 4rem 0rem;
+    padding: 4rem 0rem;
+}
+
+.bannerGrid > div {
+    display: grid;
+    grid-gap: 4rem;
+}
+
+.bannerGrid > div img {
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .bannerGrid > div {
+        grid-template-columns: 1fr 1fr;
+    }
+}

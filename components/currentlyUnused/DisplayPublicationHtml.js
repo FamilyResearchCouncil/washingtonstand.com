@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {StyledReadingSection} from "./readingTextBlock";
+import {StyledReadingSection} from "../subComponents/readingTextBlock";
 
 const DisplayPublicationHtml = (props) => {
     const [error, setError] = useState(null);

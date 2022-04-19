@@ -11,7 +11,7 @@ export default function siteTheme() {
             mobileTransparentblack: 'rgba(0,0,0,.85)',
         },
         widths: {
-            xlargeMaxWidth: '1100px',
+            xlargeMaxWidth: '1400px',
             largeMaxWidth: '800px',
             mediumMaxWidth: '600px',
             contentList: '800px',
@@ -28,7 +28,9 @@ export default function siteTheme() {
             xLarge: '1200px'
         },
         directories: {
-            news: 'news'
+            news: 'news',
+            staff: 'staff',
+            topic: 'topic',
         }
     }
 }
