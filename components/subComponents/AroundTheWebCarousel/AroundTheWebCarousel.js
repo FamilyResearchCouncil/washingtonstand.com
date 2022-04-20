@@ -46,17 +46,6 @@ const AroundTheWebCarousel = (props) => (
                 )
             )
         }
-        {
-            props.linkArray.map(link => (
-                    <a href={link.EXTERNAL_LINK}>
-                        <Image src={link.SCREENCAP_IMAGE} width={763} height={400} layout='responsive' alt={link.ITEM_DESC}/>
-                        <h3>
-                            {link.ITEM_DESC}
-                        </h3>
-                    </a>
-                )
-            )
-        }
     </Carousel>
 );
 
