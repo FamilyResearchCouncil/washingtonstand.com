@@ -2,10 +2,13 @@ import appUrls from "../../storage/baseUrls.json";
 
 export default async function submitSubscription(req, res) {
     if (req.method === 'POST') {
+        // console.log(req.body);
+        // res.status(200).json(req.body)
 
         const apiAuthToken = await getAPIToken();
 
-        const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&reportCode=WOTW`;
+        const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
+        // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&report_code=CE`;
 
         const headers = {
             'Content-Type' : 'application/json',
@@ -14,43 +17,30 @@ export default async function submitSubscription(req, res) {
 
         // all column names must be in lower case, or it will throw an error in the API, which take camelCase and
         // changes it to snake_case for the sake of how database columns are defined.
-        const data = {
-                "forceNew":"Y",
-                "rid":"",
-                "personal_id":"",
-                "load_date": "2022-04-08",
-                // "STATUS_CODE":"NA_EXC",
-                // "ACCOUNT_TYPE":"PER",
-                // "ACCOUNT_SOURCE":"WEB",
-                "person_first_name":"Timothy",
-                "person_last_name":"Daigle",
-                // "ADDR_1":"801 G Street NW",
-                // "CITY":"Washington",
-                // "STATE":"DC",
-                "zip":"20001",
-                "phone":"202-123-4567",
-                "email_addr":"tdaigle@frc.org",
-                "new_account_item"://JSON.stringify(
-                        {"item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"},
-                    // {"ITEM_CODE":"WUSUB","SEND_CODE":"EM","QTY_REQUESTED":1,"WAREHOUSE":"CIS","REQUESTED_FLAG":"Y"}
-                // )
-                "confirmation":
-                    {"rid":"WUSUB","qty_requested":1,"warehouse":"CIS"}
-
-            }
-
-            console.log(JSON.stringify(data));
-
-        // let form_data = new FormData();
+        // const data = {
+        //         "forceNew":"Y",
+        //         "rid":"",
+        //         "personal_id":"",
+        //         "load_date": "2022-04-08",
+        //         "person_first_name":"Timothy",
+        //         "person_last_name":"Daigle",
+        //         "zip":"20001",
+        //         "phone":"202-123-4567",
+        //         "email_addr":"tdaigle@frc.org",
+        //         "new_account_item":{
+        //             "item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"
+        //         },
+        //         "confirmation":
+        //             {"rid":"WUSUB","qty_requested":1,"warehouse":"CIS"}
         //
-        // for ( let key in data ) {
-        //     form_data.append(key, data[key]);
-        // }
+        //     }
+
+        // console.log(JSON.stringify(data));
 
         await fetch(baseUrl, {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
+            body: JSON.stringify(req.body)
         }).then(res => {
             console.log(res);
             return res.json()
@@ -84,7 +74,7 @@ const getAPIToken  = async (req, res) => {
     await fetch(baseUrl, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
+        body: JSON.stringify(data)
     }).then(res => {
         return res.json()
     }).then(response => {

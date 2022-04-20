@@ -4,6 +4,7 @@ import Image from "next/image";
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
 import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
 import DisplayByLine from "../../../components/subComponents/DisplayByLine";
+import DisplayPublicationHtml from "../../../components/subComponents/DisplayPublicationHtml";
 
 const Post = (props) => {
     return (
@@ -16,7 +17,7 @@ const Post = (props) => {
                 <h1>{props.ITEM_DESC}</h1>
                 <DisplayByLine personalIdArray={props.authourArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
                 <StyledReadingSection>
-                    <div dangerouslySetInnerHTML={props.displayHtml} />
+                    <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                 </StyledReadingSection>
                 <center>
                     <Image src="/img/Flame_icon.svg" height={50} width={50}/>

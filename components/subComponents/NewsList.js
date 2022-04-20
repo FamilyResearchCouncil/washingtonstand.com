@@ -28,8 +28,8 @@ const NewsListing = (props) => {
     if(props.list) {
         return (<>
             {
-                props.list.map(item => (
-                    <NewsItem displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}
+                props.list.map((item,idx) => (
+                    <NewsItem key={idx} displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}
                               imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
                 ))
             }
@@ -37,8 +37,8 @@ const NewsListing = (props) => {
     } else {
         return (<>
             {!isLoading ?
-                publications.map(item => (
-                    <NewsItem displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
+                publications.map((item,idx) => (
+                    <NewsItem key={idx} displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
                 ))
                 :
                 <p>Loading...</p>

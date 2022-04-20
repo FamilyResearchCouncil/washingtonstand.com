@@ -3,11 +3,11 @@ import {StyledContentContainer} from "../sections/contentContainer";
 import styled from 'styled-components';
 import AboutBlock from "../../subComponents/AboutText";
 import PublisherBlock from "../../subComponents/PublisherBlock";
+import styles from "./Footer.module.css"
 
 const FooterGrid = styled.div`
   display: grid;
   grid-gap: 6rem;
-  
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
   }
   
@@ -21,7 +21,7 @@ const FooterGrid = styled.div`
 `;
 
 const Footer = () => (
-    <footer>
+    <footer className={styles.footer}>
         <StyledBlackSection>
             <StyledContentContainer>
             <FooterGrid>

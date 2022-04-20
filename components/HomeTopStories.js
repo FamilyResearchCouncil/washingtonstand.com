@@ -23,8 +23,8 @@ const TopItemsList = (props) => (
     <>
         <ListGrid>
         {
-            props.list.map(item => (
-                <TopItemLink ITEM_DESC={item.ITEM_DESC} ITEM_CODE={item.ITEM_CODE} SCREENCAP_IMAGE={item.SCREENCAP_IMAGE}/>
+            props.list.map((item,idx) => (
+                <TopItemLink key={idx} ITEM_DESC={item.ITEM_DESC} ITEM_CODE={item.ITEM_CODE} SCREENCAP_IMAGE={item.SCREENCAP_IMAGE}/>
             ))
         }
         </ListGrid>
