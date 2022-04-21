@@ -37,7 +37,7 @@ const Home = (props) => (
       <HeadTag title="The Washington Stand" description="" />
       <h1 style={{ fontSize: '0px', display: "none" }}>The Washington Stand</h1>
       <StyledContentContainer>
-          <h2>LATEST</h2>
+          <h2 className={styles.yellowHeader}>LATEST</h2>
           <OffsetGrid>
               <FeaturedPublication {...props.leadStory} />
               <div />
@@ -48,13 +48,13 @@ const Home = (props) => (
       </StyledContentContainer>
       <StyledGreySection className={styles.newsLetterSection}>
           <StyledContentContainer>
-              <h2>JOIN OUR NEWS LETTER</h2> email sign up
+              <h2 className={styles.yellowHeader}>JOIN OUR NEWS LETTER</h2> email sign up
           </StyledContentContainer>
       </StyledGreySection>
       <StyledContentContainer>
           <OffsetGrid>
               <div>
-                  <h2>PREVIOUS ARTICLES</h2>
+                  <h2 className={styles.yellowHeader}>PREVIOUS ARTICLES</h2>
                   <PreviousNewsGrid>
                       <NewsList list={props.pastPublications} displayImg={true}/>
                   </PreviousNewsGrid>
@@ -62,7 +62,7 @@ const Home = (props) => (
               </div>
               <div />
               <div>
-                  <h2>TRENDING</h2>
+                  <h2 className={styles.yellowHeader}>TRENDING</h2>
                   <NewsList list={props.trending} displayImg={false}/>
               </div>
           </OffsetGrid>
@@ -71,7 +71,7 @@ const Home = (props) => (
           <div dangerouslySetInnerHTML={props.bannerHtml} className={styles.bannerGrid} />
       </StyledContentContainer>
       <StyledContentContainer>
-          <h2>AROUND THE WEB</h2>
+          <h2 className={styles.yellowHeader}>AROUND THE WEB</h2>
           <AroundTheWebCarousel linkArray={props.aroundTheWeb} />
       </StyledContentContainer>
   </>
