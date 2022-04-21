@@ -2,11 +2,25 @@ import React, { useEffect, useState } from "react";
 import HeadTag from "../../../components/layout/HeadTag";
 import Image from "next/image";
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
-import {useAPIStaff} from "../../../contexts/AuthorListContext";
-import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
+import styled from "styled-components";
 
+const TopicGrid = styled.div`
+  display: grid;
+  grid-gap: 3rem;
 
+  h2 {
+    
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    grid-template-columns: 1fr 1fr;
+  }
 
+  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+`;
 
 const Topics = (props) => {
     return (
@@ -14,15 +28,17 @@ const Topics = (props) => {
             <HeadTag title={props.title} description={props.title}/>
             <StyledContentContainer>
                 <h1>{props.title}</h1>
+                <TopicGrid>
                 {
                     props.publicationList.map(item => (
-                        <div>
+                        <article>
                             <Image src={item.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             <h2>{item.ITEM_DESC}</h2>
-                            <p>{item.SUMMARY_TEXT}</p>
-                        </div>
+                            {/*<p>{item.SUMMARY_TEXT}</p>*/}
+                        </article>
                     ))
                 }
+                </TopicGrid>
             </StyledContentContainer>
         </>
     );
@@ -33,58 +49,53 @@ const formatDisplayTopic = (topicSlug) => {
     return wordArray.join(" ");
 }
 
-Topics.getInitialProps = async ({query}) => {
+export async function getStaticPaths() {
+    let topicPathArray = [];
+
+    const response =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`);
+    const publications = await response.json();
+
+    publications.forEach(pub => {
+        pub.TAG_LIST.split(',').forEach(topic => {
+           if (!topicPathArray.includes(topic)) topicPathArray.push(topic);
+        });
+    } );
+
+    topicPathArray = topicPathArray.map((topic) => ({
+        params: { id: topic}
+    }));
+
+    console.log(topicPathArray);
+
+    return {
+        paths: topicPathArray,
+        fallback: "blocking"
+    };
+}
+
+
+export async function getStaticProps(context) {
+    const pageId = context.params.id;
 
     let pageProps = {};
 
-    // await fetch(`https://api.frc.org/api/webtext/${query.id}.json`)
-    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/tag_listing_${query.id}.json`)
+    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/tag_listing_${pageId}.json`)
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
                 pageProps.publicationList = result;
-                pageProps.title = formatDisplayTopic(query.id);
+                pageProps.title = formatDisplayTopic(pageId);
             },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
             (error) => {
                 console.log(error);
 
             }
         );
 
-    return pageProps;
+    return {
+        props: {...pageProps},
+        revalidate: 10
+    };
 }
-
-//
-// export async function getServerSideProps(context) {
-//     // console.log(context.query);
-//     const pageId = context.query.id;
-//     let pageProps = {};
-//
-//     // console.log(pageId);
-//
-//     await fetch(`https://api.frc.org/api/webtext/${pageId}.json`)
-//         .then(res => res.json())
-//         .then(
-//             (result) => {
-//                 console.log(result);
-//                 pageProps = result.pop();
-//             },
-//             // Note: it's important to handle errors here
-//             // instead of a catch() block so that we don't swallow
-//             // exceptions from actual bugs in components.
-//             (error) => {
-//                 // console.log(error);
-//
-//             }
-//         );
-//
-//     pageProps.authourArray = pageProps.AUTHOR_ID_LIST.split(',');
-//
-//     return { props: { pageProps } };
-// }
 
 export default Topics;

@@ -11,7 +11,7 @@ const Bio = (props) => {
     const [staffData,setStaffData] = useState({});
     const [pageLoaded,setpageLoaded] = useState(false);
     const thisStaff = staff.filter(staff => staff.AUTHOR_SLUG == props.id).pop();
-//tony-perkins
+
     if (!isLoading) {
         fetch(`https://api.frc.org/api/webtext/${thisStaff.BIO_ITEM}.cfm`)
             .then(res => res.text())
