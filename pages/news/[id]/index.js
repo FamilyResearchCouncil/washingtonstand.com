@@ -9,16 +9,17 @@ import DisplayPublicationHtml from "../../../components/subComponents/DisplayPub
 const Post = (props) => {
     const [downloadTracked,setDownloadTracked] = useState(false);
 
-    if (!downloadTracked) {
-        useEffect(() =>{
-            fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=${process.env.NEXT_PUBLIC_TRACK_DOWNLOAD}`)
+
+    useEffect(() =>{
+        if (!downloadTracked){
+            fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=1`)
                 .then(res => res.text())
                 .then(data => {
                     setDownloadTracked(true);
                     }
                 );
-        },[])
-    }
+        }
+    },[])
 
     return (
         <>
