@@ -12,7 +12,7 @@ const Post = (props) => {
 
     useEffect(() =>{
         if (!downloadTracked){
-            fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=1`)
+            fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=${process.env.NEXT_PUBLIC_TRACK_DOWNLOAD}`)
                 .then(res => res.text())
                 .then(data => {
                     setDownloadTracked(true);
