@@ -3,6 +3,7 @@ import HeadTag from "../../../components/layout/HeadTag";
 import Image from "next/image";
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
 import styled from "styled-components";
+import GetPublications from "../../../helpers/GetPublications";
 
 const TopicGrid = styled.div`
   display: grid;
@@ -52,8 +53,7 @@ const formatDisplayTopic = (topicSlug) => {
 export async function getStaticPaths() {
     let topicPathArray = [];
 
-    const response =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`);
-    const publications = await response.json();
+    const publications = await GetPublications();
 
     publications.forEach(pub => {
         pub.TAG_LIST.split(',').forEach(topic => {
