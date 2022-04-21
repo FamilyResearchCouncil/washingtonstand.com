@@ -58,7 +58,7 @@ const Home = (props) => (
                   <PreviousNewsGrid>
                       <NewsList list={props.pastPublications} displayImg={true}/>
                   </PreviousNewsGrid>
-                  <Link href={`/${appUrls.urlDirectories.news}`}>MORE</Link>
+                  <Link href={`${appUrls.urlDirectories.news}`}>MORE</Link>
               </div>
               <div />
               <div>

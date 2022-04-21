@@ -24,7 +24,7 @@ const StaffGrid = styled.div`
 
 const StaffItem = (props) => (
     <>
-        <Link href={`/${appUrls.urlDirectories.staff}/${props.slug}`} className={`staffDisplay`}>
+        <Link href={`${appUrls.urlDirectories.staff}/${props.slug}`} className={`staffDisplay`}>
             <a>
                 <img src={`${props.imageUrl}`} />
                 <h4>{props.name}</h4>

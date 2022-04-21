@@ -7,7 +7,7 @@ import Image from "next/image";
 const NewsItem = (props) => (
     <>
         <div>
-            <Link href={`/${appUrls.urlDirectories.news}/${props.itemCode}`}>
+            <Link href={`${appUrls.urlDirectories.news}/${props.itemCode}`}>
                 <a>
                     {
 
