@@ -168,7 +168,7 @@ export async function getStaticProps(context) {
             }
         );
 
-    await fetch(`https://api.frc.org/api/webtext/WX22D08.cfm`)
+    await fetch(`https://api.frc.org/api/webtext/WX22D08.cfm?trackDownload=0`)
         .then(res => res.text())
         .then(
             (result) => {

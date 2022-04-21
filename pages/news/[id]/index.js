@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeadTag from "../../../components/layout/HeadTag";
 import Image from "next/image";
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
@@ -7,9 +7,21 @@ import DisplayByLine from "../../../components/subComponents/DisplayByLine";
 import DisplayPublicationHtml from "../../../components/subComponents/DisplayPublicationHtml";
 
 const Post = (props) => {
+    const [downloadTracked,setDownloadTracked] = useState(false);
+
+    if (!downloadTracked) {
+        useEffect(() =>{
+            fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=${process.env.NEXT_PUBLIC_TRACK_DOWNLOAD}`)
+                .then(res => res.text())
+                .then(data => {
+                    setDownloadTracked(true);
+                    }
+                );
+        },[])
+    }
+
     return (
         <>
-            {/*{JSON.stringify(props)}*/}
             <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
             <StyledContentContainer>
                 <article>
@@ -49,7 +61,7 @@ export async function getStaticProps(context) {
     const pageId = context.params.id;
     let pageProps = {};
 
-    await fetch(`https://api.frc.org/api/webtext/${pageId}.json`)
+    await fetch(`https://api.frc.org/api/webtext/${pageId}.json?trackDownload=0`)
         .then(res => res.json())
         .then(
             (result) => {
@@ -61,7 +73,7 @@ export async function getStaticProps(context) {
             }
         );
 
-    await fetch(`https://api.frc.org/api/webtext/${pageId}.cfm`)
+    await fetch(`https://api.frc.org/api/webtext/${pageId}.cfm?trackDownload=0`)
         .then(res => res.text())
         .then(
             (result) => {
