@@ -37,7 +37,7 @@ export default function MyApp({ Component, pageProps }) {
 
     return getLayout(
         <ThemeProvider theme={theme}>
-            <RootCssHeadTag/>
+            <RootCssHeadTag theme={(theme)()}/>
             <PublicationContextProvider>
             <StaffContextProvider>
                 <Layout>

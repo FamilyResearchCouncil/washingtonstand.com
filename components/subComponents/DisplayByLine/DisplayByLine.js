@@ -14,7 +14,7 @@ const ByLineWrapper = styled.div`
   align-items: center;
 `
 
-const DisplayAuthImages = (props) => (
+export const DisplayAuthImages = (props) => (
     <div className={styles.authorImages}>
         {
             props.authors.map(author => (

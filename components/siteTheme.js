@@ -8,7 +8,7 @@ export default function siteTheme() {
             isWhite: '#ffffff',
             isBlack: '#000000',
             transparentBlack: 'rgba(0,0,0,.7)',
-            mobileTransparentblack: 'rgba(0,0,0,.85)',
+            mobileTransparentBlack: 'rgba(0,0,0,.85)'
         },
         widths: {
             xlargeMaxWidth: '1400px',
@@ -26,11 +26,6 @@ export default function siteTheme() {
             medium: '768px',
             large: '992px',
             xLarge: '1200px'
-        },
-        directories: {
-            news: 'news',
-            staff: 'staff',
-            topic: 'topic',
         }
     }
 }
