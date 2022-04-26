@@ -19,7 +19,7 @@ const TopTopics = () => {
             .then(
                 (result) => {
                     setDisplayHtml({
-                        __html: result
+                        __html: result.replaceAll(`="topic`,`="/topic`)
                     })
                     setIsLoaded(true);
                 },
