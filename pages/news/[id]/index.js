@@ -6,6 +6,27 @@ import {StyledReadingSection} from "../../../components/subComponents/readingTex
 import DisplayByLine from "../../../components/subComponents/DisplayByLine";
 import DisplayPublicationHtml from "../../../components/subComponents/DisplayPublicationHtml";
 import GetPublications from "../../../helpers/GetPublications";
+import styled from "styled-components";
+
+const OuterDiv = styled.div`
+    position: relative; 
+    display: block;
+    max-width: 100%;
+`
+
+const InnerDiv = styled.div`
+  padding-top: 56.25%;
+  
+  iframe {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+`
 
 const Post = (props) => {
     const [downloadTracked,setDownloadTracked] = useState(false);
@@ -26,8 +47,17 @@ const Post = (props) => {
         <>
             <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
             <StyledContentContainer>
+                {/*{JSON.stringify(props)}*/}
                 <article>
-                <Image src={props.IMAGE_URL} width={763} height={400} layout='responsive'/>
+                    {
+                        props.IFRAME ?
+                            <OuterDiv>
+                                <InnerDiv dangerouslySetInnerHTML={props.iframeHtml}>
+
+                                </InnerDiv>
+                            </OuterDiv>
+                            : <Image src={props.IMAGE_URL} width={763} height={400} layout='responsive'/>
+                    }
                 <h1>{props.ITEM_DESC}</h1>
                 <DisplayByLine personalIdArray={props.authourArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
                 <StyledReadingSection>
@@ -41,6 +71,14 @@ const Post = (props) => {
         </>
     );
 }
+
+// <div style="position: relative; display: block; max-width: 100%;">
+//     <div style="padding-top: 56.25%;">
+//         <iframe src="https://players.brightcove.net/5194481742001/S1peRoq6g_default/index.html?videoId=6135824949001"
+//                 allowFullScreen="" allow="encrypted-media"
+//                 style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%;"></iframe>
+//     </div>
+// </div>
 
 export async function getStaticPaths() {
 
@@ -66,6 +104,9 @@ export async function getStaticProps(context) {
         .then(
             (result) => {
                 pageProps = result.pop();
+                pageProps.iframeHtml = {
+                    __html: pageProps.IFRAME
+                }
             },
             (error) => {
                 // console.log(error);
