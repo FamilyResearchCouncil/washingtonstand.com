@@ -5,22 +5,20 @@ import {useAPIPubs} from "../../contexts/PublicationListContext";
 import Image from "next/image";
 
 const NewsItem = (props) => (
-    <>
-        <div>
-            <Link href={`${appUrls.urlDirectories.news}/${props.itemCode}`}>
-                <a>
-                    {
+    <article>
+        <Link href={`${appUrls.urlDirectories.news}/${props.itemCode}`}>
+            <a>
+                {
 
-                        props.displayImg ? <Image src={props.imgUrl} width={763} height={400} layout='responsive'/> : ""
-                    }
-                <h2>{props.title}</h2>
-                </a>
-            </Link>
-            {
-                props.summaryInclude ? <p>{props.summary}</p> : <></>
-            }
-        </div>
-    </>
+                    props.displayImg ? <Image src={props.imgUrl} width={763} height={400} layout='responsive'/> : ""
+                }
+            <h2>{props.title}</h2>
+            </a>
+        </Link>
+        {
+            props.summaryInclude ? <p>{props.summary}</p> : <></>
+        }
+    </article>
 );
 
 const NewsListing = (props) => {

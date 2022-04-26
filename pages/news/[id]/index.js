@@ -5,6 +5,7 @@ import {StyledContentContainer} from "../../../components/layout/sections/conten
 import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
 import DisplayByLine from "../../../components/subComponents/DisplayByLine";
 import DisplayPublicationHtml from "../../../components/subComponents/DisplayPublicationHtml";
+import GetPublications from "../../../helpers/GetPublications";
 
 const Post = (props) => {
     const [downloadTracked,setDownloadTracked] = useState(false);
@@ -43,9 +44,7 @@ const Post = (props) => {
 
 export async function getStaticPaths() {
 
-
-    const response =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`);
-    const publications = await response.json();
+    const publications = await GetPublications();
 
     const publishPathsArray = publications.map((pub) => ({
         params: { id: pub.ITEM_CODE}
@@ -91,7 +90,7 @@ export async function getStaticProps(context) {
 
     return {
         props: {...pageProps},
-        revalidate: 10
+        revalidate: 60
     };
 }
 

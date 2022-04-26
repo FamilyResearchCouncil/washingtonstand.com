@@ -10,6 +10,7 @@ import AroundTheWebCarousel from "../components/subComponents/AroundTheWebCarous
 import Link from "next/link";
 import appUrls from "../storage/baseUrls.json";
 import React from "react";
+import GetPublications from "../helpers/GetPublications";
 
 const OffsetGrid = styled.div`
   display: grid;
@@ -80,6 +81,8 @@ const Home = (props) => (
 
 export async function getStaticProps(context) {
 
+    const allPublications = await GetPublications();
+
     let publication = {};
     let publications = [];
 
@@ -115,25 +118,17 @@ export async function getStaticProps(context) {
             }
         );
 
-    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                publications = result.filter(item =>
-                    !displayedItemsArray.includes(item.ITEM_CODE)
-                );
 
-                while (pageProps.topStories.length < 4) {
-                    publication = publications.shift();
-                    displayedItemsArray.push(publication.ITEM_CODE);
-                    pageProps.topStories.push(publication);
-                }
+    publications = allPublications.filter(item =>
+        !displayedItemsArray.includes(item.ITEM_CODE)
+    );
 
-            },
-            (error) => {
+    while (pageProps.topStories.length < 4) {
+        publication = publications.shift();
+        displayedItemsArray.push(publication.ITEM_CODE);
+        pageProps.topStories.push(publication);
+    }
 
-            }
-        );
 
     await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_trending_list.json`)
         .then(res => res.json())
@@ -187,7 +182,7 @@ export async function getStaticProps(context) {
 
     return {
         props: {...pageProps},
-        revalidate: 10
+        revalidate: 60
     };
 
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import HeadTag from "../../../components/layout/HeadTag";
-import Image from "next/image";
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
 import styled from "styled-components";
 import GetPublications from "../../../helpers/GetPublications";
+import NewsList from "../../../components/subComponents/NewsList";
 
 const TopicGrid = styled.div`
   display: grid;
@@ -26,19 +26,11 @@ const TopicGrid = styled.div`
 const Topics = (props) => {
     return (
         <>
-            <HeadTag title={props.title} description={props.title}/>
+            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
             <StyledContentContainer>
                 <h1>{props.title}</h1>
                 <TopicGrid>
-                {
-                    props.publicationList.map(item => (
-                        <article>
-                            <Image src={item.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
-                            <h2>{item.ITEM_DESC}</h2>
-                            {/*<p>{item.SUMMARY_TEXT}</p>*/}
-                        </article>
-                    ))
-                }
+                    <NewsList displayImg={true} list={props.publicationList}/>
                 </TopicGrid>
             </StyledContentContainer>
         </>
@@ -94,7 +86,7 @@ export async function getStaticProps(context) {
 
     return {
         props: {...pageProps},
-        revalidate: 10
+        revalidate: 60
     };
 }
 

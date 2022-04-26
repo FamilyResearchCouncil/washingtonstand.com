@@ -3,16 +3,47 @@ import Image from "next/image";
 import React, {useState} from "react"
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer"
 import {StyledGreySection} from "../../../components/layout/sections/GeySection";
+import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
 import GetPublications from "../../../helpers/GetPublications"
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import styled from "styled-components";
 import DisplayAuthImages from "../../../components/subComponents/DisplayByLine";
+import NewsList from "../../../components/subComponents/NewsList";
 
 const BioGridSection = styled.div`
   display: grid;
   grid-gap: 4rem;
   grid-template-columns: 120px 1fr;
   align-items: center;
+`;
+
+const BioListingGrid = styled.div`
+  margin-top: 6rem;
+  display: grid;
+  display: grid;
+  align-items: center;
+  
+  article {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: solid 2px ${({theme}) => theme.colors.primaryGrey};
+  }
+  
+  article > a {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr 2fr;
+    align-items: baseline;
+    align-content: center;
+    
+    h2 {
+      margin: 0px;
+    }
+  }
+
+  article > a:last-child {
+    border: none;
+  }
 `;
 
 
@@ -34,12 +65,12 @@ const Bio = (props) => {
                     </BioGridSection>
                 </StyledContentContainer>
             </StyledGreySection>
-            <StyledContentContainer>
 
-                <center>
-                    <Image src="/img/Flame_icon.svg" height={50} width={50} />
-                </center>
-            </StyledContentContainer>
+            <StyledReadingSection>
+                <BioListingGrid>
+                <NewsList displayImg={true} list={props.authorPublications}/>
+                </BioListingGrid>
+            </StyledReadingSection>
 
         </>
     )
@@ -76,6 +107,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
     const pageId = context.params.id;
     const authors = await GetAuthorsDetails();
+    const publications = await GetPublications();
 
     let pageProps = authors.filter(author => author.AUTHOR_SLUG === pageId).pop();
 
@@ -92,11 +124,11 @@ export async function getStaticProps(context) {
             }
         );
 
-    console.log(pageProps.displayHtml);
+    pageProps.authorPublications = publications.filter(pub => pub.AUTHOR_ID_LIST.includes(pageProps.PERSONAL_ID));
 
     return {
         props: {...pageProps},
-        revalidate: 10
+        revalidate: 60
     };
 }
 
