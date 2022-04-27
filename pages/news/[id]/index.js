@@ -28,6 +28,18 @@ const InnerDiv = styled.div`
   }
 `
 
+const checkIsPublished = (publication) => {
+    return (
+        process.env.PUBLICATION_STATUS_CHECK_LIST.includes(publication.STATUS)
+        &&
+        (
+            isNaN(Date.parse(publication.END_DATE))
+            ||
+            Date.parse(publication.END_DATE) > Date.now()
+        )
+    )
+}
+
 const Post = (props) => {
     const [downloadTracked,setDownloadTracked] = useState(false);
 
@@ -76,18 +88,6 @@ const Post = (props) => {
             }
         </>
     );
-}
-
-const checkIsPublished = (publication) => {
-    return (
-        process.env.PUBLICATION_STATUS_CHECK_LIST.includes(publication.STATUS)
-        &&
-        (
-            isNaN(Date.parse(publication.END_DATE))
-            ||
-            Date.parse(publication.END_DATE) > Date.now()
-        )
-    )
 }
 
 export async function getStaticPaths() {
