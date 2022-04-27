@@ -72,7 +72,6 @@ const Post = (props) => {
                     :
                     <StyledContentContainer>
                     <center>Unavailable</center>
-                        {JSON.stringify(props)}
                     </StyledContentContainer>
             }
         </>
