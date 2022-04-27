@@ -104,9 +104,9 @@ export async function getStaticProps(context) {
         .then(
             (result) => {
                 pageProps = result.pop();
-                pageProps.iframeHtml = {
+                pageProps.iframeHtml = (pageProps.IFRAME) ? {
                     __html: pageProps.IFRAME
-                }
+                } : false;
             },
             (error) => {
                 // console.log(error);
