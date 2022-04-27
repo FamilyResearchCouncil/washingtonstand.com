@@ -30,7 +30,8 @@ const InnerDiv = styled.div`
 
 const checkIsPublished = (publication) => {
     return (
-        process.env.PUBLICATION_STATUS_CHECK_LIST.includes(publication.STATUS)
+        "ONLINE,APPROVE".includes(publication.STATUS)
+        // process.env.PUBLICATION_STATUS_CHECK_LIST.includes(publication.STATUS)
         &&
         (
             isNaN(Date.parse(publication.END_DATE))
