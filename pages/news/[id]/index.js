@@ -95,9 +95,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
 
+    console.log("type is ", typeof process.env.PUBLICATION_STATUS_CHECK_LIST);
+    console.log("value is ", process.env.PUBLICATION_STATUS_CHECK_LIST);
+
     const checkIsPublished = (publication) => {
         return (
-            process.env.PUBLICATION_STATUS_CHECK_LIST.includes(publication.STATUS)
+            "ONLINE,APPROVE".includes(publication.STATUS)
             &&
             (
                 isNaN(Date.parse(publication.END_DATE))
