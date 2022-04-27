@@ -46,39 +46,50 @@ const Post = (props) => {
     return (
         <>
             <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
-            <StyledContentContainer>
-                {/*{JSON.stringify(props)}*/}
-                <article>
-                    {
-                        props.IFRAME ?
-                            <OuterDiv>
-                                <InnerDiv dangerouslySetInnerHTML={props.iframeHtml}>
+            {
+                props.isPublished ?
+                    <StyledContentContainer>
+                        <article>
+                            {
+                                props.IFRAME ?
+                                    <OuterDiv>
+                                        <InnerDiv dangerouslySetInnerHTML={props.iframeHtml}>
 
-                                </InnerDiv>
-                            </OuterDiv>
-                            : <Image src={props.IMAGE_URL} width={763} height={400} layout='responsive'/>
-                    }
-                <h1>{props.ITEM_DESC}</h1>
-                <DisplayByLine personalIdArray={props.authourArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
-                <StyledReadingSection>
-                    <DisplayPublicationHtml displayHtml={props.displayHtml}/>
-                </StyledReadingSection>
-                <center>
-                    <Image src="/img/Flame_icon.svg" height={50} width={50}/>
-                </center>
-                </article>
-            </StyledContentContainer>
+                                        </InnerDiv>
+                                    </OuterDiv>
+                                    : <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
+                            }
+                            <h1>{props.ITEM_DESC}</h1>
+                            <DisplayByLine personalIdArray={props.authourArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
+                            <StyledReadingSection>
+                                <DisplayPublicationHtml displayHtml={props.displayHtml}/>
+                            </StyledReadingSection>
+                            <center>
+                                <Image src="/img/Flame_icon.svg" height={50} width={50}/>
+                            </center>
+                        </article>
+                    </StyledContentContainer>
+                    :
+                    <StyledContentContainer>
+                    <center>Unavailable</center>
+                        {JSON.stringify(props)}
+                    </StyledContentContainer>
+            }
         </>
     );
 }
 
-// <div style="position: relative; display: block; max-width: 100%;">
-//     <div style="padding-top: 56.25%;">
-//         <iframe src="https://players.brightcove.net/5194481742001/S1peRoq6g_default/index.html?videoId=6135824949001"
-//                 allowFullScreen="" allow="encrypted-media"
-//                 style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%;"></iframe>
-//     </div>
-// </div>
+const checkIsPublished = (publication) => {
+    return (
+        process.env.PUBLICATION_STATUS_CHECK_LIST.includes(publication.STATUS)
+        &&
+        (
+            isNaN(Date.parse(publication.END_DATE))
+            ||
+            Date.parse(publication.END_DATE) > Date.now()
+        )
+    )
+}
 
 export async function getStaticPaths() {
 
@@ -128,6 +139,8 @@ export async function getStaticProps(context) {
         );
 
     pageProps.authourArray = pageProps.AUTHOR_ID_LIST.split(',');
+
+    pageProps.isPublished = checkIsPublished(pageProps);
 
     return {
         props: {...pageProps},

@@ -4,7 +4,7 @@ services:
     frontend:
         image: familyresearchcouncil/washingtonstand:staging
         env_file:
-            - .env
+            - .env.staging
         deploy:
             replicas: 1
             labels:
