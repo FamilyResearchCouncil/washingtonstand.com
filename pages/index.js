@@ -27,11 +27,17 @@ const OffsetGrid = styled.div`
 const PreviousNewsGrid = styled.div`
   display: grid;
   grid-gap: 3rem;
+  
+  h2, h3 {
+    font-size: 1.6rem;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
     grid-template-columns: 1fr 1fr;
   }
 `;
+
+const NewsTitleElement = props => <h3>{props.content}</h3>
 
 const Home = (props) => (
   <>
@@ -64,7 +70,9 @@ const Home = (props) => (
               <div />
               <div>
                   <h2 className={styles.yellowHeader}>TRENDING</h2>
-                  <NewsList list={props.trending} displayImg={false}/>
+                  <div className={styles.trendingList}>
+                      <NewsList list={props.trending} displayImg={false} titleElement={<NewsTitleElement/>}/>
+                  </div>
               </div>
           </OffsetGrid>
       </StyledContentContainer>
@@ -82,6 +90,8 @@ const Home = (props) => (
 export async function getStaticProps(context) {
 
     const allPublications = await GetPublications();
+
+    console.log(allPublications);
 
     let publication = {};
     let publications = [];

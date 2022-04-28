@@ -49,16 +49,20 @@ const Header = () => {
     useOnClickOutside(node, () => setOpen(false));
 
     return (
-        <header ref={node} className={styles.header}>
-            <Link href={"/"}>
-                <a className={styles.logoLink}>
-                    <MainLogo />
-                </a>
-            </Link>
-            <TopTopics />
-            <Burger open={open} setOpen={setOpen} />
-            <Menu  open={open} setOpen={setOpen} />
-        </header>
+        <>
+            <header className={styles.header}>
+                <Link href={"/"}>
+                    <a className={styles.logoLink}>
+                        <MainLogo />
+                    </a>
+                </Link>
+                <TopTopics />
+            </header>
+            <div ref={node}>
+                <Burger open={open} setOpen={setOpen} />
+                <Menu  open={open} setOpen={setOpen} />
+            </div>
+        </>
     );
 }
 

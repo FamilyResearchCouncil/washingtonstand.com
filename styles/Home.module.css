@@ -21,6 +21,16 @@
     max-width: 100%;
 }
 
+.trendingList {
+    display: grid;
+}
+
+.trendingList article {
+    border-bottom: solid 2px var(--alternateGrey);
+    padding: 2rem 0;
+}
+
+
 @media (min-width: 768px) {
     .bannerGrid > div {
         grid-template-columns: 1fr 1fr;

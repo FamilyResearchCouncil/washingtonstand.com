@@ -5,17 +5,39 @@ import styled from "styled-components";
 
 const ListGrid = styled.div`
   display: grid;
-  grid-gap: 2rem;
 
   h3 {
     margin-top: 0;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
+    font-family: ${({theme}) => theme.fonts.titleText };
   }
   
   article {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2rem;
+    grid-template-columns: .8fr 1.2fr;
+    grid-gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: solid 2px ${({theme}) => theme.colors.primaryGrey};
+
+    &:first-child {
+      padding-top: 0;
+    }
+    
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+    article {
+      grid-template-columns: 1.2fr .8fr;
+    }
+  }
+  @media (min-width: ${({ theme }) => theme.breakPoints.xLarge }) {
+    article {
+      grid-template-columns: .8fr 1.2fr;
+    }
   }
 `
 

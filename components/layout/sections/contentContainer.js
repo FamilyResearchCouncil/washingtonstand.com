@@ -4,6 +4,7 @@ export const StyledContentContainer = styled.div`
   max-width: 100%;
   margin: 0 auto;
   position: relative;
+  padding: 0 2rem;
   
   @media (min-width: ${({ theme }) => theme.breakPoints.small}) {
     

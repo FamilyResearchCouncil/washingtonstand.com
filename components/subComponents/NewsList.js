@@ -3,22 +3,29 @@ import Link from "next/link";
 import appUrls from "../../storage/baseUrls.json";
 import {useAPIPubs} from "../../contexts/PublicationListContext";
 import Image from "next/image";
+import styled from "styled-components";
+
+const ArticleLink = styled.article`
+  h2, h3 {
+    font-family: ${({theme}) => theme.fonts.titleText };
+  }
+`
 
 const NewsItem = (props) => (
-    <article>
+    <ArticleLink>
         <Link href={`${appUrls.urlDirectories.news}/${props.itemCode}`}>
             <a>
                 {
 
                     props.displayImg ? <Image src={props.imgUrl} width={763} height={400} layout='responsive'/> : ""
                 }
-            <h2>{props.title}</h2>
+                <h2>{props.title}</h2>
             </a>
         </Link>
         {
             props.summaryInclude ? <p>{props.summary}</p> : <></>
         }
-    </article>
+    </ArticleLink>
 );
 
 const NewsListing = (props) => {

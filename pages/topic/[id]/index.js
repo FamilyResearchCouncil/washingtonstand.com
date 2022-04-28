@@ -1,45 +1,54 @@
 import React, { useEffect, useState } from "react";
 import HeadTag from "../../../components/layout/HeadTag";
-import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
-import styled from "styled-components";
+import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
 import GetPublications from "../../../helpers/GetPublications";
-import NewsList from "../../../components/subComponents/NewsList";
+import PaginatedItems from "../../../components/subComponents/PaginatedList";
+import getTopicFormatForDisplayAndTitle, {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
+import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
+import styled from "styled-components";
+import Link from "next/link";
+import Image from "next/image";
+import appUrls from "../../../storage/baseUrls.json";
 
-const TopicGrid = styled.div`
+const LeadArticle = styled.article`
   display: grid;
-  grid-gap: 3rem;
-
+  margin-bottom: 4rem;
+  
   h2 {
-    
+    font-family: ${({theme}) => theme.fonts.titleText};
+    font-size: 3.6rem;
+    margin-bottom: 0rem;
   }
-  
-  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
-    grid-template-columns: 1fr 1fr;
-  }
+`;
 
-  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  
+const TopicListWrapper = styled.div`
+  max-width: 500px;
+  margin: 0 auto;
 `;
 
 const Topics = (props) => {
     return (
         <>
-            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
-            <StyledContentContainer>
-                <h1>{props.title}</h1>
-                <TopicGrid>
-                    <NewsList displayImg={true} list={props.publicationList}/>
-                </TopicGrid>
-            </StyledContentContainer>
+            <HeadTag title={props.topicTexts.documentTitle} description={props.SUMMARY_TEXT}/>
+            <StyledReadingSection>
+                <h1>{props.topicTexts.displayTitle}</h1>
+                <LeadArticle>
+                    <Link href={`${appUrls.urlDirectories.news}/${props.firstPublication.ITEM_CODE}`}>
+                        <a>
+                            <Image src={props.firstPublication.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
+                            <h2>{props.firstPublication.ITEM_DESC}</h2>
+                        </a>
+                    </Link>
+                    <div>
+                        <i>{props.firstPublication.FULL_DATE}</i> | {props.firstPublication.authorDetailsArray[0].AUTHOR_NAME}
+                    </div>
+                </LeadArticle>
+                <TopicListWrapper>
+                    <PaginatedItems itemsPerPage={6} itemList={props.publicationList} columnClass={``}/>
+                </TopicListWrapper>
+            </StyledReadingSection>
         </>
     );
-}
-
-const formatDisplayTopic = (topicSlug) => {
-    let wordArray = topicSlug.split("-").map(word => word.toUpperCase());
-    return wordArray.join(" ");
 }
 
 export async function getStaticPaths() {
@@ -57,7 +66,6 @@ export async function getStaticPaths() {
         params: { id: topic}
     }));
 
-    console.log(topicPathArray);
 
     return {
         paths: topicPathArray,
@@ -76,13 +84,26 @@ export async function getStaticProps(context) {
         .then(
             (result) => {
                 pageProps.publicationList = result;
-                pageProps.title = formatDisplayTopic(pageId);
             },
             (error) => {
-                console.log(error);
+                // console.log(error);
 
             }
         );
+
+
+    const authors = await GetAuthorsDetails();
+
+    pageProps.publicationList = pageProps.publicationList.map(publication => {
+    // pageProps.publicationList.map(publication => {
+        let thisPub = publication;
+        thisPub.authorDetailsArray = getPublicationAuthorArray(publication.AUTHOR_ID_LIST,authors);
+        // console.log(thisPub);
+        return thisPub;
+    })
+
+    pageProps.firstPublication = pageProps.publicationList.shift();
+    pageProps.topicTexts = getTopicFormatForDisplayAndTitle(pageId);
 
     return {
         props: {...pageProps},
