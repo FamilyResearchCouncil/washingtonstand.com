@@ -1,7 +1,4 @@
-import Link from "next/link";
-import appUrls from "../storage/baseUrls.json";
-import styles from "../components/subComponents/DisplayByLine/DisplayByLine.module.css";
-import React from "react";
+
 
 export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray) => {
 

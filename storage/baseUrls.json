@@ -1,6 +1,7 @@
 {
     "urlDirectories": {
         "news": "/news",
-        "staff": "/staff"
+        "staff": "/staff",
+        "topic": "/topic"
     }
 }

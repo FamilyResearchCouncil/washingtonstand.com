@@ -7,6 +7,7 @@ import DisplayByLine from "../../../components/subComponents/DisplayByLine";
 import DisplayPublicationHtml from "../../../components/subComponents/DisplayPublicationHtml";
 import GetPublications from "../../../helpers/GetPublications";
 import styled from "styled-components";
+import TopicList from "../../../components/subComponents/TagLinkList";
 
 const OuterDiv = styled.div`
     position: relative; 
@@ -63,6 +64,7 @@ const Post = (props) => {
                             <DisplayByLine personalIdArray={props.authourArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
                             <StyledReadingSection>
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
+                                <TopicList list={props.TAG_LIST}/>
                             </StyledReadingSection>
                             <center>
                                 <Image src="/img/Flame_icon.svg" height={50} width={50}/>

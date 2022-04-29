@@ -22,6 +22,10 @@ const LeadArticle = styled.article`
   }
 `;
 
+const TopicH1 = styled.h1`
+  color: ${({theme}) => theme.colors.primaryYellow}
+`
+
 const TopicListWrapper = styled.div`
   margin: 0 auto;
   article {
@@ -36,7 +40,7 @@ const Topics = (props) => {
         <>
             <HeadTag title={props.topicTexts.documentTitle} description={props.SUMMARY_TEXT}/>
             <StyledReadingSection>
-                <h1>{props.topicTexts.displayTitle}</h1>
+                <TopicH1>{props.topicTexts.displayTitle}</TopicH1>
                 <LeadArticle>
                     <Link href={`${appUrls.urlDirectories.news}/${props.firstPublication.ITEM_CODE}`}>
                         <a>
