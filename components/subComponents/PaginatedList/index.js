@@ -46,18 +46,21 @@ const PaginatedItems = (props) => {
     return (
         <>
             <ListingGrid className={`${props.columnClass}`}>
-                <NewsList list={currentItems} displayImg={true} />
+                <NewsList list={currentItems} displayImg={true} displayByLine={props.displayByLine}/>
             </ListingGrid>
-
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel="next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< previous"
-                renderOnZeroPageCount={null}
-            />
+            {
+                props.itemsPerPage < props.itemList.length ?
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="next >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={5}
+                        pageCount={pageCount}
+                        previousLabel="< previous"
+                        renderOnZeroPageCount={null}
+                    />
+                    : <></>
+            }
         </>
     );
 }

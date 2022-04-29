@@ -7,7 +7,7 @@ const NewsPage = (props) => (
     <>
         <HeadTag title="News" description="" />
         <StyledContentContainer>
-            <PaginatedItems itemsPerPage={6} itemList={props.publications} columnClass={`columns-3`}/>
+            <PaginatedItems itemsPerPage={6} itemList={props.publications} columnClass={`columns-3`} displayByLine={true}/>
         </StyledContentContainer>
     </>
 );

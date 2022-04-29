@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import appUrls from "../../../storage/baseUrls.json";
+import {concatAuthorNames} from "../../../helpers/DataManipulators";
 
 const LeadArticle = styled.article`
   display: grid;
@@ -22,8 +23,12 @@ const LeadArticle = styled.article`
 `;
 
 const TopicListWrapper = styled.div`
-  max-width: 500px;
   margin: 0 auto;
+  article {
+    display: grid;
+    grid-gap: 3rem;
+    grid-template-columns: .8fr 1.2fr;
+  }
 `;
 
 const Topics = (props) => {
@@ -40,11 +45,11 @@ const Topics = (props) => {
                         </a>
                     </Link>
                     <div>
-                        <i>{props.firstPublication.FULL_DATE}</i> | {props.firstPublication.authorDetailsArray[0].AUTHOR_NAME}
+                        <i>{props.firstPublication.FULL_DATE}</i> | {concatAuthorNames(props.firstPublication.authorDetailsArray)}
                     </div>
                 </LeadArticle>
                 <TopicListWrapper>
-                    <PaginatedItems itemsPerPage={6} itemList={props.publicationList} columnClass={``}/>
+                    <PaginatedItems itemsPerPage={6} itemList={props.publicationList} columnClass={``} displayByLine={true}/>
                 </TopicListWrapper>
             </StyledReadingSection>
         </>

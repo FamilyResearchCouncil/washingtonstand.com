@@ -71,7 +71,7 @@ const Home = (props) => (
               <div>
                   <h2 className={styles.yellowHeader}>TRENDING</h2>
                   <div className={styles.trendingList}>
-                      <NewsList list={props.trending} displayImg={false} titleElement={<NewsTitleElement/>}/>
+                      <NewsList list={props.trending} displayImg={false}/>
                   </div>
               </div>
           </OffsetGrid>
@@ -90,8 +90,6 @@ const Home = (props) => (
 export async function getStaticProps(context) {
 
     const allPublications = await GetPublications();
-
-    console.log(allPublications);
 
     let publication = {};
     let publications = [];

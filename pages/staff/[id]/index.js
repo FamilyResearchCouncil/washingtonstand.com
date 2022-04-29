@@ -1,19 +1,18 @@
 import HeadTag from "../../../components/layout/HeadTag";
 import Image from "next/image";
 import React, {useState} from "react"
-import {StyledContentContainer} from "../../../components/layout/sections/contentContainer"
 import {StyledGreySection} from "../../../components/layout/sections/GeySection";
 import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
+import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
 import GetPublications from "../../../helpers/GetPublications"
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import styled from "styled-components";
-import DisplayAuthImages from "../../../components/subComponents/DisplayByLine";
-import NewsList from "../../../components/subComponents/NewsList";
+import PaginatedItems from "../../../components/subComponents/PaginatedList";
 
 const BioGridSection = styled.div`
   display: grid;
   grid-gap: 4rem;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 200px 1fr;
   align-items: center;
 `;
 
@@ -29,7 +28,7 @@ const BioListingGrid = styled.div`
     border-bottom: solid 2px ${({theme}) => theme.colors.primaryGrey};
   }
   
-  article > a {
+  article {
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 1fr 2fr;
@@ -40,10 +39,7 @@ const BioListingGrid = styled.div`
       margin: 0px;
     }
   }
-
-  article > a:last-child {
-    border: none;
-  }
+  
 `;
 
 
@@ -55,7 +51,7 @@ const Bio = (props) => {
             <StyledGreySection>
                 <StyledContentContainer>
                     <BioGridSection>
-                    <Image src={props.AUTHOR_IMG} width={150} height={150} />
+                    <Image src={props.AUTHOR_IMG} width={400} height={400} />
                     <div>
                         <h1>{props.AUTHOR_NAME}</h1>
                         {/*<h2>{props.AUTHOR_TITLE}</h2>*/}
@@ -68,7 +64,8 @@ const Bio = (props) => {
 
             <StyledReadingSection>
                 <BioListingGrid>
-                <NewsList displayImg={true} list={props.authorPublications}/>
+                    <PaginatedItems itemsPerPage={6} itemList={props.authorPublications} columnClass={``} displayByLine={true}/>
+                {/*<NewsList displayImg={true} list={props.authorPublications}/>*/}
                 </BioListingGrid>
             </StyledReadingSection>
 

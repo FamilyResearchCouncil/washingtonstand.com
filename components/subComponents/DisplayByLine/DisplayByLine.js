@@ -24,7 +24,7 @@ export const DisplayAuthImages = (props) => (
     </div>
 );
 
-const DisplayAuthNames = (props) => (
+export const DisplayAuthNames = (props) => (
     <div>
         {
             props.authors.map((author,idx) => {

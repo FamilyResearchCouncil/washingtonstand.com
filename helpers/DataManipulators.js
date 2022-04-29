@@ -1,3 +1,7 @@
+import Link from "next/link";
+import appUrls from "../storage/baseUrls.json";
+import styles from "../components/subComponents/DisplayByLine/DisplayByLine.module.css";
+import React from "react";
 
 export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray) => {
 
@@ -20,6 +24,19 @@ export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray
         let authorObject = allAuthorsArray.find(authorDetails => authorDetails.PERSONAL_ID == authorId)
         return authorObject ? authorObject :  defaultAuthorObject;
     });
+}
+
+export const concatAuthorNames = (authorsDetailArray) => {
+    let authorString = authorsDetailArray.map((author,idx) => {
+        let spacerString = "";
+        if (idx !== (authorsDetailArray.length-1)) {
+            spacerString = (idx === (authorsDetailArray.length-2)) ? ", and " : ", ";
+            spacerString = (authorsDetailArray.length === 2) ? " and " : spacerString;
+        }
+
+        return `${author.AUTHOR_NAME}${spacerString}`;
+    }).join("");
+    return authorString;
 }
 
 export const formatTopicForDocumentTitle = (topicSlug) => {

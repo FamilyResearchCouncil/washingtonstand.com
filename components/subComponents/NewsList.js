@@ -4,27 +4,44 @@ import appUrls from "../../storage/baseUrls.json";
 import {useAPIPubs} from "../../contexts/PublicationListContext";
 import Image from "next/image";
 import styled from "styled-components";
+import {concatAuthorNames} from "../../helpers/DataManipulators";
 
 const ArticleLink = styled.article`
   h2, h3 {
     font-family: ${({theme}) => theme.fonts.titleText };
   }
+  &:last-child {
+    border-bottom: none;
+  }
 `
+//authorDetailsArray
 
 const NewsItem = (props) => (
     <ArticleLink>
-        <Link href={`${appUrls.urlDirectories.news}/${props.itemCode}`}>
-            <a>
-                {
-
-                    props.displayImg ? <Image src={props.imgUrl} width={763} height={400} layout='responsive'/> : ""
-                }
-                <h2>{props.title}</h2>
-            </a>
-        </Link>
+        {/*{JSON.stringify(props.article)}*/}
         {
-            props.summaryInclude ? <p>{props.summary}</p> : <></>
+
+            props.displayImg ?
+            <Link href={`${appUrls.urlDirectories.news}/${props.article.ITEM_CODE}`}>
+                <a>
+                    <Image src={props.article.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
+                </a>
+            </Link> : ""
         }
+        <div>
+            <Link href={`${appUrls.urlDirectories.news}/${props.article.ITEM_CODE}`}>
+                <a>
+                    <h2>{props.article.ITEM_DESC}</h2>
+                </a>
+            </Link>
+            {
+                props.displayByLine ?
+                    <div>
+                        <i>{props.article.FULL_DATE}</i> | {concatAuthorNames(props.article.authorDetailsArray)}
+                    </div>
+                    : <></>
+            }
+        </div>
     </ArticleLink>
 );
 
@@ -34,8 +51,13 @@ const NewsListing = (props) => {
         return (<>
             {
                 props.list.map((item,idx) => (
-                    <NewsItem key={idx} displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}
-                              imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
+                    <NewsItem
+                        key={idx}
+                        displayImg={props.displayImg}
+                        displaySummary={props.displaySummary}
+                        displayByLine={props.displayByLine}
+                        article={item}
+                    />
                 ))
             }
         </>);
@@ -43,7 +65,13 @@ const NewsListing = (props) => {
         return (<>
             {!isLoading ?
                 publications.map((item,idx) => (
-                    <NewsItem key={idx} displayImg={props.displayImg}  title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE} imgUrl={item.SCREENCAP_IMAGE} summaryInclude={props.summaryInclude}/>
+                    <NewsItem
+                        key={idx}
+                        displayImg={props.displayImg}
+                        displaySummary={props.displaySummary}
+                        displayByLine={props.displayByLine}
+                        article={item}
+                    />
                 ))
                 :
                 <p>Loading...</p>
