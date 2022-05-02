@@ -1,4 +1,4 @@
-import {StyledReadingSection} from "../../components/subComponents/readingTextBlock";
+import {StyledReadingSection} from "../../components/subComponents/ReadingTextBlock";
 import React from "react";
 
 

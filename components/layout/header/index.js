@@ -3,7 +3,7 @@ import Burger from '../navigation/burger'
 import Menu from '../navigation/menu'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import styles from './Header.module.css'
-import {StyledReadingSection} from "../../subComponents/readingTextBlock";
+import {StyledReadingSection} from "../../subComponents/ReadingTextBlock";
 import Link from "next/link";
 
 import MainLogo from "../../../public/img/WashStand_v5.svg";

@@ -1,4 +1,5 @@
 import Head from "next/head";
+// import getRootCssFromJs from "js-to-root-css";
 
 // component takes the theme defined in Javascript for styled-components and generates CSS global variables
 // that can then be used in any *.module.css files in order to maintain a single definition of the styles

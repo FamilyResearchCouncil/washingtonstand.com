@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeadTag from "../../../components/layout/HeadTag";
-import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
+import {StyledReadingSection} from "../../../components/subComponents/ReadingTextBlock";
 import GetPublications from "../../../helpers/GetPublications";
 import PaginatedItems from "../../../components/subComponents/PaginatedList";
 import getTopicFormatForDisplayAndTitle, {getPublicationAuthorArray} from "../../../helpers/DataManipulators";

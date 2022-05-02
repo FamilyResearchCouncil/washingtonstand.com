@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeadTag from "../../../components/layout/HeadTag";
 import Image from "next/image";
 import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
-import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
+import {StyledReadingSection} from "../../../components/subComponents/ReadingTextBlock";
 import DisplayByLine from "../../../components/subComponents/DisplayByLine";
 import DisplayPublicationHtml from "../../../components/subComponents/DisplayPublicationHtml";
 import GetPublications from "../../../helpers/GetPublications";

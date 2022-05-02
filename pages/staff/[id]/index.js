@@ -1,29 +1,30 @@
 import HeadTag from "../../../components/layout/HeadTag";
-import Image from "next/image";
 import React, {useState} from "react"
 import {StyledGreySection} from "../../../components/layout/sections/GeySection";
-import {StyledReadingSection} from "../../../components/subComponents/readingTextBlock";
-import {StyledContentContainer} from "../../../components/layout/sections/contentContainer";
+import {StyledReadingSection} from "../../../components/subComponents/ReadingTextBlock";
 import GetPublications from "../../../helpers/GetPublications"
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import styled from "styled-components";
 import PaginatedItems from "../../../components/subComponents/PaginatedList";
+import AuthorImage from "../../../components/subComponents/AuthorImage";
 
 const BioGridSection = styled.div`
   display: grid;
   grid-gap: 4rem;
-  grid-template-columns: 200px 1fr;
-  align-items: center;
+  grid-template-columns: 150px 1fr;
+  align-items: start;
+  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+    
+  }
 `;
 
 const BioListingGrid = styled.div`
   margin-top: 6rem;
   display: grid;
-  display: grid;
   align-items: center;
   
   article {
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
     margin-bottom: 2rem;
     border-bottom: solid 2px ${({theme}) => theme.colors.primaryGrey};
   }
@@ -31,14 +32,38 @@ const BioListingGrid = styled.div`
   article {
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: .8fr 2.2fr;
     align-items: baseline;
     align-content: center;
     
     h2 {
-      margin: 0px;
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: .5rem;
     }
+
+    span {
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+      grid-template-columns: 1fr 2fr;
+      h2 {
+        font-size: 2rem;
+      }
+      span {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+      h2 {
+        font-size: 2.4rem;
+      }
+    }
+    
   }
+  
   
 `;
 
@@ -49,17 +74,15 @@ const Bio = (props) => {
         <>
             <HeadTag title={props.AUTHOR_NAME} description="" />
             <StyledGreySection>
-                <StyledContentContainer>
+                <StyledReadingSection>
                     <BioGridSection>
-                    <Image src={props.AUTHOR_IMG} width={400} height={400} />
+                    <AuthorImage src={props.AUTHOR_IMG} width={300} height={300} />
                     <div>
                         <h1>{props.AUTHOR_NAME}</h1>
-                        {/*<h2>{props.AUTHOR_TITLE}</h2>*/}
-                        {/*{JSON.stringify(props.displayHtml)}*/}
                         <div dangerouslySetInnerHTML={props.displayHtml} />
                     </div>
                     </BioGridSection>
-                </StyledContentContainer>
+                </StyledReadingSection>
             </StyledGreySection>
 
             <StyledReadingSection>

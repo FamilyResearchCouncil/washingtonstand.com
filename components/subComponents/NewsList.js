@@ -18,7 +18,6 @@ const ArticleLink = styled.article`
 
 const NewsItem = (props) => (
     <ArticleLink>
-        {/*{JSON.stringify(props.article)}*/}
         {
 
             props.displayImg ?
@@ -36,9 +35,9 @@ const NewsItem = (props) => (
             </Link>
             {
                 props.displayByLine ?
-                    <div>
+                    <span>
                         <i>{props.article.FULL_DATE}</i> | {concatAuthorNames(props.article.authorDetailsArray)}
-                    </div>
+                    </span>
                     : <></>
             }
         </div>

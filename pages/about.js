@@ -1,7 +1,7 @@
 import styles from "../styles/Main.module.css";
 import HeadTag from "../components/layout/HeadTag"
 import {StyledContentContainer} from "../components/layout/sections/contentContainer";
-import {StyledReadingSection} from "../components/subComponents/readingTextBlock";
+import {StyledReadingSection} from "../components/subComponents/ReadingTextBlock";
 
 const AboutUs = (props) => (
     <>

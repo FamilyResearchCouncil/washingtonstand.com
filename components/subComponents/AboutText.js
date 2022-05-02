@@ -1,4 +1,4 @@
-import {StyledReadingSection} from "./readingTextBlock";
+import {StyledReadingSection} from "./ReadingTextBlock";
 
 const styling = {
     h2: {
