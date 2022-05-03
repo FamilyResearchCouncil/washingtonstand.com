@@ -15,7 +15,7 @@ export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray
         "AUTHOR_SLUG" : "family-research-council"
     }
 
-    let authorArray = publicationAuthorList.split(",");
+    let authorArray = (typeof publicationAuthorList === "string") ? publicationAuthorList.split(",") : publicationAuthorList;
 
     return authorArray.map(authorId => {
         let authorObject = allAuthorsArray.find(authorDetails => authorDetails.PERSONAL_ID == authorId)

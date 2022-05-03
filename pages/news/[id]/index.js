@@ -8,6 +8,8 @@ import DisplayPublicationHtml from "../../../components/subComponents/DisplayPub
 import GetPublications from "../../../helpers/GetPublications";
 import styled from "styled-components";
 import TopicList from "../../../components/subComponents/TagLinkList";
+import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
+import {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
 
 const OuterDiv = styled.div`
     position: relative; 
@@ -47,6 +49,7 @@ const Post = (props) => {
     return (
         <>
             <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
+            {/*{JSON.stringify(props.authorDetailsArray)}*/}
             {
                 props.isPublished ?
                     <StyledContentContainer>
@@ -61,7 +64,7 @@ const Post = (props) => {
                                     : <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             }
                             <h1>{props.ITEM_DESC}</h1>
-                            <DisplayByLine personalIdArray={props.authourArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
+                            <DisplayByLine personalIdArray={props.authorArray} authorArray={props.authorDetailsArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
                             <StyledReadingSection>
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>
@@ -97,8 +100,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
 
-    console.log("type is ", typeof process.env.PUBLICATION_STATUS_CHECK_LIST);
-    console.log("value is ", process.env.PUBLICATION_STATUS_CHECK_LIST);
+    // console.log("type is ", typeof process.env.PUBLICATION_STATUS_CHECK_LIST);
+    // console.log("value is ", process.env.PUBLICATION_STATUS_CHECK_LIST);
 
     const checkIsPublished = (publication) => {
         return (
@@ -112,6 +115,7 @@ export async function getStaticProps(context) {
         )
     }
 
+    const authors = await GetAuthorsDetails();
     const pageId = context.params.id;
     let pageProps = {};
 
@@ -143,7 +147,7 @@ export async function getStaticProps(context) {
             }
         );
 
-    pageProps.authourArray = pageProps.AUTHOR_ID_LIST.split(',');
+    pageProps.authorDetailsArray = getPublicationAuthorArray(pageProps.AUTHOR_ID_LIST,authors);
 
     pageProps.isPublished = checkIsPublished(pageProps);
 

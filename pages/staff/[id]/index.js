@@ -63,8 +63,6 @@ const BioListingGrid = styled.div`
     }
     
   }
-  
-  
 `;
 
 

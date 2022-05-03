@@ -46,37 +46,37 @@ export const DisplayAuthNames = (props) => (
     </div>
 );
 
-const DisplayByLine = (props) => {
-    // props.personalIdArray.push("6141078");
-    const { staff, isLoading } = useAPIStaff();
-    const [ pubAuthors, setPubAuthors ] = useState([]);
+const DisplayByLine = (props) => (
+    // // props.personalIdArray.push("6141078");
+    // const { staff, isLoading } = useAPIStaff();
+    // const [ pubAuthors, setPubAuthors ] = useState([]);
+    //
+    // useEffect(() => {
+    //     if (!isLoading) {
+    //         setPubAuthors(staff.filter(author => props.personalIdArray.includes(author.PERSONAL_ID)));
+    //         // console.log(pubAuthors);
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        if (!isLoading) {
-            setPubAuthors(staff.filter(author => props.personalIdArray.includes(author.PERSONAL_ID)));
-            // console.log(pubAuthors);
-        }
-    }, []);
+    // if (!isLoading) {
 
-    if (!isLoading) {
-
-        return (
+        // return (
             <>
                 {/*{JSON.stringify(props)}*/}
                 <ByLineWrapper>
-                <DisplayAuthImages authors={pubAuthors}/>
-                <DisplayAuthNames authors={pubAuthors}/>
+                <DisplayAuthImages authors={props.authorArray}/>
+                <DisplayAuthNames authors={props.authorArray}/>
                 <span className={styles.publishDate}>{props.DISPLAY_MEDIA_DATE}</span>
                 </ByLineWrapper>
             </>
-        );
-    } else {
-        return (
-            <>
-
-            </>
-        );
-    }
-};
+        // );
+    // } else {
+    //     return (
+    //         <>
+    //
+    //         </>
+    //     );
+    // }
+);
 
 export default DisplayByLine;

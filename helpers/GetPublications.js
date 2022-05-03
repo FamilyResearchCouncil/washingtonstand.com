@@ -3,10 +3,10 @@ import {getPublicationAuthorArray} from "./DataManipulators";
 
 const GetPublications = async() => {
 
-    const responseNa =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json`);
+    const responseNa =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json?cached=1`);
     const newsArticles = await responseNa.json();
 
-    const responseCc =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_CC.json`);
+    const responseCc =  await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_CC.json?cached=1`);
     const commentary = await responseCc.json();
 
     const allAuthorDetails = await GetAuthorsDetails();
