@@ -11,6 +11,7 @@ import Link from "next/link";
 import appUrls from "../storage/baseUrls.json";
 import React from "react";
 import GetPublications from "../helpers/GetPublications";
+import NewsLetterForm from "../components/subComponents/BeginSignUpForm";
 
 const OffsetGrid = styled.div`
   display: grid;
@@ -55,7 +56,11 @@ const Home = (props) => (
       </StyledContentContainer>
       <StyledGreySection className={styles.newsLetterSection}>
           <StyledContentContainer>
-              <h2 className={styles.yellowHeader}>JOIN OUR NEWS LETTER</h2> email sign up
+              <OffsetGrid>
+                  <h2 className={styles.newsLetterHeader}>JOIN OUR NEWS LETTER</h2>
+                  <span/>
+                  <NewsLetterForm />
+              </OffsetGrid>
           </StyledContentContainer>
       </StyledGreySection>
       <StyledContentContainer>

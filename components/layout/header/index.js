@@ -56,6 +56,7 @@ const Header = () => {
                         <MainLogo />
                     </a>
                 </Link>
+                <p className={styles.headingTagLine}>". . . and having done all . . . stand firm." Eph. 6:13</p>
                 <TopTopics />
             </header>
             <div ref={node}>

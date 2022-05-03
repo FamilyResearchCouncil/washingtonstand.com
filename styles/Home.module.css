@@ -5,6 +5,12 @@
     margin: 4rem 0rem;
 }
 
+.newsLetterHeader {
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+}
+
 .bannerGrid {
     border-top: solid 2px var(--alternateGrey);
     border-bottom: solid 2px var(--alternateGrey);
