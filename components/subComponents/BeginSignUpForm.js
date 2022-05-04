@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from "react";
 import styled from "styled-components";
+import appUrls from "../../storage/baseUrls.json"
 
 const StyledForm = styled.form`
   width: 100%;
@@ -11,6 +12,10 @@ const StyledForm = styled.form`
     padding: .8rem 2rem;
     border: none;
     border-radius: 0;
+    &focus {
+      box-shadow: none;
+      border: none;
+    }
   }
   button {
     background-color: ${({theme}) => theme.colors.primaryBlue};
@@ -63,7 +68,7 @@ const NewsLetterForm = () => {
 
 
     return (
-        <StyledForm method="POST" target="/news-letter" onSubmit={beginSignUp}>
+        <StyledForm method="POST" target={appUrls.urlDirectories.newsLetter} onSubmit={beginSignUp}>
             <input id="email_addr" type="text" placeholder="Email Address" autoComplete="email_addr" required />
             <button type="submit">&#8594;</button>
         </StyledForm>

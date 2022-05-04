@@ -1,14 +1,45 @@
 import {StyledReadingSection} from "../../components/subComponents/ReadingTextBlock";
 import { useRouter } from 'next/router'
 import React from "react";
+import appUrls from "../../storage/baseUrls.json"
+import SubmitButton from "../../components/subComponents/SubmitButton";
 import styled from "styled-components";
+
+const SubscriptionForm = styled.form`
+  display: grid;
+  width: 100%;
+  max-width: ${({theme}) => theme.widths.textInputMax};
+  grid-gap: 1.5rem;
+  
+  label { 
+    display: none;
+    height: 0;
+  }
+  
+  input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 1.5rem;
+  }
+`
 
 const GreyBox = styled.section`
   background-color: ${({theme}) => theme.colors.primaryGrey};
   display: grid;
   padding: 6rem;
-  justify-content: center;
+  justify-items: center;
+  h2 {
+    font-weight: 400;
+    max-width: ${({theme}) => theme.widths.textInputMax};
+    text-align: center;
+  }
 `
+
+const handleChange = event => {
+    // console.log(event)
+}
 
 const NewsLetterForm = () => {
     const router = useRouter();
@@ -30,12 +61,29 @@ const NewsLetterForm = () => {
             },
             method: 'POST'
         })
+        .then(res => res.json())
+        .then(data => {
+            console.log("response",data);
+            let queryData = { success: data.success };
+            if (queryData.success) {
+                queryData.confirmationNubmer = data.data.rid;
+                queryData.first_name = data.data.person_first_name;
+                queryData.last_name = data.data.person_last_name;
+                queryData.email_addr = data.data.email_addr;
+            }
+            router.push({
+                    pathname: appUrls.urlDirectories.confirmation,
+                    query: queryData
+                },
+                appUrls.urlDirectories.confirmation
+            );
+        })
 
-        const result = await res.json()
+        // const result = await res.json()
+        //
+        // console.log(result);
 
-        console.log(result);
-
-        return result;
+        // return result;
 
     }
 
@@ -44,25 +92,25 @@ const NewsLetterForm = () => {
         <>
             <StyledReadingSection>
                 <GreyBox>
-        <form onSubmit={registerSubscription}>
-            <div>
-                <label htmlFor="person_first_name">First Name</label><br/>
-                <input id="person_first_name" type="text" autoComplete="person_first_name" required />
-            </div>
-            <div>
-                <label htmlFor="person_last_name">Last Name</label><br/>
-                <input id="person_last_name" type="text" autoComplete="person_last_name" required />
-            </div>
-            <div>
-                <label htmlFor="email_addr">Email</label><br/>
-                <input id="email_addr" type="text" autoComplete="email_addr" value={`${routeQuery.email_addr ? routeQuery.email_addr : ""}`} required />
-            </div>
-            <div>
-                <label htmlFor="zip">Zip Code</label><br/>
-                <input id="zip" type="text" autoComplete="zip" required />
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+                    <h2>FILL OUT THIS FORM TO GET OUR NEWSLETTER DIRECTLY IN YOUR INBOX!</h2>
+                    <SubscriptionForm onSubmit={registerSubscription}>
+
+                            <label htmlFor="email_addr">Email</label>
+                            <input id="email_addr" type="text" autoComplete="email_addr" defaultValue={`${routeQuery.email_addr ? routeQuery.email_addr : ""}`} placeholder={`Email Address*`} required onChange={handleChange} />
+
+                            <label htmlFor="person_first_name">First Name</label>
+                            <input id="person_first_name" type="text" autoComplete="person_first_name" defaultValue={``} placeholder={`First Name*`} required onChange={handleChange} />
+
+                            <label htmlFor="person_last_name">Last Name</label>
+                            <input id="person_last_name" type="text" autoComplete="person_last_name" defaultValue={``} placeholder={`Last Name*`} required onChange={handleChange} />
+
+                            <label htmlFor="zip">Zip Code</label>
+                            <input id="zip" type="text" autoComplete="zip" defaultValue={``} placeholder={`ZIP Code*`} required onChange={handleChange} />
+
+                        <SubmitButton type={`submit`}>
+                            SUBMIT
+                        </SubmitButton>
+                    </SubscriptionForm>
                 </GreyBox>
             </StyledReadingSection>
         </>

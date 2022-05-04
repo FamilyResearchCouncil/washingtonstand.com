@@ -1,7 +1,10 @@
 {
     "urlDirectories": {
+        "home": "/",
         "news": "/news",
         "staff": "/staff",
-        "topic": "/topic"
+        "topic": "/topic",
+        "newsLetter": "/news-letter",
+        "confirmation" : "/news-letter/confirmation"
     }
 }

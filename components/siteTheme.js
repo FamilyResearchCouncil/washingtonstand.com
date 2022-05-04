@@ -20,7 +20,8 @@ export default function siteTheme() {
             mediumMaxWidth: '600px',
             contentList: '800px',
             mobileMenu: '576px',
-            readingWidth: '80ch'
+            readingWidth: '80ch',
+            textInputMax: '400px'
         },
         padding: {
             sectionPadding: '4rem 2rem'

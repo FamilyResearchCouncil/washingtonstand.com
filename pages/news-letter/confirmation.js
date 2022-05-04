@@ -2,6 +2,9 @@ import {StyledReadingSection} from "../../components/subComponents/ReadingTextBl
 import { useRouter } from 'next/router'
 import React from "react";
 import styled from "styled-components";
+import appUrls from "../../storage/baseUrls.json";
+import Link from "next/link";
+import Image from "next/image";
 
 const GreyBox = styled.section`
   background-color: ${({theme}) => theme.colors.primaryGrey};
@@ -10,41 +13,93 @@ const GreyBox = styled.section`
   justify-content: center;
 `
 
+const BlueLink = styled.a`
+  color: ${({theme}) => theme.colors.primaryBlue};
+  span {
+    display: inline-block;
+    transition: all .3s ease;
+  }
+  &hover {
+    span {
+      transform: translateX(.5rem);
+    }
+  }
+`
+
+const SuccessBlockWrap = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  grid-template-rows: auto auto auto 1fr 1.5rem;
+  h2 {
+    margin: 0;
+  }
+`
+
+
+
+const SuccessBlock = (props) => (
+    <>
+        <SuccessBlockWrap>
+            <h2>HOORAY!</h2>
+            <p>You have successfully joined our newsletter.</p>
+            <div>
+                <BlueLink href={`${appUrls.urlDirectories.home}`}>
+                    <a>BACK TO HOME <span>&#8594;</span></a>
+                </BlueLink>
+            </div>
+            <div>
+                <Image src="/img/Flame_icon.svg" height={100} width={100}/>
+            </div>
+            {/*{JSON.stringify(props)}*/}
+            <div>
+                <small>
+                    Not what you wanted?<br/>
+                    Unsubscribe <a>here</a>.
+                </small>
+            </div>
+        </SuccessBlockWrap>
+    </>
+);
+
+const FailureBlock = (props) => (
+    <>
+        <h2>WHOOPS, THAT'S PROBABLY US</h2>
+        <p>It looks like something went wrong.</p>
+        <div>
+            <BlueLink href={`${appUrls.urlDirectories.newsLetter}`}><a>TRY AGAIN <span>&#8594;</span></a></BlueLink>
+        </div>
+        <div>
+            <Image src="/img/Flame_icon.svg" height={100} width={100}/>
+        </div>
+        {/*{JSON.stringify(props)}*/}
+        <div>
+            <small>
+                Still not working?<br/>
+                Return to <Link href={`/`}><a>Home</a></Link>.
+            </small>
+        </div>
+    </>
+);
+
 const NewsLetterForm = () => {
     const router = useRouter();
     const routeQuery = router.query;
 
-    const registerSubscription = async event => {
-        event.preventDefault(); // don't redirect the page
-        // where we'll add our form logic
-
-        const res = await fetch("/api/submitSubscription", {
-            body: JSON.stringify({
-                person_first_name: event.target.person_first_name.value,
-                person_last_name: event.target.person_last_name.value,
-                email_addr: event.target.email_addr.value,
-                zip: event.target.zip.value
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST'
-        })
-
-        const result = await res.json()
-
-        console.log(result);
-
-        return result;
-
-    }
-
+    console.log("query",routeQuery);
 
     return (
         <>
             <StyledReadingSection>
                 <GreyBox>
-                    SUCCESS
+                    {
+
+                        routeQuery.success === "true" ?
+                        <SuccessBlock {...routeQuery} /> : <FailureBlock {...routeQuery}/>
+
+                    }
                 </GreyBox>
             </StyledReadingSection>
         </>

@@ -1,6 +1,7 @@
 .yellowHeader {
     color: var(--primaryYellow);
 }
+
 .newsLetterSection {
     margin: 4rem 0rem;
 }
@@ -36,6 +37,25 @@
     padding: 2rem 0;
 }
 
+.moreNews {
+    margin-top: 4rem;
+    text-align: right;
+}
+
+.moreNews a {
+    color: var(--primaryYellow);
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.moreNews a span {
+    display: inline-block;
+    transition: all .2s ease;
+}
+
+.moreNews a:hover span {
+    transform: translateX(.5rem);
+}
 
 @media (min-width: 768px) {
     .bannerGrid > div {

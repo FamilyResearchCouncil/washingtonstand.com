@@ -38,8 +38,6 @@ const PreviousNewsGrid = styled.div`
   }
 `;
 
-const NewsTitleElement = props => <h3>{props.content}</h3>
-
 const Home = (props) => (
   <>
       <HeadTag title="The Washington Stand" description="" />
@@ -70,7 +68,9 @@ const Home = (props) => (
                   <PreviousNewsGrid>
                       <NewsList list={props.pastPublications} displayImg={true}/>
                   </PreviousNewsGrid>
-                  <Link href={`${appUrls.urlDirectories.news}`}>MORE</Link>
+                  <div className={styles.moreNews}>
+                      <Link href={`${appUrls.urlDirectories.news}`}><a>MORE <span>&#8594;</span></a></Link>
+                  </div>
               </div>
               <div />
               <div>
