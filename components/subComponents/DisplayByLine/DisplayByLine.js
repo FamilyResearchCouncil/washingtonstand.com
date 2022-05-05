@@ -8,10 +8,15 @@ import appUrls from "../../../storage/baseUrls.json"
 
 const ByLineWrapper = styled.div`
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  //grid-template-columns: auto auto 1fr;
   grid-gap: 1rem;
   font-weight: 600;
   align-items: center;
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    grid-template-columns: auto auto 1fr;  
+  }
+  
 `
 
 export const DisplayAuthImages = (props) => (
@@ -64,8 +69,8 @@ const DisplayByLine = (props) => (
             <>
                 {/*{JSON.stringify(props)}*/}
                 <ByLineWrapper>
-                <DisplayAuthImages authors={props.authorArray}/>
-                <DisplayAuthNames authors={props.authorArray}/>
+                <DisplayAuthImages className={`images`} authors={props.authorArray}/>
+                <DisplayAuthNames className={`names`} authors={props.authorArray}/>
                 <span className={styles.publishDate}>{props.DISPLAY_MEDIA_DATE}</span>
                 </ByLineWrapper>
             </>

@@ -11,9 +11,9 @@
 }
 
 .homepageCarousel button {
-    background-color: var(--primaryBlue);
+    background-color: var(--theme-colors-primaryBlue);
 }
 
 .homepageCarousel button:hover {
-    background-color:var(--primaryBlue);
+    background-color:var(--theme-colors-primaryBlue);
 }

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledBurger = styled.button`
   position: fixed;
-  top: 4rem;
-  right: 3rem;
+  top: 1rem;
+  right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -40,5 +40,10 @@ export const StyledBurger = styled.button`
     :nth-child(3) {
       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
     }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    top: 4rem;
+    right: 4rem;
   }
 `;

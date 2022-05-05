@@ -3,6 +3,46 @@ import ReactPaginate from 'react-paginate';
 import NewsList from "../NewsList";
 import styled from "styled-components";
 
+const PaginationWrap = styled.div`
+  margin-top: 6rem;
+  
+  ul {
+    list-style: none;
+    text-align: center;
+    
+    li {
+      display: inline-block;
+      margin: 0 .1rem;
+      padding: .8rem 1.5rem;
+      background-color: ${({theme}) => theme.colors.primaryGrey};
+      transition: all .2s ease;
+      
+      &.selected {
+        background-color: ${({theme}) => theme.colors.primaryYellow};
+        color: ${({theme}) => theme.colors.isWhite};
+      }
+      
+      &:hover {
+        cursor: pointer;
+        background-color: ${({theme}) => theme.colors.alternateGrey};
+        color: ${({theme}) => theme.colors.isWhite};
+      }
+      
+      &:first-child, &:last-child  {
+        background-color: ${({theme}) => theme.colors.primaryBlue};
+        color: ${({theme}) => theme.colors.isWhite};
+        padding: .8rem 1.8rem;
+      }
+      &:first-child {
+        border-radius: 4rem 0 0 4rem;
+      }
+      &:last-child {
+        border-radius: 0 4rem 4rem 0;
+      }
+    }
+  }
+`
+
 const ListingGrid = styled.div`
   display: grid;
   grid-gap: 3rem;
@@ -48,19 +88,21 @@ const PaginatedItems = (props) => {
             <ListingGrid className={`${props.columnClass}`}>
                 <NewsList list={currentItems} displayImg={true} displayByLine={props.displayByLine}/>
             </ListingGrid>
+            <PaginationWrap>
             {
                 props.itemsPerPage < props.itemList.length ?
                     <ReactPaginate
                         breakLabel="..."
-                        nextLabel="next >"
+                        nextLabel="&#8594;"
                         onPageChange={handlePageClick}
-                        pageRangeDisplayed={5}
+                        pageRangeDisplayed={2}
                         pageCount={pageCount}
-                        previousLabel="< previous"
+                        previousLabel="&#8592;"
                         renderOnZeroPageCount={null}
                     />
                     : <></>
             }
+            </PaginationWrap>
         </>
     );
 }

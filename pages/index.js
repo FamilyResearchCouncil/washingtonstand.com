@@ -43,7 +43,7 @@ const Home = (props) => (
       <HeadTag title="The Washington Stand" description="" />
       <h1 style={{ fontSize: '0px', display: "none" }}>The Washington Stand</h1>
       <StyledContentContainer>
-          <h2 className={styles.yellowHeader}>LATEST</h2>
+          <h2 className={`${styles.yellowHeader} ${styles.leadingStory}`}>LATEST</h2>
           <OffsetGrid>
               <FeaturedPublication {...props.leadStory} />
               <div />

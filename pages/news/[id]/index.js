@@ -49,7 +49,6 @@ const Post = (props) => {
     return (
         <>
             <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
-            {/*{JSON.stringify(props.authorDetailsArray)}*/}
             {
                 props.isPublished ?
                     <StyledContentContainer>
@@ -63,7 +62,7 @@ const Post = (props) => {
                                     </OuterDiv>
                                     : <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             }
-                            <h1>{props.ITEM_DESC}</h1>
+                            <h1 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
                             <DisplayByLine personalIdArray={props.authorArray} authorArray={props.authorDetailsArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
                             <StyledReadingSection>
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>

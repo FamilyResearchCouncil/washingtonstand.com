@@ -30,7 +30,7 @@ const NewsItem = (props) => (
         <div>
             <Link href={`${appUrls.urlDirectories.news}/${props.article.ITEM_CODE}`}>
                 <a>
-                    <h2>{props.article.ITEM_DESC}</h2>
+                    <h2 dangerouslySetInnerHTML={{__html: props.article.ITEM_DESC}} />
                 </a>
             </Link>
             {

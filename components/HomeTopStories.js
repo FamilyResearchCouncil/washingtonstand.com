@@ -14,11 +14,15 @@ const ListGrid = styled.div`
   
   article {
     display: grid;
-    grid-template-columns: .8fr 1.2fr;
+    grid-template-columns: .7fr 1.3fr;
     grid-gap: 1.5rem;
     padding: 2rem 0;
     border-bottom: solid 2px ${({theme}) => theme.colors.primaryGrey};
 
+    h3 {
+      font-size: 1.6rem;
+    }
+    
     &:first-child {
       padding-top: 0;
     }
@@ -27,6 +31,13 @@ const ListGrid = styled.div`
       border-bottom: none;
       padding-bottom: 0;
     }
+
+    @media (min-width: ${({ theme }) => theme.breakPoints.small}) {
+      h3 {
+        font-size: 1.8rem;
+      }
+    }
+    
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
@@ -63,7 +74,7 @@ const TopItemLink = (props) => (
         </Link>
         <Link href={`${appUrls.urlDirectories.news}/${props.ITEM_CODE}`}>
             <a>
-                <h3>{props.ITEM_DESC}</h3>
+                <h3 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
             </a>
         </Link>
         </article>

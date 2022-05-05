@@ -5,9 +5,13 @@ import styled from "styled-components";
 
 const FeatureTitle = styled.h3`
   font-family: ${({theme}) => theme.fonts.titleText};
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 400;
   margin: 1rem 0rem;
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    font-size: 4rem;
+  }
 `;
 
 const FeaturedPublication = (props) => (
@@ -19,7 +23,7 @@ const FeaturedPublication = (props) => (
         </Link>
         <Link href={`${appUrls.urlDirectories.news}/${props.ITEM_CODE}`}>
             <a>
-                <FeatureTitle>{props.ITEM_DESC}</FeatureTitle>
+                <FeatureTitle dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
             </a>
         </Link>
         <p>{props.SUMMARY_TEXT}</p>
