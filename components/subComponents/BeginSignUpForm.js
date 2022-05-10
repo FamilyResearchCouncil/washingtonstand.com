@@ -6,7 +6,6 @@ import appUrls from "../../storage/baseUrls.json"
 const StyledForm = styled.form`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto;
   grid-gap: 0;
   input {
     font-size: 2rem;
@@ -30,6 +29,11 @@ const StyledForm = styled.form`
       padding: 0 3.5rem 0 4.5rem;
     }
   }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.small}) {
+    grid-template-columns: 1fr auto;
+  }
+  
 `
 
 const NewsLetterForm = () => {
