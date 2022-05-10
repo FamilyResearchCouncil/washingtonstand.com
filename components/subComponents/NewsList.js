@@ -9,6 +9,7 @@ import {concatAuthorNames} from "../../helpers/DataManipulators";
 const ArticleLink = styled.article`
   h2, h3 {
     font-family: ${({theme}) => theme.fonts.titleText };
+    font-size: 2rem;
   }
   &:last-child {
     border-bottom: none;

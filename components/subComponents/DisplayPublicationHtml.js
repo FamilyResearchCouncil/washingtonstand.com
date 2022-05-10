@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 const HtmlWrapper = styled.div`
   a {
-    color: ${({theme}) => theme.colors.primaryYellow}
+    color: ${({theme}) => theme.colors.primaryBlue}
   }
   a:hover {
-    color: ${({theme}) => theme.colors.primaryBlue}
+    color: ${({theme}) => theme.colors.primaryYellow}
   }
 `;
 

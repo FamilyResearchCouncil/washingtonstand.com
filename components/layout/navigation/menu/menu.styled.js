@@ -6,12 +6,13 @@ export const StyledMenu = styled.nav`
   height: 100vh;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.mobileTransparentBlack};
-  width: 20vw;
+  width: 100vw;
   text-align: left;
   padding: 10rem 2rem ;
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 60;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
   
@@ -34,12 +35,13 @@ export const StyledMenu = styled.nav`
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
     padding: 2rem 10rem 2rem 2rem;
+    width: 45vw;
     a {
       font-size: 2rem;
     }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
-    
+    width: 20vw;
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.xLarge}) {

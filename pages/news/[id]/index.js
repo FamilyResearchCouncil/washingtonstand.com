@@ -11,13 +11,29 @@ import TopicList from "../../../components/subComponents/TagLinkList";
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
 
-const OuterDiv = styled.div`
+const TitleH1 = styled.h1`
+  font-family: ${({theme}) => theme.fonts.titleText};
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 1rem 0rem;
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    font-size: 5.5rem;
+  }
+`
+
+const TopDisplayDiv = styled.div`
+    max-width: 1100px;
+    margin: 0 auto;
+`
+
+const OuterIframeDiv = styled.div`
     position: relative; 
     display: block;
     max-width: 100%;
 `
 
-const InnerDiv = styled.div`
+const InnerIframeDiv = styled.div`
   padding-top: 56.25%;
   
   iframe {
@@ -53,17 +69,19 @@ const Post = (props) => {
                 props.isPublished ?
                     <StyledContentContainer>
                         <article>
+                            <TopDisplayDiv>
                             {
                                 props.IFRAME ?
-                                    <OuterDiv>
-                                        <InnerDiv dangerouslySetInnerHTML={props.iframeHtml}>
+                                    <OuterIframeDiv>
+                                        <InnerIframeDiv dangerouslySetInnerHTML={props.iframeHtml}>
 
-                                        </InnerDiv>
-                                    </OuterDiv>
+                                        </InnerIframeDiv>
+                                    </OuterIframeDiv>
                                     : <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             }
-                            <h1 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
+                            <TitleH1 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
                             <DisplayByLine personalIdArray={props.authorArray} authorArray={props.authorDetailsArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
+                            </TopDisplayDiv>
                             <StyledReadingSection>
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>

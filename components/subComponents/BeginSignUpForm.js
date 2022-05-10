@@ -9,6 +9,7 @@ const StyledForm = styled.form`
   grid-template-columns: 1fr auto;
   grid-gap: 0;
   input {
+    font-size: 2rem;
     padding: .8rem 2rem;
     border: none;
     border-radius: 0;

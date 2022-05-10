@@ -5,12 +5,12 @@ import styled from "styled-components";
 
 const FeatureTitle = styled.h3`
   font-family: ${({theme}) => theme.fonts.titleText};
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 400;
   margin: 1rem 0rem;
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
-    font-size: 4rem;
+    font-size: 5.5rem;
   }
 `;
 

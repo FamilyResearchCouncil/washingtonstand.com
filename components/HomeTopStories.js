@@ -34,7 +34,7 @@ const ListGrid = styled.div`
 
     @media (min-width: ${({ theme }) => theme.breakPoints.small}) {
       h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
     
