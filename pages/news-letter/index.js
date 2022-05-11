@@ -81,8 +81,9 @@ const NewsLetterForm = () => {
 
     const registerSubscription = async event => {
         event.preventDefault(); // don't redirect the page
-        // where we'll add our form logic
+
         setSubmitAttempts(submitAttempts + 1);
+
         const res = await fetch("/api/submitSubscription", {
             body: JSON.stringify({
                 person_first_name: event.target.person_first_name.value,
@@ -91,7 +92,7 @@ const NewsLetterForm = () => {
                 zip: event.target.zip.value
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             method: 'POST'
         })
@@ -102,14 +103,7 @@ const NewsLetterForm = () => {
             } else {
                 handleSuccess(data, router);
             }
-        })
-
-        // const result = await res.json()
-        //
-        // console.log(result);
-
-        // return result;
-
+        });
     }
 
 
@@ -171,7 +165,7 @@ const NewsLetterForm = () => {
                                 : <></>
                         }
                         <SubmitButton type={`submit`}>
-                            SUBMIT
+                            <>SUBMIT</>
                         </SubmitButton>
                         {
                             inputErrors.length?

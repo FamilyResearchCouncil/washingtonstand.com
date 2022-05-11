@@ -27,25 +27,21 @@ export default async function submitSubscription(req, res) {
             res.status(200).json({...req.body, ...validationCheck})
         } else {
 
+            const clientIp = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.socket.remoteAddress;
+
             let submissionData = {
                 ...req.body,
                 "forceNew":"Y",
+                "ip_address": clientIp,
                 "new_account_item":{
                     "item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"
                 }
             }
 
-            // console.log(response);
-            //
-            // res.status(200).json(response)
-            // res.status(200).json(errorData)
-            //
-            // res.status(200).json(req.body)
-
             const apiAuthToken = await getAPIToken();
 
-            const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
-            // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&report_code=CE`;
+            // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
+            const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&report_code=CE`;
 
             const headers = {
                 'Content-Type' : 'application/json',
