@@ -30,8 +30,25 @@ const TopicListWrapper = styled.div`
   margin: 0 auto;
   article {
     display: grid;
-    grid-gap: 3rem;
-    grid-template-columns: .8fr 1.2fr;
+    grid-gap: 1.5rem;
+    grid-template-columns: 1fr 3fr;
+    
+    h2 {
+      margin: 0;
+    }
+    
+    span {
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+      grid-gap: 3rem;
+      grid-template-columns: .8fr 1.2fr;
+      h2 {
+        font-size: 2.6rem;
+      }
+    }
+    
   }
 `;
 

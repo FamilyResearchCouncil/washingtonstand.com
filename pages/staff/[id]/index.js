@@ -10,11 +10,33 @@ import AuthorImage from "../../../components/subComponents/AuthorImage";
 
 const BioGridSection = styled.div`
   display: grid;
-  grid-gap: 4rem;
-  grid-template-columns: 150px 1fr;
+  grid-gap: 2rem;
+  //grid-template-rows: 150px auto;
   align-items: start;
-  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
-    
+  
+  .authorImageWrap {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-family: ${({theme}) => theme.fonts.titleText};
+    font-size: 4rem;
+    margin: 0;
+    span {
+      border-bottom: solid 2px ${({theme}) => theme.colors.primaryBlue};
+    }
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    grid-template-columns: 200px 1fr;
+    grid-gap: 4rem;
+    .authorImageWrap {
+      width: auto;
+      height: auto;
+      margin: unset;
+    }
   }
 `;
 
@@ -74,9 +96,11 @@ const Bio = (props) => {
             <StyledGreySection>
                 <StyledReadingSection>
                     <BioGridSection>
-                    <AuthorImage src={props.AUTHOR_IMG} width={300} height={300} />
+                    <div className={`authorImageWrap`}>
+                        <AuthorImage src={props.AUTHOR_IMG} width={300} height={300} layout='responsive'/>
+                    </div>
                     <div>
-                        <h1>{props.AUTHOR_NAME}</h1>
+                        <h1><span>{props.AUTHOR_NAME}</span></h1>
                         <div dangerouslySetInnerHTML={props.displayHtml} />
                     </div>
                     </BioGridSection>

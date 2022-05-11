@@ -1,4 +1,4 @@
-Sitemap: https://domain.com/api/sitemap
+Sitemap: https://washingtonstand.com/api/sitemap
 
 User-agent: *
 Allow: /*

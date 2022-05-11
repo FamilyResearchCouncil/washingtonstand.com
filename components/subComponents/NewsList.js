@@ -10,6 +10,7 @@ const ArticleLink = styled.article`
   h2, h3 {
     font-family: ${({theme}) => theme.fonts.titleText };
     font-size: 2rem;
+    margin-top: 0;
   }
   &:last-child {
     border-bottom: none;

@@ -9,7 +9,7 @@ const StyledImage = styled(Image)`
 
 const AuthorImage = (props) => (
     <>
-        <StyledImage src={props.src} width={props.width} height={props.height} />
+        <StyledImage src={props.src} width={props.width} height={props.height} layout={props.layout} />
     </>
 );
 
