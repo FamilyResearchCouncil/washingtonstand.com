@@ -5,13 +5,8 @@ import styled from "styled-components";
 import appUrls from "../../storage/baseUrls.json";
 import Link from "next/link";
 import Image from "next/image";
+import {StyledGreyBox} from "../../components/subComponents/GreyFormBox";
 
-const GreyBox = styled.section`
-  background-color: ${({theme}) => theme.colors.primaryGrey};
-  display: grid;
-  padding: 6rem;
-  justify-content: center;
-`
 
 const BlueLink = styled.a`
   color: ${({theme}) => theme.colors.primaryBlue};
@@ -93,14 +88,14 @@ const NewsLetterForm = () => {
     return (
         <>
             <StyledReadingSection>
-                <GreyBox>
+                <StyledGreyBox>
                     {
 
                         routeQuery.success === "true" ?
                         <SuccessBlock {...routeQuery} /> : <FailureBlock {...routeQuery}/>
 
                     }
-                </GreyBox>
+                </StyledGreyBox>
             </StyledReadingSection>
         </>
     )

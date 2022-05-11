@@ -2,65 +2,68 @@ import appUrls from "../../storage/baseUrls.json";
 // all column names must be in lower case, or it will throw an error in the API, which take camelCase and
 // changes it to snake_case for the sake of how database columns are defined.
 
+const formValidation = (formData) => {
+    let validationData = {
+        success: false,
+        inputErrors : []
+    }
+
+    for (let inputName in formData) {
+        if (formData[inputName] === "") {
+            validationData.error = true;
+            validationData.inputErrors.push(inputName);
+        }
+    }
+
+    return validationData;
+}
+
 export default async function submitSubscription(req, res) {
     if (req.method === 'POST') {
-        console.log(req.body);
 
-        let response = {
-            success: true,
-            data : {
+        let validationCheck = formValidation(req.body);
+
+        if (validationCheck.error) {
+            res.status(200).json({...req.body, ...validationCheck})
+        } else {
+
+            let submissionData = {
                 ...req.body,
-                rid: '12403835'
-            },
-            error : null
+                "forceNew":"Y",
+                "new_account_item":{
+                    "item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"
+                }
+            }
+
+            // console.log(response);
+            //
+            // res.status(200).json(response)
+            // res.status(200).json(errorData)
+            //
+            // res.status(200).json(req.body)
+
+            const apiAuthToken = await getAPIToken();
+
+            const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
+            // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&report_code=CE`;
+
+            const headers = {
+                'Content-Type' : 'application/json',
+                'Authorization' : `${apiAuthToken.token_type} ${apiAuthToken.access_token}`
+            };
+
+            await fetch(baseUrl, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(submissionData)
+            }).then(res => {
+                console.log(res);
+                return res.json()
+            }).then(response => {
+                console.log(response);
+                res.status(200).json(response)
+            });
         }
-
-        console.log(response);
-
-        res.status(200).json(response)
-        // res.status(200).json(errorData)
-
-        // res.status(200).json(req.body)
-
-        // const apiAuthToken = await getAPIToken();
-        //
-        // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
-        // // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&report_code=CE`;
-        //
-        // const headers = {
-        //     'Content-Type' : 'application/json',
-        //     'Authorization' : `${apiAuthToken.token_type} ${apiAuthToken.access_token}`
-        // };
-
-        // const data = {
-        //         "forceNew":"Y",
-        //         "rid":"",
-        //         "personal_id":"",
-        //         "load_date": "2022-04-08",
-        //         "person_first_name":"Timothy",
-        //         "person_last_name":"Daigle",
-        //         "zip":"20001",
-        //         "phone":"202-123-4567",
-        //         "email_addr":"tdaigle@frc.org",
-        //         "new_account_item":{
-        //             "item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"
-        //         },
-        //         "confirmation":
-        //             {"rid":"WUSUB","qty_requested":1,"warehouse":"CIS"}
-        //
-        //     }
-
-        // await fetch(baseUrl, {
-        //     method: 'POST',
-        //     headers: headers,
-        //     body: JSON.stringify(req.body)
-        // }).then(res => {
-        //     console.log(res);
-        //     return res.json()
-        // }).then(response => {
-        //     console.log(response);
-        //     res.status(200).json(response)
-        // });
     } else {
         res.status(405).json({
             status: "error",
@@ -103,6 +106,25 @@ const getAPIToken  = async (req, res) => {
 //     '{"forceNew":"Y","rid":"' . $ids[3] . '","personal_id":"","status_code":"NA_EXC","account_type":"PER","account_source":"","person_salutation":"MR","person_first_name":"John","person_familiar":"Matt","person_last_name":"Brown","addr_1":"27121 Coyote Ridge Ln","addr_2":"","city":"Johnstown","state":"CO","zip":"80534","phone":"970-744-5783","phone_address_type":"M","email_addr":"mattdocbrown@gmail.com","person_birth_date":"","person_gender":"","user_id":"JAG","church_name":"","new_account_attendees":{"attendee_type":"R","event_code":"MC018","attendee_comment":"Reprint name tag ~ printed wrong name"},"new_account_gifts":{"appeal_code":"21MC1F","gift_type":"R","card_number":"4147 2023 0305 4223","exp_date":"1223","cid":"501","gift_amount":"60"}}',
 //     '{"forceNew":"Y","rid":"' . $ids[4] . '","personal_id":"","status_code":"NA_NEW","account_type":"PER","account_source":"MENC","person_salutation":"MR","person_first_name":"John","person_familiar":"Matt","person_last_name":"Brown","addr_1":"27121 Coyote Ridge Ln","addr_2":"","city":"Johnstown","state":"CO","zip":"80534","phone":"970-744-5783","phone_address_type":"M","email_addr":"mattdocbrown@gmail.com","person_birth_date":"","person_gender":"","user_id":"JNW","church_name":"","new_account_attendees":{"attendee_type":"R","event_code":"MC018","attendee_comment":"$Reprint name tag…printed wrong name"},"new_account_gifts":{"appeal_code":"21MC1F","gift_type":"R","card_number":"1234 5678 9000 0000","exp_date":"12/23","cid":"501","gift_amount":"60"}}'
 // ];
+
+
+// const data = {
+//         "forceNew":"Y",
+//         "rid":"",
+//         "personal_id":"",
+//         "load_date": "2022-04-08",
+//         "person_first_name":"Timothy",
+//         "person_last_name":"Daigle",
+//         "zip":"20001",
+//         "phone":"202-123-4567",
+//         "email_addr":"tdaigle@frc.org",
+//         "new_account_item":{
+//             "item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"
+//         },
+//         "confirmation":
+//             {"rid":"WUSUB","qty_requested":1,"warehouse":"CIS"}
+//
+//     }
 
 let errorData =
     {

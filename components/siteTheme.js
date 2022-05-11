@@ -9,6 +9,7 @@ export default function siteTheme() {
             primaryYellow: '#EAA53E',
             primaryGrey: '#E5E5E4',
             alternateGrey: '#727272',
+            errorRed: "#F45151",
             isWhite: '#ffffff',
             isBlack: '#000000',
             transparentBlack: 'rgba(0,0,0,.7)',
