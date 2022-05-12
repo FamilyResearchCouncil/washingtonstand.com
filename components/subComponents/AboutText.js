@@ -1,21 +1,25 @@
 import {StyledReadingSection} from "./ReadingTextBlock";
+import styled from "styled-components";
+
+const TextDiv = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+    padding-left: 2rem;
+ }
+`;
 
 const styling = {
     h2: {
         marginBottom: 0
     },
-    text: {
-        paddingLeft: "2rem",
-    }
 }
 
 const AboutBlock = () => (
     <>
         <StyledReadingSection>
             <h2 style={styling.h2}>ABOUT</h2>
-            <div style={styling.text}>
-            <AboutText />
-            </div>
+            <TextDiv>
+                <AboutText />
+            </TextDiv>
         </StyledReadingSection>
     </>
 );
