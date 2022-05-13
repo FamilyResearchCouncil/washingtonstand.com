@@ -6,6 +6,8 @@ import SubmitButton from "../../components/subComponents/SubmitButton";
 import styled from "styled-components";
 import {StyledGreyBox} from "../../components/subComponents/GreyFormBox";
 
+import LoadingIcons from 'react-loading-icons'
+
 const SubscriptionForm = styled.form`
   display: grid;
   width: 100%;
@@ -24,6 +26,7 @@ const SubscriptionForm = styled.form`
     border-radius: 0;
     padding: 1.5rem;
     transition: all .3s ease;
+    font-size: 2rem;
     &.inputError {
       border: solid 1px ${({theme}) => theme.colors.errorRed};
     }
@@ -32,14 +35,22 @@ const SubscriptionForm = styled.form`
     text-align: center;
     color:  ${({theme}) => theme.colors.errorRed};
   }
+  
+`;
 
-  p {
-    text-align: center;
-    font-style: italic;
-    
-    a {
-      color: ${({theme}) => theme.colors.primaryBlue};
-    }
+const SubmissionErrorText = styled.p`
+  text-align: center;
+  font-style: italic;
+  overflow: auto;
+  transition-delay: .6s;
+  transition-property: opacity;
+  transition: all .6s ease;
+  opacity: ${props => props.showText ? 1 : 0 };
+  max-height: ${props => props.showText ? '40rem' : 0 };
+  margin: 0;
+  
+  a {
+    color: ${({theme}) => theme.colors.primaryBlue};
   }
 `
 
@@ -66,6 +77,11 @@ const NewsLetterForm = () => {
 
     const [inputErrors,setInputErrors] = useState([]);
     const [submitAttempts,setSubmitAttempts] = useState(0);
+    const [awaitingResponse,setAwaitingResponse] = useState(false);
+
+    const handleSubmitClick = event => {
+        setAwaitingResponse(true);
+    }
 
     const handleChange = event => {
         if (inputErrors.length) {
@@ -74,15 +90,12 @@ const NewsLetterForm = () => {
     }
 
     const handleFailure = (responseDetails) => {
-        console.log(responseDetails);
         setInputErrors(responseDetails.inputErrors);
-        console.log(inputErrors)
+        setSubmitAttempts(submitAttempts + 1);
     }
 
     const registerSubscription = async event => {
         event.preventDefault(); // don't redirect the page
-
-        setSubmitAttempts(submitAttempts + 1);
 
         const res = await fetch("/api/submitSubscription", {
             body: JSON.stringify({
@@ -103,7 +116,9 @@ const NewsLetterForm = () => {
             } else {
                 handleSuccess(data, router);
             }
+            setAwaitingResponse(false);
         });
+
     }
 
 
@@ -159,19 +174,32 @@ const NewsLetterForm = () => {
                                 className={`${inputErrors.includes("zip") ? "inputError":""}`} />
 
                             <input id="item_code" type="hidden" autoComplete="item_code" defaultValue={``} />
-                        {
-                            submitAttempts > 3 ?
-                                <p>It appears you've tried this a few times now.<br/> Thank you for your patience, but we're likely having technical issues. You're welcome to keep trying or contact us about the issue <a href={`https://www.frc.org/contact`}>here</a>.</p>
-                                : <></>
-                        }
-                        <SubmitButton type={`submit`}>
-                            <>SUBMIT</>
+                            <SubmitButton type={`submit`} onClick={handleSubmitClick}>
+                            <>
+                                {
+                                awaitingResponse?
+                                <><LoadingIcons.Puff height="2rem" /></>:
+                                <></>
+                                }
+                                {
+                                    submitAttempts?
+                                        "TRY AGAIN"
+                                        :
+                                        "SUBMIT"
+                                }
+                                {
+                                    awaitingResponse?
+                                        <><LoadingIcons.Puff height="2rem" /></>:
+                                        <></>
+                                }
+                            </>
                         </SubmitButton>
                         {
                             inputErrors.length?
                                 <span>Please complete the following fields</span>
                                 : <></>
                         }
+                        <SubmissionErrorText showText={submitAttempts > 3}>It appears you've tried this a few times now.<br/> Thank you for your patience, but we're likely having technical issues. You're welcome to keep trying or contact us about the issue <a href={`https://www.frc.org/contact`}>here</a>.</SubmissionErrorText>
                     </SubscriptionForm>
                 </StyledGreyBox>
             </StyledReadingSection>

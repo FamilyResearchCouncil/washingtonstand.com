@@ -19,56 +19,54 @@ const formValidation = (formData) => {
 }
 
 export default async function submitSubscription(req, res) {
-    if (req.method === 'POST') {
-
-        let validationCheck = formValidation(req.body);
-
-        if (validationCheck.error) {
-            res.status(200).json({...req.body, ...validationCheck})
-        } else {
-
-            const clientIp = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.socket.remoteAddress;
-
-            let submissionData = {
-                ...req.body,
-                "forceNew":"Y",
-                "ip_address": clientIp,
-                "new_account_item":{
-                    "item_code":"WUSUB",
-                    "qty_requested":1,
-                    "warehouse":"CIS",
-                    "send_code":"EM",
-                    "requested_flag":"Y"
-                }
-            }
-
-            const apiAuthToken = await getAPIToken();
-
-            // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
-            const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1&report_code=CE`;
-
-            const headers = {
-                'Content-Type' : 'application/json',
-                'Authorization' : `${apiAuthToken.token_type} ${apiAuthToken.access_token}`
-            };
-
-            await fetch(baseUrl, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(submissionData)
-            }).then(res => {
-                console.log(res);
-                return res.json()
-            }).then(response => {
-                console.log(response);
-                res.status(200).json(response)
-            });
-        }
-    } else {
+    if (req.method !== 'POST') {
         res.status(405).json({
             status: "error",
             reason: "Not allowed",
             message: "POST method is required"
+        });
+        return;
+    }
+
+    let validationCheck = formValidation(req.body);
+
+    if (validationCheck.error) {
+        res.status(200).json({...req.body, ...validationCheck})
+    } else {
+
+        const clientIp = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.socket.remoteAddress;
+
+        let submissionData = {
+            ...req.body,
+            "forceNew":"Y",
+            "ip_address": clientIp,
+            "new_account_item":{
+                "item_code":"WUSUB",
+                "qty_requested":1,
+                "warehouse":"CIS",
+                "send_code":"EM",
+                "requested_flag":"Y"
+            }
+        }
+
+        const apiAuthToken = await getAPIToken();
+
+        // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
+        const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=CE`;
+
+        const headers = {
+            'Content-Type' : 'application/json',
+            'Authorization' : `${apiAuthToken.token_type} ${apiAuthToken.access_token}`
+        };
+
+        await fetch(baseUrl, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(submissionData)
+        }).then(res => {
+            return res.json()
+        }).then(response => {
+            res.status(200).json(response)
         });
     }
 }
