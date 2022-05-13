@@ -62,7 +62,7 @@ const Topics = (props) => {
                     <Link href={`${appUrls.urlDirectories.news}/${props.firstPublication.ITEM_CODE}`}>
                         <a>
                             <Image src={props.firstPublication.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
-                            <h2>{props.firstPublication.ITEM_DESC}</h2>
+                            <h2 dangerouslySetInnerHTML={{__html: props.firstPublication.ITEM_DESC}} />
                         </a>
                     </Link>
                     <div>
