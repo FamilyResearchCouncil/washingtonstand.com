@@ -6,7 +6,7 @@ const SubmitButton = styled.button`
   border-radius: 40px;
   border: none;
   padding: 1rem 2rem;
-  &hover {
+  &:hover {
     cursor: pointer;
   }
 `;

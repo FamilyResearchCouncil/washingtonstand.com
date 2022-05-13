@@ -39,7 +39,10 @@ const SuccessBlock = (props) => (
     <>
         <SuccessBlockWrap>
             <h2>HOORAY!</h2>
-            <p>You have successfully joined our newsletter.</p>
+            <p>
+                You have successfully joined our newsletter.<br/>
+                Your confirmation number for this is <strong>{props.confirmationNumber}</strong>
+            </p>
             <div>
                 <BlueLink href={`${appUrls.urlDirectories.home}`}>
                     <a>BACK TO HOME <span>&#8594;</span></a>
@@ -48,7 +51,6 @@ const SuccessBlock = (props) => (
             <div>
                 <Image src="/img/Flame_icon.svg" height={100} width={100}/>
             </div>
-            {/*{JSON.stringify(props)}*/}
             <div>
                 <small>
                     Not what you wanted?<br/>

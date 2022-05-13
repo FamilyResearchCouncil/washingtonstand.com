@@ -34,7 +34,11 @@ export default async function submitSubscription(req, res) {
                 "forceNew":"Y",
                 "ip_address": clientIp,
                 "new_account_item":{
-                    "item_code":"WUSUB","qty_requested":1,"warehouse":"CIS"
+                    "item_code":"WUSUB",
+                    "qty_requested":1,
+                    "warehouse":"CIS",
+                    "send_code":"EM",
+                    "requested_flag":"Y"
                 }
             }
 

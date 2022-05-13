@@ -47,7 +47,7 @@ const handleSuccess = (responseDetails,router) => {
 
     let queryData = { success: responseDetails.success };
     if (queryData.success) {
-        queryData.confirmationNubmer = responseDetails.data.rid;
+        queryData.confirmationNumber = responseDetails.data.rid;
         queryData.first_name = responseDetails.data.person_first_name;
         queryData.last_name = responseDetails.data.person_last_name;
         queryData.email_addr = responseDetails.data.email_addr;
