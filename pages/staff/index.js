@@ -48,7 +48,7 @@ const StaffPage = (props) => (
             <StaffGrid>
             {
                 props.authorArray.map(staff => (
-                    <StaffItem name={staff.AUTHOR_NAME} imageUrl={staff.AUTHOR_IMG} title={staff.AUTHOR_TITLE} slug={staff.AUTHOR_SLUG}/>
+                    <StaffItem key={staff.PERSONAL_ID} name={staff.AUTHOR_NAME} imageUrl={staff.AUTHOR_IMG} title={staff.AUTHOR_TITLE} slug={staff.AUTHOR_SLUG}/>
                 ))
             }
             </StaffGrid>

@@ -23,7 +23,7 @@ export const DisplayAuthImages = (props) => (
     <div className={styles.authorImages}>
         {
             props.authors.map(author => (
-                <img className={styles.authorImage} src={author.AUTHOR_IMG} />
+                <img key={author.PERSONAL_ID} className={styles.authorImage} src={author.AUTHOR_IMG} />
             ))
         }
     </div>
@@ -40,7 +40,7 @@ export const DisplayAuthNames = (props) => (
                 }
 
                 return (
-                    <span>
+                    <span key={author.PERSONAL_ID}>
                         <Link href={`${appUrls.urlDirectories.staff}/${author.AUTHOR_SLUG}`}>
                             <a className={styles.authorLink}>{author.AUTHOR_NAME}</a>
                         </Link>

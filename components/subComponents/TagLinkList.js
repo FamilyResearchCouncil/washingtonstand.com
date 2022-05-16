@@ -31,7 +31,7 @@ const TopicList = (props) => {
             <TopicListWrapper>
                 <span>Topics:</span>
                 {
-                topicArray.map((topic,idx) => <TopicLink topic={topic} index={topicArray.length-idx-1}/>)
+                topicArray.map((topic,idx) => <TopicLink key={topic} topic={topic} index={topicArray.length-idx-1}/>)
                 }
             </TopicListWrapper>
         </>
