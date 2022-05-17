@@ -31,6 +31,7 @@ const PreviousNewsGrid = styled.div`
   
   h2, h3 {
     font-size: 1.6rem;
+    margin-top: 1rem;
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {

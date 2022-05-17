@@ -1,6 +1,10 @@
 import HeadTag from "../components/layout/HeadTag"
 import {StyledReadingSection} from "../components/subComponents/ReadingTextBlock";
 import DisplayPublicationHtml from "../components/subComponents/DisplayPublicationHtml";
+import FlameImage from "../components/subComponents/FlameImage";
+
+
+
 
 const AboutUs = (props) => (
     <>
@@ -8,6 +12,7 @@ const AboutUs = (props) => (
 
         <StyledReadingSection>
             <DisplayPublicationHtml displayHtml={props.displayHtml}/>
+            <FlameImage />
         </StyledReadingSection>
 
     </>

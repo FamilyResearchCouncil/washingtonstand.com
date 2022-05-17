@@ -10,6 +10,7 @@ import styled from "styled-components";
 import TopicList from "../../../components/subComponents/TagLinkList";
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
+import FlameImage from "../../../components/subComponents/FlameImage";
 
 const TitleH1 = styled.h1`
   font-family: ${({theme}) => theme.fonts.titleText};
@@ -86,9 +87,7 @@ const Post = (props) => {
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>
                             </StyledReadingSection>
-                            <center>
-                                <Image src="/img/Flame_icon.svg" height={50} width={50}/>
-                            </center>
+                            <FlameImage />
                         </article>
                     </StyledContentContainer>
                     :

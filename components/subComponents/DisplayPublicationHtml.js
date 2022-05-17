@@ -8,8 +8,8 @@ const HtmlWrapper = styled.div`
     color: ${({theme}) => theme.colors.primaryYellow}
   }
   iframe {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    display: block;
   }
 `;
 
