@@ -19,8 +19,11 @@ export const StyledContentContainer = styled.div`
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.xLarge}) {
-    max-width: ${({ theme }) => theme.widths.xlargeMaxWidth};
+    max-width: 1050px;
   }
   
+  @media (min-width: 1300px) {
+    max-width: ${({ theme }) => theme.widths.xlargeMaxWidth};
+  }
   
 `;

@@ -4,7 +4,7 @@
         "news": "/news",
         "staff": "/staff",
         "topic": "/topic",
-        "newsLetter": "/news-letter",
+        "newsLetter": "/newsletter",
         "confirmation" : "/news-letter/confirmation"
     }
 }

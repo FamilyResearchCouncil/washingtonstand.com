@@ -6,10 +6,11 @@ import appUrls from "../../storage/baseUrls.json"
 const StyledForm = styled.form`
   width: 100%;
   display: grid;
+  align-self: center;
   grid-gap: 0;
   input {
     font-size: 2rem;
-    padding: .8rem 2rem;
+    padding: 2rem;
     border: none;
     border-radius: 0;
     &focus {

@@ -38,7 +38,7 @@ const NewsItem = (props) => (
             {
                 props.displayByLine ?
                     <span>
-                        <i>{props.article.FULL_DATE}</i> | {concatAuthorNames(props.article.authorDetailsArray)}
+                        <i>{props.article.FULL_DATE}</i> &nbsp;|&nbsp; {concatAuthorNames(props.article.authorDetailsArray)}
                     </span>
                     : <></>
             }

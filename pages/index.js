@@ -55,8 +55,8 @@ const Home = (props) => (
       </StyledContentContainer>
       <StyledGreySection className={styles.newsLetterSection}>
           <StyledContentContainer>
-              <OffsetGrid>
-                  <h2 className={styles.newsLetterHeader}>JOIN OUR NEWS LETTER</h2>
+              <OffsetGrid className={`newsLetterGrid`}>
+                  <h2 className={styles.newsLetterHeader}>JOIN OUR NEWSLETTER</h2>
                   <span/>
                   <NewsLetterForm />
               </OffsetGrid>

@@ -6,7 +6,7 @@ import styled from "styled-components";
 const FeatureTitle = styled.h3`
   font-family: ${({theme}) => theme.fonts.titleText};
   font-size: 4rem;
-  font-weight: 400;
+  font-weight: 700;
   margin: 1rem 0rem;
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
