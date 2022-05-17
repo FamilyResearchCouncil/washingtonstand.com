@@ -66,40 +66,47 @@ const ListingGrid = styled.div`
 
 const PaginatedItems = (props) => {
 
-    const [currentItems, setCurrentItems] = useState(props.itemList);
-    const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
+    const [currentItems, setCurrentItems] = useState(props.itemList.slice(itemOffset,props.itemsPerPage));
+    // const [pageCount, setPageCount] = useState(0);
 
-    useEffect(() => {
-        // Fetch items from another resources.
-        const endOffset = itemOffset + props.itemsPerPage;
-        setCurrentItems(props.itemList.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(props.itemList.length / props.itemsPerPage));
-    }, [itemOffset, props.itemsPerPage]);
+    // useEffect(() => {
+    //     // Fetch items from another resources.
+    //     const endOffset = itemOffset + props.itemsPerPage;
+    //     // setCurrentItems(props.itemList.slice(itemOffset, endOffset));
+    //     setPageCount(Math.ceil(props.itemList.length / props.itemsPerPage));
+    // }, [itemOffset, props.itemsPerPage]);
+    //
+    // // Invoke when user click to request another page.
+    // const handlePageClick = (event) => {
+    //     const newOffset = (event.selected * props.itemsPerPage) % props.itemList.length;
+    //     setItemOffset(newOffset);
+    // };
 
-    // Invoke when user click to request another page.
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * props.itemsPerPage) % props.itemList.length;
-        setItemOffset(newOffset);
+    const handleMoreButtonClick = async () => {
+        setItemOffset(itemOffset + props.itemsPerPage);
+        setCurrentItems(currentItems.concat(props.itemList.slice(itemOffset,props.itemsPerPage)));
     };
 
     return (
         <>
             <ListingGrid className={`${props.columnClass}`}>
+                {/*{JSON.stringify(currentItems)}*/}
                 <NewsList list={currentItems} displayImg={true} displayByLine={props.displayByLine}/>
             </ListingGrid>
             <PaginationWrap>
             {
                 props.itemsPerPage < props.itemList.length ?
-                    <ReactPaginate
-                        breakLabel="..."
-                        nextLabel="&#8594;"
-                        onPageChange={handlePageClick}
-                        pageRangeDisplayed={2}
-                        pageCount={pageCount}
-                        previousLabel="&#8592;"
-                        renderOnZeroPageCount={null}
-                    />
+                    <button onClick={handleMoreButtonClick}>MORE </button>
+                    // <ReactPaginate
+                    //     breakLabel="..."
+                    //     nextLabel="&#8594;"
+                    //     onPageChange={handlePageClick}
+                    //     pageRangeDisplayed={2}
+                    //     pageCount={pageCount}
+                    //     previousLabel="&#8592;"
+                    //     renderOnZeroPageCount={null}
+                    // />
                     : <></>
             }
             </PaginationWrap>
