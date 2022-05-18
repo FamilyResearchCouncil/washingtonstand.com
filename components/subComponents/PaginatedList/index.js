@@ -70,13 +70,10 @@ const PaginatedItems = (props) => {
     const [currentItems, setCurrentItems] = useState(props.itemList.slice(itemOffset,props.itemsPerPage));
     // const [pageCount, setPageCount] = useState(0);
 
-    // useEffect(() => {
-    //     // Fetch items from another resources.
-    //     const endOffset = itemOffset + props.itemsPerPage;
-    //     // setCurrentItems(props.itemList.slice(itemOffset, endOffset));
-    //     setPageCount(Math.ceil(props.itemList.length / props.itemsPerPage));
-    // }, [itemOffset, props.itemsPerPage]);
-    //
+    useEffect(() => {
+        setCurrentItems(currentItems.concat(props.itemList.slice(itemOffset,props.itemsPerPage)));
+    }, [itemOffset]);
+
     // // Invoke when user click to request another page.
     // const handlePageClick = (event) => {
     //     const newOffset = (event.selected * props.itemsPerPage) % props.itemList.length;
@@ -84,8 +81,8 @@ const PaginatedItems = (props) => {
     // };
 
     const handleMoreButtonClick = async () => {
+        console.log(itemOffset)
         setItemOffset(itemOffset + props.itemsPerPage);
-        setCurrentItems(currentItems.concat(props.itemList.slice(itemOffset,props.itemsPerPage)));
     };
 
     return (
@@ -97,7 +94,7 @@ const PaginatedItems = (props) => {
             <PaginationWrap>
             {
                 props.itemsPerPage < props.itemList.length ?
-                    <button onClick={handleMoreButtonClick}>MORE </button>
+                    <button onClick={() => {setItemOffset(itemOffset + props.itemsPerPage)} }>MORE </button>
                     // <ReactPaginate
                     //     breakLabel="..."
                     //     nextLabel="&#8594;"
