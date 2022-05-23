@@ -1,5 +1,4 @@
 import Link from "next/link";
-import appUrls from "../storage/baseUrls.json";
 import Image from "next/image";
 import styled from "styled-components";
 
@@ -57,7 +56,7 @@ const TopItemsList = (props) => (
         <ListGrid>
         {
             props.list.map((item,idx) => (
-                <TopItemLink key={idx} ITEM_DESC={item.ITEM_DESC} ITEM_CODE={item.ITEM_CODE} SCREENCAP_IMAGE={item.SCREENCAP_IMAGE}/>
+                <TopItemLink key={idx} {...item} />
             ))
         }
         </ListGrid>
@@ -65,20 +64,18 @@ const TopItemsList = (props) => (
 );
 
 const TopItemLink = (props) => (
-    <>
-        <article>
-        <Link href={`${appUrls.urlDirectories.news}/${props.ITEM_CODE}`}>
+    <article key={props.key}>
+        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.ITEM_CODE}`}>
             <a>
                 <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
             </a>
         </Link>
-        <Link href={`${appUrls.urlDirectories.news}/${props.ITEM_CODE}`}>
+        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.ITEM_CODE}`}>
             <a>
                 <h3 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
             </a>
         </Link>
-        </article>
-    </>
+    </article>
 );
 
 export default TopItemsList;

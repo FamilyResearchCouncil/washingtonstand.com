@@ -110,7 +110,6 @@ const Bio = (props) => {
             <StyledReadingSection>
                 <BioListingGrid>
                     <PaginatedItems itemsPerPage={6} itemList={props.authorPublications} columnClass={``} displayByLine={true}/>
-                {/*<NewsList displayImg={true} list={props.authorPublications}/>*/}
                 </BioListingGrid>
             </StyledReadingSection>
 

@@ -1,6 +1,5 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
 import GetPublications from "../../helpers/GetPublications";
-import appUrls from "../../storage/baseUrls.json";
 
 export default async (req, res) => {
     try {
@@ -16,7 +15,7 @@ export default async (req, res) => {
         // Create each URL row
         posts.forEach(post => {
             smStream.write({
-                url: `${appUrls.urlDirectories.news}/${post.ITEM_CODE}`,
+                url: `${post.TYPE_DESC.toLowerCase()}/${post.ITEM_CODE}`,
                 changefreq: 'daily',
                 priority: 0.9
             });

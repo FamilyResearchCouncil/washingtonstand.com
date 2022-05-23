@@ -8,7 +8,6 @@ import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import appUrls from "../../../storage/baseUrls.json";
 import {concatAuthorNames} from "../../../helpers/DataManipulators";
 
 const LeadArticle = styled.article`
@@ -59,7 +58,7 @@ const Topics = (props) => {
             <StyledReadingSection>
                 <TopicH1>{props.topicTexts.displayTitle}</TopicH1>
                 <LeadArticle>
-                    <Link href={`${appUrls.urlDirectories.news}/${props.firstPublication.ITEM_CODE}`}>
+                    <Link href={`/${props.firstPublication.TYPE_DESC.toLowerCase()}/${props.firstPublication.ITEM_CODE}`}>
                         <a>
                             <Image src={props.firstPublication.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             <h2 dangerouslySetInnerHTML={{__html: props.firstPublication.ITEM_DESC}} />

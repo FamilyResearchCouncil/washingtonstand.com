@@ -23,14 +23,14 @@ const NewsItem = (props) => (
         {
 
             props.displayImg ?
-            <Link href={`${appUrls.urlDirectories.news}/${props.article.ITEM_CODE}`}>
+            <Link href={`/${props.article.TYPE_DESC.toLowerCase()}/${props.article.ITEM_CODE}`}>
                 <a>
                     <Image src={props.article.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                 </a>
             </Link> : ""
         }
         <div>
-            <Link href={`${appUrls.urlDirectories.news}/${props.article.ITEM_CODE}`}>
+            <Link href={`/${props.article.TYPE_DESC.toLowerCase()}/${props.article.ITEM_CODE}`}>
                 <a>
                     <h2 dangerouslySetInnerHTML={{__html: props.article.ITEM_DESC}} />
                 </a>

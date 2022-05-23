@@ -2,6 +2,7 @@
     "urlDirectories": {
         "home": "/",
         "news": "/news",
+        "commentary": "/commentary",
         "staff": "/staff",
         "topic": "/topic",
         "newsLetter": "/newsletter",
