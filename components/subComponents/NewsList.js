@@ -47,11 +47,12 @@ const NewsItem = (props) => (
 );
 
 const NewsListing = (props) => {
-    const { publications, isLoading } = useAPIPubs();
-    if(props.list) {
-        return (<>
+
+    return (
+        <>
             {
                 props.list.map((item,idx) => (
+                    <>
                     <NewsItem
                         key={idx}
                         displayImg={props.displayImg}
@@ -59,26 +60,11 @@ const NewsListing = (props) => {
                         displayByLine={props.displayByLine}
                         article={item}
                     />
+                    </>
                 ))
             }
-        </>);
-    } else {
-        return (<>
-            {!isLoading ?
-                publications.map((item,idx) => (
-                    <NewsItem
-                        key={idx}
-                        displayImg={props.displayImg}
-                        displaySummary={props.displaySummary}
-                        displayByLine={props.displayByLine}
-                        article={item}
-                    />
-                ))
-                :
-                <p>Loading...</p>
-            }
-        </>);
-    }
+        </>
+    );
 }
 
 export default NewsListing;
