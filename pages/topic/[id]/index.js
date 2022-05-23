@@ -58,7 +58,7 @@ const Topics = (props) => {
             <StyledReadingSection>
                 <TopicH1>{props.topicTexts.displayTitle}</TopicH1>
                 <LeadArticle>
-                    <Link href={`/${props.firstPublication.TYPE_DESC.toLowerCase()}/${props.firstPublication.ITEM_CODE}`}>
+                    <Link href={`/${props.firstPublication.TYPE_DESC.toLowerCase()}/${props.firstPublication.URL_SLUG}`}>
                         <a>
                             <Image src={props.firstPublication.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             <h2 dangerouslySetInnerHTML={{__html: props.firstPublication.ITEM_DESC}} />

@@ -15,7 +15,7 @@ export default async (req, res) => {
         // Create each URL row
         posts.forEach(post => {
             smStream.write({
-                url: `${post.TYPE_DESC.toLowerCase()}/${post.ITEM_CODE}`,
+                url: `${post.TYPE_DESC.toLowerCase()}/${post.URL_SLUG}`,
                 changefreq: 'daily',
                 priority: 0.9
             });

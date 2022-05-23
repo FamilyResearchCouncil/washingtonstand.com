@@ -11,23 +11,19 @@ export const MoreDownArrowButton = styled.button`
   color: ${({theme}) => theme.colors.primaryYellow};
   
   ::after {
-    content: "";
+    content: "\u2193";
     display: inline-block;
-    width: 0px;
-    border-top: solid 1rem ${({theme}) => theme.colors.primaryYellow};
-    border-left: solid 4rem transparent;
-    border-right: solid 4rem transparent;
+    width: 2rem;
     position: absolute;
-    bottom: -15px;
-    left: calc(50% - 4rem);
+    bottom: -3rem;
+    left: calc(50% - 1rem);
     transition: all .3s ease;
   }
   
   &:hover {
     cursor: pointer;
     ::after {
-      bottom: -2rem;
-      //border-top: solid 1.5rem ${({theme}) => theme.colors.primaryYellow};
+      bottom: -3.5rem;
     }
   }
   

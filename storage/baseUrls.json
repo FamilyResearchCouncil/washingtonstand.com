@@ -3,7 +3,7 @@
         "home": "/",
         "news": "/news",
         "commentary": "/commentary",
-        "staff": "/staff",
+        "staff": "/authors",
         "topic": "/topic",
         "newsLetter": "/newsletter",
         "confirmation" : "/news-letter/confirmation"

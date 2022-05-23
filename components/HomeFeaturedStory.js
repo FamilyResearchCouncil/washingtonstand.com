@@ -15,12 +15,12 @@ const FeatureTitle = styled.h3`
 
 const FeaturedPublication = (props) => (
     <article>
-        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.ITEM_CODE}`}>
+        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
             <a>
                 <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
             </a>
         </Link>
-        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.ITEM_CODE}`}>
+        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
             <a>
                 <FeatureTitle dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
             </a>

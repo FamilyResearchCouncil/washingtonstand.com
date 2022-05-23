@@ -104,7 +104,7 @@ export const getStaticPaths = async () => {
     const publications = await GetPublications();
 
     const publishPathsArray = publications.map((pub) => ({
-        params: { id: pub.ITEM_CODE}
+        params: { id: pub.URL_SLUG}
     }));
 
     return {
@@ -135,7 +135,7 @@ export const getStaticProps = async (context) => {
     const pageId = context.params.id;
     let pageProps = {};
 
-    await fetch(`https://api.frc.org/api/webtext/${pageId}.json?trackDownload=0`)
+    await fetch(`https://api.frc.org/api/frc/web-url-item/${pageId}`)
         .then(res => res.json())
         .then(
             (result) => {
@@ -143,6 +143,9 @@ export const getStaticProps = async (context) => {
                 pageProps.iframeHtml = (pageProps.IFRAME) ? {
                     __html: pageProps.IFRAME
                 } : false;
+                // pageProps.displayHtml = {
+                //     __html: pageProps.FULL_TEXT
+                // }
             },
             (error) => {
                 // console.log(error);
@@ -150,7 +153,7 @@ export const getStaticProps = async (context) => {
             }
         );
 
-    await fetch(`https://api.frc.org/api/webtext/${pageId}.cfm?trackDownload=0`)
+    await fetch(`https://api.frc.org/api/webtext/${pageProps.ITEM_CODE}.cfm?trackDownload=0`)
         .then(res => res.text())
         .then(
             (result) => {

@@ -65,12 +65,12 @@ const TopItemsList = (props) => (
 
 const TopItemLink = (props) => (
     <article key={props.key}>
-        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.ITEM_CODE}`}>
+        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
             <a>
                 <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
             </a>
         </Link>
-        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.ITEM_CODE}`}>
+        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
             <a>
                 <h3 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
             </a>
