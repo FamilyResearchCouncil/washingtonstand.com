@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { bool, func } from 'prop-types';
 import { StyledMenu } from './menu.styled';
+import TopTopics from "../../../subComponents/TopTopics";
 
 const Menu = ({ open }) => (
         <StyledMenu open={open}>
@@ -10,6 +11,10 @@ const Menu = ({ open }) => (
             <Link href="/about">
                 <a>About Us</a>
             </Link>
+            <div className={`topicNews`}>
+                <strong>NEWS</strong>
+                <TopTopics />
+            </div>
         </StyledMenu>
     );
 

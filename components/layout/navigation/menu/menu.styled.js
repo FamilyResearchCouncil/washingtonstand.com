@@ -25,23 +25,48 @@ export const StyledMenu = styled.nav`
     color: ${({ theme }) => theme.colors.isWhite};
     text-decoration: none;
     transition: color 0.3s linear;
-    margin-left: 4rem;
+    margin-left: 3rem;
     text-align: center;
     
     &:hover {
       color: ${({ theme }) => theme.colors.isWhite};
     }
   }
+  
+  div.topicNews {
+    padding-top: 6rem;
+    strong {
+      text-align: left;
+      color:  ${({ theme }) => theme.colors.isWhite};
+      font-size: 2rem;
+      font-weight: 400;
+      margin-left: 3rem;
+    }
+    
+    a {
+      display: block;
+      font-size: 1.8rem;
+      text-align: left;
+      padding: 1.5rem 0;
+      margin: .5rem 0 .5rem 3rem;
+      :before {
+        content: "- ";
+        display: inline-block;
+        font-weight: 200;
+      }
+    }  
+  }
+}
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
-    padding: 2rem 10rem 2rem 2rem;
+    padding: 2rem 6rem 2rem 2rem;
     width: 45vw;
     a {
       font-size: 2rem;
     }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
-    width: 20vw;
+    width: 30vw;
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.xLarge}) {

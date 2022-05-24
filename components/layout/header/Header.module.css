@@ -20,6 +20,7 @@
 
 .leadTopics {
     display: none;
+    min-height: 4rem;
 }
 
 .leadTopics div {
@@ -45,7 +46,7 @@
     .leadTopics {
         display: block;
     }
-    .leadTopics div {
+    .leadTopics div div {
         grid-template-columns: 1fr 1fr;
     }
 }

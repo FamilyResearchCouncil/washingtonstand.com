@@ -1,47 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Burger from '../navigation/burger'
 import Menu from '../navigation/menu'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import styles from './Header.module.css'
-import {StyledReadingSection} from "../../subComponents/ReadingTextBlock";
 import Link from "next/link";
-
+import TopTopics from "../../subComponents/TopTopics";
 import MainLogo from "../../../public/img/WashStand_v5.svg";
-
-const TopTopics = () => {
-    const [error, setError] = useState(null);
-    const [displayHtml, setDisplayHtml] = useState("");
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() =>{
-        fetch(`https://api.frc.org/api/webtext/WX22D07.cfm?trackDownload=0`)
-            .then(res => res.text())
-            .then(
-                (result) => {
-                    setDisplayHtml({
-                        __html: result.replaceAll(`="topic`,`="/topic`)
-                    })
-                    setIsLoaded(true);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error.message);
-                }
-            );
-    },[])
-
-
-    if (error || !isLoaded) {
-        return <div />;
-    } else {
-        return (
-            <>
-                <StyledReadingSection className={styles.leadTopics} dangerouslySetInnerHTML={displayHtml} />
-            </>
-        );
-    }
-
-}
 
 const Header = () => {
     const [open, setOpen] = useState(false);
@@ -57,7 +21,9 @@ const Header = () => {
                     </a>
                 </Link>
                 <p className={styles.headingTagLine}>". . . and having done all . . . stand firm." Eph. 6:13</p>
+                <div className={styles.leadTopics}>
                 <TopTopics />
+                </div>
             </header>
             <div ref={node}>
                 <Burger open={open} setOpen={setOpen} />
