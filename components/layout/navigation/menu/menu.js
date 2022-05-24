@@ -11,6 +11,9 @@ const Menu = ({ open }) => (
             <Link href="/about">
                 <a>About Us</a>
             </Link>
+            <Link href="/authors">
+                <a>Authors</a>
+            </Link>
             <div className={`topicNews`}>
                 <strong>NEWS</strong>
                 <TopTopics />
