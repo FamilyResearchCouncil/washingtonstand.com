@@ -101,7 +101,7 @@ const Post = (props) => {
 
 export const getStaticPaths = async () => {
 
-    const publications = await GetPublications();
+    const publications = await GetPublications(['NA']);
 
     const publishPathsArray = publications.map((pub) => ({
         params: { id: pub.URL_SLUG}
