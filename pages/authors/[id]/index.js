@@ -7,11 +7,11 @@ import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import styled from "styled-components";
 import PaginatedItems from "../../../components/subComponents/PaginatedList";
 import AuthorImage from "../../../components/subComponents/AuthorImage";
+import FlameIcon from "../../../components/subComponents/FlameIcon";
 
 const BioGridSection = styled.div`
   display: grid;
   grid-gap: 2rem;
-  //grid-template-rows: 150px auto;
   align-items: start;
   
   .authorImageWrap {
@@ -97,7 +97,10 @@ const Bio = (props) => {
                 <StyledReadingSection>
                     <BioGridSection>
                     <div className={`authorImageWrap`}>
-                        <AuthorImage src={props.AUTHOR_IMG} width={300} height={300} layout='responsive'/>
+                        {
+                            props.AUTHOR_IMG ?
+                                <AuthorImage src={props.AUTHOR_IMG ? props.AUTHOR_IMG : "/img/Flame_icon.svg"} width={300} height={300} layout='responsive'/>
+                                : <FlameIcon /> }
                     </div>
                     <div>
                         <h1><span>{props.AUTHOR_NAME}</span></h1>

@@ -13,7 +13,7 @@ const NewsPage = (props) => (
 );
 
 export async function getStaticProps() {
-    const publications = await GetPublications(['CC']);
+    const publications = await GetPublications();
 
     return {
         props: {publications},

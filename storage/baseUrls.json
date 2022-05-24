@@ -1,6 +1,7 @@
 {
     "urlDirectories": {
         "home": "/",
+        "all" : "/all",
         "news": "/news",
         "commentary": "/commentary",
         "staff": "/authors",

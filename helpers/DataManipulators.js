@@ -7,7 +7,7 @@ export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray
         "AUTHOR_NAME" : "Family Research Council",
         "FIRST_NAME" : "Family Research",
         "LAST_NAME" : "Council",
-        "AUTHOR_IMG" : "https://www.frc.org/img/domain/frc/logo_lg.png",
+        "AUTHOR_IMG" : "",
         "AUTHOR_TITLE" : "",
         "TWITTER_HANDLE" : "",
         "FACEBOOK_HANDLE" : "",

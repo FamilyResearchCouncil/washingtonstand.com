@@ -1,9 +1,9 @@
-import {useAPIStaff} from "../../../contexts/AuthorListContext";
-import React, {useEffect, useState} from "react";
 import styles from "./DisplayByLine.module.css"
 import styled from "styled-components";
 import Link from "next/link";
 import appUrls from "../../../storage/baseUrls.json"
+import FlameIcon from "../FlameIcon";
+import Image from "next/image";
 
 
 const ByLineWrapper = styled.div`
@@ -23,7 +23,14 @@ export const DisplayAuthImages = (props) => (
     <div className={styles.authorImages}>
         {
             props.authors.map(author => (
-                <img key={author.PERSONAL_ID} className={styles.authorImage} src={author.AUTHOR_IMG} />
+                <>
+                {
+                    author.AUTHOR_IMG ?
+                    <img key={author.PERSONAL_ID} className={styles.authorImage} src={author.AUTHOR_IMG} />
+                    :
+                    <FlameIcon height={10} />
+                }
+                </>
             ))
         }
     </div>

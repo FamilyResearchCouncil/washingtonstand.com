@@ -7,13 +7,13 @@ const NewsPage = (props) => (
     <>
         <HeadTag title="News" description="" />
         <StyledContentContainer>
-            <PaginatedItems itemsPerPage={6} itemList={props.publications} columnClass={`columns-3`} displayByLine={true}/>
+            <PaginatedItems itemsPerPage={9} itemList={props.publications} columnClass={`columns-3`} displayByLine={true}/>
         </StyledContentContainer>
     </>
 );
 
 export async function getStaticProps() {
-    const publications = await GetPublications();
+    const publications = await GetPublications(['NA']);
 
     return {
         props: {publications},
