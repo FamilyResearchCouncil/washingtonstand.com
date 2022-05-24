@@ -15,7 +15,7 @@ const ArticleLink = styled.article`
 `
 
 const NewsItem = (props) => (
-    <ArticleLink>
+    <ArticleLink key={props.ITEM_CODE}>
         {
 
             props.displayImg ?
@@ -48,7 +48,6 @@ const NewsListing = (props) => {
         <>
             {
                 props.list.map((item,idx) => (
-                    <>
                     <NewsItem
                         key={idx}
                         displayImg={props.displayImg}
@@ -56,7 +55,6 @@ const NewsListing = (props) => {
                         displayByLine={props.displayByLine}
                         article={item}
                     />
-                    </>
                 ))
             }
         </>

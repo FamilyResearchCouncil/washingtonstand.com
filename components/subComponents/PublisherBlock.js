@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   img, svg {
     max-width: 100%;
   }
+  
+  div.linkWrapper {
+    margin-top: -1.8rem;  
+  }
 `
 
 const PublisherBlock = () => (
@@ -23,8 +27,10 @@ const PublisherBlock = () => (
             &copy;{new Date().getFullYear()} Family Research Council<br />
             1-800-225-4008<br />
             801 G Street NW<br />
-            Washington, D.C. 20001<br />
-            Privacy Policy | Contact Us
+            Washington, D.C. 20001
+            <div className={`linkWrapper`}>
+            <a href={`https://frc.org/privacy-policy`}>Privacy Policy</a>  |  <a href={`https://frc.org/contact-frc`}>Contact Us</a>
+            </div>
         </Wrapper>
     </>
 );

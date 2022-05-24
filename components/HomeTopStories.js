@@ -64,7 +64,7 @@ const TopItemsList = (props) => (
 );
 
 const TopItemLink = (props) => (
-    <article key={props.key}>
+    <article key={props.ITEM_CODE}>
         <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
             <a>
                 <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
