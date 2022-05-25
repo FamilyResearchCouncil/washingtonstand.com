@@ -40,7 +40,7 @@ const SuccessBlock = (props) => (
         <SuccessBlockWrap>
             <h2>HOORAY!</h2>
             <p>
-                You have successfully joined our newsletter.<br/>
+                You have successfully subscribed to <cite>The Washington Stand</cite>.<br/>
                 Your confirmation number for this is <strong>{props.confirmationNumber}</strong>
             </p>
             <div>
@@ -71,7 +71,6 @@ const FailureBlock = (props) => (
         <div>
             <Image src="/img/Flame_icon.svg" height={100} width={100}/>
         </div>
-        {/*{JSON.stringify(props)}*/}
         <div>
             <small>
                 Still not working?<br/>

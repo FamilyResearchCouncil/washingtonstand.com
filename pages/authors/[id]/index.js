@@ -113,7 +113,7 @@ const Bio = (props) => {
 
             <StyledReadingSection>
                 <BioListingGrid>
-                    <PaginatedItems itemsPerPage={6} itemList={props.authorPublications} columnClass={``} displayByLine={true}/>
+                    <PaginatedItems itemsPerPage={6} itemList={props.authorPublications} listAuthorId={props.PERSONAL_ID} displayByLine={true}/>
                 </BioListingGrid>
             </StyledReadingSection>
 
@@ -169,7 +169,16 @@ export async function getStaticProps(context) {
             }
         );
 
+    pageProps.authorPublications = [];
     pageProps.authorPublications = publications.filter(pub => pub.AUTHOR_ID_LIST.includes(pageProps.PERSONAL_ID));
+
+    // we filter out the currently displayed author from the authorDetailsArray in the publication listing so that their
+    // name doesn't not appear in the list of articles that they wrote, because "duh" it's a list of their aritlces. We
+    // don't simply exclude the array per se because some publications might have multiple authors, in which case we want
+    // the NewsList component to display a "with {other author's name}" line.
+    pageProps.authorPublications.forEach(publication => {
+        publication.authorDetailsArray = publication.authorDetailsArray.filter(author => author.PERSONAL_ID != pageProps.PERSONAL_ID)
+    });
 
     return {
         props: {...pageProps},

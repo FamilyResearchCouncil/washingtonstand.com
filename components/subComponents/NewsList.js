@@ -36,7 +36,12 @@ const NewsItem = (props) => (
             {
                 props.displayByLine ?
                     <span>
-                        <i>{props.article.FULL_DATE}</i> &nbsp;|&nbsp; {concatAuthorNames(props.article.authorDetailsArray)}
+                        <i>{props.article.FULL_DATE}</i>
+                        { props.article.authorDetailsArray.length ? <>&nbsp;|&nbsp;</> : <></>}
+                        {
+                            (props.listAuthorId && props.article.authorDetailsArray.length ) ? <>with&nbsp;</> : <></>
+                        }
+                        {concatAuthorNames(props.article.authorDetailsArray)}
                     </span>
                     : <></>
             }
@@ -55,6 +60,7 @@ const NewsListing = (props) => {
                         displayImg={props.displayImg}
                         displaySummary={props.displaySummary}
                         displayByLine={props.displayByLine}
+                        listAuthorId={props.listAuthorId}
                         article={item}
                     />
                 ))

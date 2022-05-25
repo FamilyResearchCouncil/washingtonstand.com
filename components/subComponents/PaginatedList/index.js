@@ -52,7 +52,7 @@ const PaginatedItems = (props) => {
     return (
         <>
             <ListingGrid className={`${props.columnClass}`}>
-                <NewsList list={currentItems} displayImg={true} displayByLine={props.displayByLine}/>
+                <NewsList list={currentItems} displayImg={true} listAuthorId={props.listAuthorId} displayByLine={props.displayByLine}/>
             </ListingGrid>
             {
                 (   props.itemsPerPage < props.itemList.length && currentItems.length < props.itemList.length ) ?

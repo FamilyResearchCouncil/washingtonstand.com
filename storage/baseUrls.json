@@ -7,6 +7,12 @@
         "staff": "/authors",
         "topic": "/topic",
         "newsLetter": "/newsletter",
-        "confirmation" : "/news-letter/confirmation"
+        "confirmation" : "/newsletter/confirmation"
+    },
+    "frcApi" : {
+        "baseUrl" : "https://api.frc.org/api/",
+        "db" : "frc/",
+        "webText" : "webtext/",
+        "webJson" : "webjson/"
     }
 }

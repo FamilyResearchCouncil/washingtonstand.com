@@ -102,6 +102,7 @@ const NewsLetterForm = () => {
                 person_first_name: event.target.person_first_name.value,
                 person_last_name: event.target.person_last_name.value,
                 email_addr: event.target.email_addr.value,
+                mobile: event.target.mobile.value,
                 zip: event.target.zip.value
             }),
             headers: {
@@ -126,7 +127,7 @@ const NewsLetterForm = () => {
         <>
             <StyledReadingSection>
                 <StyledGreyBox>
-                    <h2>FILL OUT THIS FORM TO GET OUR NEWSLETTER DIRECTLY IN YOUR INBOX!</h2>
+                    <h2>FILL OUT THIS FORM TO GET <cite>THE WASHINGTON STAND</cite> DIRECTLY IN YOUR INBOX!</h2>
                     <SubscriptionForm onSubmit={registerSubscription}>
 
                             <label htmlFor="email_addr">Email</label>
@@ -135,7 +136,7 @@ const NewsLetterForm = () => {
                                 type="text"
                                 autoComplete="email_addr"
                                 defaultValue={`${routeQuery.email_addr ? routeQuery.email_addr : ""}`}
-                                placeholder={`Email Address*`}
+                                placeholder={`Email*`}
                                 required
                                 onChange={handleChange}
                                 className={`${inputErrors.includes("email_addr") ? "inputError":""}`} />
@@ -162,7 +163,17 @@ const NewsLetterForm = () => {
                                 onChange={handleChange}
                                 className={`${inputErrors.includes("person_last_name") ? "inputError":""}`} />
 
-                            <label htmlFor="zip">Zip Code</label>
+                            <label htmlFor="mobile">Mobile</label>
+                            <input
+                                id="mobile"
+                                type="text"
+                                autoComplete="mobile"
+                                defaultValue={``}
+                                placeholder={`Mobile`}
+                                onChange={handleChange}
+                                className={`${inputErrors.includes("mobile") ? "inputError":""}`} />
+
+                            <label htmlFor="zip">ZIP Code</label>
                             <input
                                 id="zip"
                                 type="text"

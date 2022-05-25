@@ -5,11 +5,12 @@ import appUrls from "../../storage/baseUrls.json";
 const formValidation = (formData) => {
     let validationData = {
         success: false,
+        requiredFields: ["email_addr","person_first_name","person_last_name","zip"],
         inputErrors : []
     }
 
     for (let inputName in formData) {
-        if (formData[inputName] === "") {
+        if (validationData.requiredFields.includes(formData[inputName]) && formData[inputName] === "") {
             validationData.error = true;
             validationData.inputErrors.push(inputName);
         }
