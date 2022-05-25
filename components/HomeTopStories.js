@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
+import {PublicationTypeGreyText} from "./subComponents/PublicationTypeGreyText";
 
 const ListGrid = styled.div`
   display: grid;
@@ -70,11 +71,14 @@ const TopItemLink = (props) => (
                 <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
             </a>
         </Link>
-        <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
-            <a>
-                <h3 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
-            </a>
-        </Link>
+        <div>
+            <PublicationTypeGreyText>{props.TYPE_DESC}</PublicationTypeGreyText>
+            <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
+                <a>
+                    <h3 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
+                </a>
+            </Link>
+        </div>
     </article>
 );
 

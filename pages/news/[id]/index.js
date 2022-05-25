@@ -11,12 +11,18 @@ import TopicList from "../../../components/subComponents/TagLinkList";
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
 import FlameImage from "../../../components/subComponents/FlameImage";
+import {PublicationTypeGreyText} from "../../../components/subComponents/PublicationTypeGreyText";
+
+const leadStoryTypeStyle = {
+    display: "block",
+    marginTop: "2rem"
+}
 
 const TitleH1 = styled.h1`
   font-family: ${({theme}) => theme.fonts.titleText};
   font-size: 4rem;
   font-weight: 700;
-  margin: 1rem 0rem;
+  margin: 0 0 1rem;
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
     font-size: 5.5rem;
@@ -80,6 +86,7 @@ const Post = (props) => {
                                     </OuterIframeDiv>
                                     : <Image src={props.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
                             }
+                            <PublicationTypeGreyText style={leadStoryTypeStyle}>{props.TYPE_DESC}</PublicationTypeGreyText>
                             <TitleH1 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
                             <DisplayByLine personalIdArray={props.authorArray} authorArray={props.authorDetailsArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
                             </TopDisplayDiv>

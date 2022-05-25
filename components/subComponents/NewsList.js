@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import {concatAuthorNames} from "../../helpers/DataManipulators";
+import {PublicationTypeGreyText} from "./PublicationTypeGreyText";
 
 const ArticleLink = styled.article`
   h2, h3 {
@@ -26,6 +27,7 @@ const NewsItem = (props) => (
             </Link> : ""
         }
         <div>
+            <PublicationTypeGreyText>{props.article.TYPE_DESC}</PublicationTypeGreyText>
             <Link href={`/${props.article.TYPE_DESC.toLowerCase()}/${props.article.URL_SLUG}`}>
                 <a>
                     <h2 dangerouslySetInnerHTML={{__html: props.article.ITEM_DESC}} />
