@@ -3,6 +3,8 @@ import {StyledContentContainer} from "../../components/layout/sections/contentCo
 import GetPublications from "../../helpers/GetPublications";
 import PaginatedItems from "../../components/subComponents/PaginatedList";
 
+
+
 const NewsPage = (props) => (
     <>
         <HeadTag title="News" description="" />

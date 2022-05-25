@@ -37,6 +37,7 @@ const TopicListWrapper = styled.div`
     }
     
     span {
+      margin-top: 0;
       font-size: 1.4rem;
     }
 

@@ -6,14 +6,31 @@ import {MoreDownArrowButton} from "../MoreDownArrowButton"
 const ListingGrid = styled.div`
   display: grid;
   grid-gap: 3rem;
-
-  h2 {MoreDownArrowButton
+  
+  article {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: .6fr 1.4fr;
+    
+    span {
+      margin-top: 0;
+    }
     
   }
   
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
     &.columns-3 , &.columns-2 {
     grid-template-columns: 1fr 1fr;
+
+      article {
+        display: block;
+        
+        span {
+          margin-top: 1.5rem;
+        }
+    
+      }
+      
   }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
@@ -21,7 +38,7 @@ const ListingGrid = styled.div`
       grid-template-columns: 1fr 1fr 1fr; 
     }
   }
-  
+    
 `;
 
 const PaginatedItems = (props) => {

@@ -52,6 +52,10 @@ const ListGrid = styled.div`
   }
 `
 
+const leadStoryTypeStyle = {
+    marginTop: "0px"
+}
+
 const TopItemsList = (props) => (
     <>
         <ListGrid>
@@ -72,7 +76,7 @@ const TopItemLink = (props) => (
             </a>
         </Link>
         <div>
-            <PublicationTypeGreyText>{props.TYPE_DESC}</PublicationTypeGreyText>
+            <PublicationTypeGreyText style={leadStoryTypeStyle}>{props.TYPE_DESC}</PublicationTypeGreyText>
             <Link href={`/${props.TYPE_DESC.toLowerCase()}/${props.URL_SLUG}`}>
                 <a>
                     <h3 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />

@@ -5,7 +5,7 @@ import PaginatedItems from "../../components/subComponents/PaginatedList";
 
 const NewsPage = (props) => (
     <>
-        <HeadTag title="News" description="" />
+        <HeadTag title="Commentary" description="" />
         <StyledContentContainer>
             <PaginatedItems itemsPerPage={9} itemList={props.publications} columnClass={`columns-3`} displayByLine={true}/>
         </StyledContentContainer>
