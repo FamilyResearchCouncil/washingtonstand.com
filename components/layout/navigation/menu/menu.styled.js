@@ -15,6 +15,7 @@ export const StyledMenu = styled.nav`
   z-index: 60;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+  overflow-y: scroll;
   
   a {
     font-size: 3rem;

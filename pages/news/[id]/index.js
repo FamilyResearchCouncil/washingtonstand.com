@@ -71,7 +71,7 @@ const Post = (props) => {
 
     return (
         <>
-            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT}/>
+            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT} article={props}/>
             {
                 props.isPublished ?
                     <StyledContentContainer>
