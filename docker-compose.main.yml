@@ -7,7 +7,7 @@ services:
             replicas: 3
             labels:
                 - "traefik.enable=true"
-                - "traefik.http.routers.washingtonstand-main.rule=Host(`washingtonstand.com`)"
+                - "traefik.http.routers.washingtonstand-main.rule=Host(`washingtonstand.com`,`www.washingtonstand.com`)"
                 - "traefik.http.services.washingtonstand-main.loadbalancer.server.port=3000"
             placement:
                 constraints:
