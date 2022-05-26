@@ -23,14 +23,14 @@ export const DisplayAuthImages = (props) => (
     <div className={styles.authorImages}>
         {
             props.authors.map(author => (
-                <>
+                <span key={author.PERSONAL_ID}>
                 {
                     author.AUTHOR_IMG ?
                     <img key={author.PERSONAL_ID} className={styles.authorImage} src={author.AUTHOR_IMG} />
                     :
                     <FlameIcon height={10} />
                 }
-                </>
+                </span>
             ))
         }
     </div>

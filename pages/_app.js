@@ -1,10 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Layout from "../components/layout/mainLayout"
 import {ThemeProvider} from 'styled-components'
-import PublicationContextProvider from "../contexts/PublicationListContext";
-import StaffContextProvider from "../contexts/AuthorListContext";
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import theme from '../components/siteTheme'
 import RootCssHeadTag from "../components/RootCssHeadTag";
 import Head from "next/head";
@@ -57,13 +54,9 @@ export default function MyApp({ Component, pageProps }) {
                     }}
                 />
             </Head>
-            <PublicationContextProvider>
-            <StaffContextProvider>
                 <Layout>
                     <Component {...pageProps} />
                 </Layout>
-            </StaffContextProvider>
-            </PublicationContextProvider>
         </ThemeProvider>
     );
 }

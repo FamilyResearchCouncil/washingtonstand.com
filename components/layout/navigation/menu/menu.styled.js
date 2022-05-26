@@ -25,7 +25,7 @@ export const StyledMenu = styled.nav`
     color: ${({ theme }) => theme.colors.isWhite};
     text-decoration: none;
     transition: color 0.3s linear;
-    margin-left: 3rem;
+    //margin-left: 3rem;
     text-align: center;
     
     &:hover {
@@ -59,7 +59,7 @@ export const StyledMenu = styled.nav`
 }
 
   @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
-    padding: 2rem 6rem 2rem 2rem;
+    padding: 8rem 2rem 2rem 2rem;
     width: 45vw;
     a {
       font-size: 2rem;
