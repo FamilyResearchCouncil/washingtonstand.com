@@ -4,6 +4,7 @@ import DisplayPublicationHtml from "../components/subComponents/DisplayPublicati
 import FlameImage from "../components/subComponents/FlameImage";
 import styled from "styled-components";
 import {PageToFooterSpacing} from "../components/subComponents/PageToFooterSpacing";
+import GetAboutText from "../helpers/GetAboutText";
 
 
 const TitleH1 = styled.h1`
@@ -39,18 +40,7 @@ export async function getStaticProps() {
 
     let pageProps = {}
 
-    await fetch(`https://api.frc.org/api/webtext/WX22E08.cfm?trackDownload=0`)
-        .then(res => res.text())
-        .then(
-            (result) => {
-                pageProps.displayHtml = {
-                    __html: result
-                };
-            },
-            (error) => {
-
-            }
-        );
+    pageProps.displayHtml = await GetAboutText();
 
     return {
         props: {...pageProps},

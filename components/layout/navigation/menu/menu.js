@@ -16,6 +16,9 @@ const Menu = ({ open }) => (
             <Link href="/authors">
                 <a>Authors</a>
             </Link>
+            <a href={`https://www.frc.org/d-2205_73`} target={`_blank`}>
+                Donate
+            </a>
             <div className={`topicNews`}>
                 <strong>NEWS</strong>
                 <TopTopics />

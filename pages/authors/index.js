@@ -52,7 +52,7 @@ const StaffGrid = styled.div`
         grid-template-columns: repeat(4,1fr);
       }
       &.writersList {
-        grid-template-columns: repeat(5,1fr);
+        grid-template-columns: repeat(4,1fr);
       }
     }
     
@@ -88,7 +88,7 @@ const TitleH2 = styled.h2`
     font-size: 5.5rem;
   }
 `
-
+// facebook & twitter & email
 const StaffPage = (props) => (
     <>
         <HeadTag title="Washington Stand Authors" description="" />

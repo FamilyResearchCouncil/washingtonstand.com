@@ -15,6 +15,14 @@ import {PublicationTypeGreyText} from "../../../components/subComponents/Publica
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 
+
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    TwitterShareButton,
+} from "react-share";
+
+
 const leadStoryTypeStyle = {
     display: "block",
     marginTop: "2rem"
@@ -92,6 +100,9 @@ const Post = (props) => {
                             <PublicationTypeGreyText style={leadStoryTypeStyle}>{props.TYPE_DESC}</PublicationTypeGreyText>
                             <TitleH1 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
                             <DisplayByLine personalIdArray={props.authorArray} authorArray={props.authorDetailsArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
+                                {/*<EmailShareButton />*/}
+                                {/*<FacebookShareButton />*/}
+                                {/*<TwitterShareButton />*/}
                             </TopDisplayDiv>
                             <StyledReadingSection>
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>

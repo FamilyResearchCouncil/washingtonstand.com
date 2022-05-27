@@ -20,6 +20,7 @@
     "react-loading-icons": "^1.0.8",
     "react-multi-carousel": "^2.8.0",
     "react-paginate": "^7.1.5",
+    "react-share": "^4.4.0",
     "sitemap": "^7.1.1",
     "styled-components": "^5.3.1"
   },
