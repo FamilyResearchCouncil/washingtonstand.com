@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {StyledContentContainer} from "../../components/layout/sections/contentContainer";
 import DisplayPublicationHtml from "../../components/subComponents/DisplayPublicationHtml";
 import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
+import React from "react";
 
 
 const StaffGrid = styled.div`
@@ -72,7 +73,7 @@ const StaffGrid = styled.div`
   }
 `
 
-const TitleH1 = styled.h1`
+const TitleH2 = styled.h2`
   font-family: ${({theme}) => theme.fonts.titleText};
   font-size: 4rem;
   font-weight: 700;
@@ -91,10 +92,15 @@ const TitleH1 = styled.h1`
 const StaffPage = (props) => (
     <>
         <HeadTag title="Washington Stand Authors" description="" />
+        <h1 style={{ fontSize: '0px', display: "none" }}>The Washington Stand Authors</h1>
         <StyledContentContainer>
-            <TitleH1><span>Staff</span></TitleH1>
+            <TitleH2><span>Staff</span></TitleH2>
             <StaffGrid>
                 <DisplayPublicationHtml className={`textWrapper`} displayHtml={props.staffAuthorHtml}/>
+            </StaffGrid>
+            <TitleH2><span>Contributors</span></TitleH2>
+            <StaffGrid>
+                <DisplayPublicationHtml className={`textWrapper`} displayHtml={props.contributorAuthorHtml}/>
             </StaffGrid>
         </StyledContentContainer>
         <PageToFooterSpacing />
@@ -111,6 +117,19 @@ export async function getStaticProps() {
         .then(
             (result) => {
                 pageProps.staffAuthorHtml = {
+                    __html: result
+                };
+            },
+            (error) => {
+
+            }
+        );
+
+    await fetch(`https://api.frc.org/api/webtext/WX22E18.cfm?trackDownload=0`)
+        .then(res => res.text())
+        .then(
+            (result) => {
+                pageProps.contributorAuthorHtml = {
                     __html: result
                 };
             },
