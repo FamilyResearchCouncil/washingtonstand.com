@@ -13,6 +13,7 @@ import {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
 import FlameImage from "../../../components/subComponents/FlameImage";
 import {PublicationTypeGreyText} from "../../../components/subComponents/PublicationTypeGreyText";
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
+import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -98,6 +99,7 @@ const Post = (props) => {
                             </StyledReadingSection>
                             <FlameImage />
                         </article>
+                        <PageToFooterSpacing />
                     </StyledContentContainer>
                         {
                             props.authorDetailsArray.length ?
