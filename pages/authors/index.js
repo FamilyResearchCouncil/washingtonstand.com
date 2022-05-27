@@ -2,6 +2,7 @@ import HeadTag from "../../components/layout/HeadTag";
 import styled from "styled-components";
 import {StyledContentContainer} from "../../components/layout/sections/contentContainer";
 import DisplayPublicationHtml from "../../components/subComponents/DisplayPublicationHtml";
+import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
 
 
 const StaffGrid = styled.div`
@@ -96,6 +97,7 @@ const StaffPage = (props) => (
                 <DisplayPublicationHtml className={`textWrapper`} displayHtml={props.staffAuthorHtml}/>
             </StaffGrid>
         </StyledContentContainer>
+        <PageToFooterSpacing />
     </>
 );
 

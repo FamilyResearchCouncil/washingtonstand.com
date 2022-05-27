@@ -12,6 +12,7 @@ import appUrls from "../storage/baseUrls.json";
 import React from "react";
 import GetPublications from "../helpers/GetPublications";
 import NewsLetterForm from "../components/subComponents/BeginSignUpForm";
+import {PageToFooterSpacing} from "../components/subComponents/PageToFooterSpacing";
 
 const OffsetGrid = styled.div`
   display: grid;
@@ -89,9 +90,9 @@ const Home = (props) => (
           <h2 className={styles.yellowHeader}>AROUND THE WEB</h2>
           <AroundTheWebCarousel linkArray={props.aroundTheWeb} />
       </StyledContentContainer>
+      <PageToFooterSpacing />
   </>
 );
-
 
 export async function getStaticProps(context) {
 

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import PaginatedItems from "../../../components/subComponents/PaginatedList";
 import AuthorImage from "../../../components/subComponents/AuthorImage";
 import FlameIcon from "../../../components/subComponents/FlameIcon";
+import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 
 const BioGridSection = styled.div`
   display: grid;
@@ -116,7 +117,7 @@ const Bio = (props) => {
                     <PaginatedItems itemsPerPage={6} itemList={props.authorPublications} listAuthorId={props.PERSONAL_ID} displayByLine={true}/>
                 </BioListingGrid>
             </StyledReadingSection>
-
+            <PageToFooterSpacing />
         </>
     )
 };

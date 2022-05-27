@@ -6,6 +6,7 @@ import appUrls from "../../storage/baseUrls.json";
 import Link from "next/link";
 import Image from "next/image";
 import {StyledGreyBox} from "../../components/subComponents/GreyFormBox";
+import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
 
 
 const BlueLink = styled.a`
@@ -98,6 +99,7 @@ const NewsLetterForm = () => {
                     }
                 </StyledGreyBox>
             </StyledReadingSection>
+            <PageToFooterSpacing />
         </>
     )
 };

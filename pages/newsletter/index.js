@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {StyledGreyBox} from "../../components/subComponents/GreyFormBox";
 
 import LoadingIcons from 'react-loading-icons'
+import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
 
 const SubscriptionForm = styled.form`
   display: grid;
@@ -214,6 +215,7 @@ const NewsLetterForm = () => {
                     </SubscriptionForm>
                 </StyledGreyBox>
             </StyledReadingSection>
+            <PageToFooterSpacing />
         </>
     )
 };

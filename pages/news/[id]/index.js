@@ -12,6 +12,7 @@ import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
 import FlameImage from "../../../components/subComponents/FlameImage";
 import {PublicationTypeGreyText} from "../../../components/subComponents/PublicationTypeGreyText";
+import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -29,7 +30,7 @@ const TitleH1 = styled.h1`
   }
 `
 
-const TopDisplayDiv = styled.div`
+export const TopDisplayDiv = styled.div`
     max-width: 1100px;
     margin: 0 auto;
 `
@@ -74,6 +75,7 @@ const Post = (props) => {
             <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT} article={props}/>
             {
                 props.isPublished ?
+                    <>
                     <StyledContentContainer>
                         <article>
                             <TopDisplayDiv>
@@ -97,6 +99,12 @@ const Post = (props) => {
                             <FlameImage />
                         </article>
                     </StyledContentContainer>
+                        {
+                            props.authorDetailsArray.length ?
+                                <AuthorTeaserBios authors={props.authorDetailsArray} />
+                                : <></>
+                        }
+                    </>
                     :
                     <StyledContentContainer>
                     <center>Unavailable</center>

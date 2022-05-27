@@ -3,6 +3,7 @@ import {StyledReadingSection} from "../components/subComponents/ReadingTextBlock
 import DisplayPublicationHtml from "../components/subComponents/DisplayPublicationHtml";
 import FlameImage from "../components/subComponents/FlameImage";
 import styled from "styled-components";
+import {PageToFooterSpacing} from "../components/subComponents/PageToFooterSpacing";
 
 
 const TitleH1 = styled.h1`
@@ -29,7 +30,7 @@ const AboutUs = (props) => (
             <DisplayPublicationHtml displayHtml={props.displayHtml}/>
             <FlameImage />
         </StyledReadingSection>
-
+        <PageToFooterSpacing />
     </>
 );
 

@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import {concatAuthorNames} from "../../../helpers/DataManipulators";
+import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 
 const LeadArticle = styled.article`
   display: grid;
@@ -73,6 +74,7 @@ const Topics = (props) => {
                     <PaginatedItems itemsPerPage={6} itemList={props.publicationList} columnClass={``} displayByLine={true}/>
                 </TopicListWrapper>
             </StyledReadingSection>
+            <PageToFooterSpacing />
         </>
     );
 }
