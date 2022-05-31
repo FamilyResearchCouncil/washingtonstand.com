@@ -7,6 +7,8 @@ import RootCssHeadTag from "../components/RootCssHeadTag";
 import Head from "next/head";
 import Script from "next/script";
 import '../styles/globals.css'
+import { NextResponse } from 'next/server'
+
 
 import * as gtag from "../lib/ga";
 
@@ -18,6 +20,7 @@ import * as gtag from "../lib/ga";
 // }
 
 export default function MyApp({ Component, pageProps }) {
+
     const router = useRouter();
     useEffect(() => {
         const handleRouteChange = (url) => {
@@ -28,7 +31,6 @@ export default function MyApp({ Component, pageProps }) {
             router.events.off("routeChangeComplete", handleRouteChange);
         };
     }, [router.events]);
-
     const getLayout = Component.getLayout || ((page) => page);
 
     return getLayout(
