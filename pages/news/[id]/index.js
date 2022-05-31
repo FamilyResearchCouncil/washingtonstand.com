@@ -14,14 +14,7 @@ import FlameImage from "../../../components/subComponents/FlameImage";
 import {PublicationTypeGreyText} from "../../../components/subComponents/PublicationTypeGreyText";
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
-
-
-import {
-    EmailShareButton,
-    FacebookShareButton,
-    TwitterShareButton,
-} from "react-share";
-
+import SocialSharing from "../../../components/subComponents/SocialSharing";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -100,9 +93,7 @@ const Post = (props) => {
                             <PublicationTypeGreyText style={leadStoryTypeStyle}>{props.TYPE_DESC}</PublicationTypeGreyText>
                             <TitleH1 dangerouslySetInnerHTML={{__html: props.ITEM_DESC}} />
                             <DisplayByLine personalIdArray={props.authorArray} authorArray={props.authorDetailsArray} DISPLAY_MEDIA_DATE={props.DISPLAY_MEDIA_DATE}/>
-                                {/*<EmailShareButton />*/}
-                                {/*<FacebookShareButton />*/}
-                                {/*<TwitterShareButton />*/}
+                            <SocialSharing {...props} />
                             </TopDisplayDiv>
                             <StyledReadingSection>
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
