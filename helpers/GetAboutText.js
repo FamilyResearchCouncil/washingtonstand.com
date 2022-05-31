@@ -15,7 +15,9 @@ const GetAboutText = async() => {
             (error) => {
 
             }
-        );
+        ).catch((error) => {
+            console.log(error);
+        });
 
     return returnData
 }

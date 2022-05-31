@@ -21,7 +21,11 @@ const TopTopics = () => {
                     setIsLoaded(true);
                     setError(error.message);
                 }
-            );
+            ).catch((error) => {
+                setDisplayHtml({
+                    __html: ""
+                })
+            });
     },[])
 
 
