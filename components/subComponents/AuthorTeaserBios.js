@@ -11,7 +11,7 @@ const AuthorTeaserBios = (props) => (
             <TopDisplayDiv>
                 {
                     props.authors.map(author => (
-                        <div>
+                        <div key={author.PERSONAL_ID}>
                             <strong>{author.AUTHOR_NAME}</strong>
                             <p style={paragraphStyles}>{author.TEASER_BIO}</p>
                         </div>

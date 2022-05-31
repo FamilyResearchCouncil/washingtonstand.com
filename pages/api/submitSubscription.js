@@ -56,7 +56,7 @@ export default async function submitSubscription(req, res) {
         const apiAuthToken = await getAPIToken();
 
         // const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=1`;
-        const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=CE`;
+        const baseUrl = `https://api.frc.org/api/frc/new-accounts?confirmation=WS`;
 
         const headers = {
             'Content-Type' : 'application/json',

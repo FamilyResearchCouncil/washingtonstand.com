@@ -1,3 +1,7 @@
 .footer {
     /*margin-top: 8rem;*/
 }
+
+.footer p a {
+    color: var(--theme-colors-primaryYellow);
+}

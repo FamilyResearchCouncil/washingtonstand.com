@@ -1,3 +1,5 @@
+import isJson from "./DataVerifiers";
+
 const GetAboutText = async() => {
 
     let returnData = {
@@ -5,18 +7,19 @@ const GetAboutText = async() => {
     }
 
     await fetch(`https://api.frc.org/api/webtext/WX22E08.cfm?trackDownload=0`)
-        .then(res => res.text())
-        .then(
-            (result) => {
+        .then(res => {
+            return (res.ok) ? res.text() : Promise.resolve("");
+        })
+        .then((result) => {
                 returnData = {
-                    __html: result
+                    __html: (isJson(result)) ? "" : result
                 };
             },
             (error) => {
 
             }
         ).catch((error) => {
-            console.log(error);
+           console.log(error);
         });
 
     return returnData

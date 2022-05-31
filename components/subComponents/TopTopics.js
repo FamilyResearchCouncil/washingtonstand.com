@@ -9,7 +9,9 @@ const TopTopics = () => {
 
     useEffect(() =>{
         fetch(`https://api.frc.org/api/webtext/WX22D07.cfm?trackDownload=0`)
-            .then(res => res.text())
+            .then(res => {
+                return (res.ok) ? res.text() : Promise.resolve("");
+            })
             .then(
                 (result) => {
                     setDisplayHtml({
