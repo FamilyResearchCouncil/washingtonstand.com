@@ -13,9 +13,15 @@ const Wrapper = styled.div`
   img, svg {
     max-width: 100%;
   }
-  
+
   div.linkWrapper {
-    margin-top: -1.8rem;  
+    margin-top: .3rem;
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+    div.linkWrapper {
+      margin-top: -1rem;
+    }
   }
 `
 

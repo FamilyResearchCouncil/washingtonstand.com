@@ -9,7 +9,6 @@ const HeadTag = (props) => (
             <meta name="description" content={props.description} />
             <link rel="icon" href="/favicon.ico" />
 
-
             {
                 props.article ?
                     <>
@@ -19,12 +18,13 @@ const HeadTag = (props) => (
                         <meta property="og:image" content={props.article.SCREENCAP_IMAGE} />
                         <meta property="og:url" content="http://www.frc.org/updatearticle/20220519/roe-rage"/>
                         <meta name="search_date" data-sj-field="search_date" content={props.article.START_DATE.slice(0,10)} />
-                        <meta name="keywords" data-sj-field="keywords" content={props.article.TAG_LIST} />
                         <meta name="description" data-sj-field="description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
                         <link rel="canonical" href={props.article.CANONICAL_URL} />
                     </>
                     : <></>
             }
+
+
         </Head>
     </>
 );

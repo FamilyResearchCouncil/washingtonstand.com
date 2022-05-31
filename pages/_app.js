@@ -4,20 +4,11 @@ import {ThemeProvider} from 'styled-components'
 import { useRouter } from 'next/router'
 import theme from '../components/siteTheme'
 import RootCssHeadTag from "../components/RootCssHeadTag";
-import Head from "next/head";
 import Script from "next/script";
 import '../styles/globals.css'
-import { NextResponse } from 'next/server'
 
 
 import * as gtag from "../lib/ga";
-
-// log the pageview with their URL
-// const pageview = (url) => {
-//     window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
-//         page_path: url,
-//     })
-// }
 
 export default function MyApp({ Component, pageProps }) {
 
@@ -38,13 +29,14 @@ export default function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
             <RootCssHeadTag theme={(theme)()}/>
             <>
-                {/* Global Site Tag (gtag.js) - Google Analytics */}
                 <Script
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+                    referrerPolicy="no-referrer-when-downgrade"
+                    // crossOrigin={`anonymous`}
                 />
                 <Script
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: `
                             window.dataLayer = window.dataLayer || [];
