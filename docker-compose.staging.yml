@@ -3,6 +3,8 @@ version: "3.8"
 services:
     frontend:
         image: familyresearchcouncil/washingtonstand:staging
+        env_file:
+            - .env
         deploy:
             replicas: 1
             labels:

@@ -1,11 +1,26 @@
 import HeadTag from "../../components/layout/HeadTag";
-import NewsList from "../../components/subComponents/NewsList";
+import {StyledContentContainer} from "../../components/layout/sections/contentContainer";
+import GetPublications from "../../helpers/GetPublications";
+import PaginatedItems from "../../components/subComponents/PaginatedList";
+import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
 
-const NewPage = () => (
+const NewsPage = (props) => (
     <>
         <HeadTag title="News" description="" />
-        <NewsList />
+        <StyledContentContainer>
+            <PaginatedItems itemsPerPage={9} itemList={props.publications} columnClass={`columns-3`} displayByLine={true}/>
+        </StyledContentContainer>
+        <PageToFooterSpacing />
     </>
 );
 
-export default NewPage;
+export async function getStaticProps() {
+    const publications = await GetPublications(['NA']);
+
+    return {
+        props: {publications},
+        revalidate: 60
+    };
+}
+
+export default NewsPage;

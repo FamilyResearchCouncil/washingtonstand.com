@@ -1,0 +1,11 @@
+.homepageCarousel ul li {
+    padding: 0 2.5rem;
+}
+
+.homepageCarousel button {
+    background-color: var(--theme-colors-primaryBlue);
+}
+
+.homepageCarousel button:hover {
+    background-color:var(--theme-colors-primaryBlue);
+}

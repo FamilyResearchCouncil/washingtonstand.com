@@ -1,0 +1,60 @@
+import {StyledReadingSection} from "./ReadingTextBlock";
+import styled from "styled-components";
+import GetAboutText from "../../helpers/GetAboutText";
+import React, {useEffect, useState} from "react";
+
+const TextDiv = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakPoints.large}) {
+    padding-left: 2rem;
+ }
+`;
+
+const styling = {
+    h2: {
+        marginBottom: 0
+    },
+}
+
+const AboutBlock = (props) => {
+    const [error, setError] = useState(null);
+    const [displayHtml, setDisplayHtml] = useState({__html:"<h2>hello there</h2>"});
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const data = await GetAboutText();
+            setDisplayHtml(data);
+            setIsLoaded(true);
+
+        }
+
+        fetchData()
+            // make sure to catch any error
+            .catch(() => setError(true));
+
+    },[])
+
+    if (error || !isLoaded) {
+        return <div />;
+    } else {
+        return (
+            <>
+                <StyledReadingSection>
+                    <h2 style={styling.h2}>ABOUT</h2>
+                    <TextDiv>
+                        <AboutText displayHtml={displayHtml}/>
+                    </TextDiv>
+                </StyledReadingSection>
+            </>
+        );
+    }
+}
+
+export default AboutBlock;
+
+const AboutText = (props) => (
+            <p dangerouslySetInnerHTML={props.displayHtml} />
+        );
+
+export {AboutText};

@@ -1,33 +1,54 @@
-import styles from "../styles/Main.module.css";
 import HeadTag from "../components/layout/HeadTag"
-import {StyledContentContainer} from "../components/layout/sections/contentContainer";
-import {StyledPrimaryBlueSection} from "../components/layout/sections/primaryBlueSection";
-import StaffListing from "../components/subComponents/staffList";
-import {StyledReadingSection} from "../components/subComponents/readingTextBlock";
+import {StyledReadingSection} from "../components/subComponents/ReadingTextBlock";
+import DisplayPublicationHtml from "../components/subComponents/DisplayPublicationHtml";
+import FlameImage from "../components/subComponents/FlameImage";
+import styled from "styled-components";
+import {PageToFooterSpacing} from "../components/subComponents/PageToFooterSpacing";
+import GetAboutText from "../helpers/GetAboutText";
 
-const AboutUs = () => (
+
+const TitleH1 = styled.h1`
+  font-family: ${({theme}) => theme.fonts.titleText};
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0 0 4rem;
+  
+  span {
+    border-bottom: solid 3px ${({theme}) => theme.colors.primaryBlue};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    font-size: 5.5rem;
+  }
+`
+
+
+const AboutUs = (props) => (
     <>
-        <HeadTag title="About Us" description="About FRC's Association of Churches & Ministries" />
-
-        <StyledPrimaryBlueSection>
-            <StyledReadingSection>
-                <h2 className={` ${styles.h2} ${styles.h2NoMargin} `}>Some about text</h2>
-                Spicy jalapeno bacon ipsum dolor amet short ribs pork loin pork chicken pork chop pastrami chislic frankfurter, picanha pig. Ham pork loin cupim short ribs. Pork loin fatback alcatra, pork belly pastrami brisket shank meatloaf flank. Chislic pig shank corned beef spare ribs. Kielbasa andouille spare ribs, porchetta sirloin pork pancetta ribeye shoulder. Pastrami landjaeger meatball, pancetta boudin jerky chislic shoulder sausage drumstick.<br />
-                Burgdoggen pancetta ribeye, picanha ground round boudin short ribs corned beef tongue strip steak shoulder. Turkey short ribs salami tenderloin venison shoulder boudin beef ribs. Pork belly salami corned beef, jerky jowl rump tail turducken meatball cupim andouille sausage ham sirloin biltong. Boudin andouille kevin, tongue bresaola frankfurter swine pastrami. Buffalo turducken sausage cupim fatback. Hamburger pork chop kielbasa leberkas ham burgdoggen porchetta shank salami picanha bresaola.<br />
-            </StyledReadingSection>
-
-            <StyledContentContainer>
-                <h2 className={` ${styles.h2} ${styles.h2NoMargin} `}>OUR STAFF</h2>
-                <StaffListing />
-            </StyledContentContainer>
-
-            <StyledReadingSection>
-                <h2 className={` ${styles.h2} ${styles.h2NoMargin} `}>More about text</h2>
-                Spicy jalapeno bacon ipsum dolor amet short ribs pork loin pork chicken pork chop pastrami chislic frankfurter, picanha pig. Ham pork loin cupim short ribs. Pork loin fatback alcatra, pork belly pastrami brisket shank meatloaf flank. Chislic pig shank corned beef spare ribs. Kielbasa andouille spare ribs, porchetta sirloin pork pancetta ribeye shoulder. Pastrami landjaeger meatball, pancetta boudin jerky chislic shoulder sausage drumstick.<br />
-                Burgdoggen pancetta ribeye, picanha ground round boudin short ribs corned beef tongue strip steak shoulder. Turkey short ribs salami tenderloin venison shoulder boudin beef ribs. Pork belly salami corned beef, jerky jowl rump tail turducken meatball cupim andouille sausage ham sirloin biltong. Boudin andouille kevin, tongue bresaola frankfurter swine pastrami. Buffalo turducken sausage cupim fatback. Hamburger pork chop kielbasa leberkas ham burgdoggen porchetta shank salami picanha bresaola.<br />
-            </StyledReadingSection>
-        </StyledPrimaryBlueSection>
+        <HeadTag title="About Us" description="About The Washington Stand" />
+        <StyledReadingSection>
+            <TitleH1><span>ABOUT</span></TitleH1>
+            <DisplayPublicationHtml displayHtml={props.displayHtml}/>
+            <FlameImage />
+        </StyledReadingSection>
+        <PageToFooterSpacing />
     </>
 );
+
+
+export async function getStaticProps() {
+
+    let pageProps = {}
+
+    pageProps.displayHtml = await GetAboutText();
+
+    return {
+        props: {...pageProps},
+        revalidate: 60
+    };
+
+}
+
+
 
 export default AboutUs;

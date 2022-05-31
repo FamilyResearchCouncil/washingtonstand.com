@@ -1,5 +1,18 @@
 {
     "urlDirectories": {
-        "news": "news"
+        "home": "/",
+        "all" : "/all",
+        "news": "/news",
+        "commentary": "/commentary",
+        "staff": "/authors",
+        "topic": "/topic",
+        "newsLetter": "/newsletter",
+        "confirmation" : "/newsletter/confirmation"
+    },
+    "frcApi" : {
+        "baseUrl" : "https://api.frc.org/api/",
+        "db" : "frc/",
+        "webText" : "webtext/",
+        "webJson" : "webjson/"
     }
 }

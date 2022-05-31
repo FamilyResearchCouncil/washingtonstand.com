@@ -1,21 +1,29 @@
 export default function siteTheme() {
     return {
+        fonts: {
+            bodyText : "'Poppins', serif",
+            titleText : "'Playfair Display', sans-serif",
+        },
         colors: {
-            primaryBlue: '#003366',
-            altDarkBlue: '#0c1527',
-            altLightBlue: '#6c97c6',
-            primaryGold: '#ddbb2b',
+            primaryBlue: '#4239F7',
+            primaryYellow: '#EAA53E',
+            primaryGrey: '#E5E5E4',
+            alternateGrey: '#727272',
+            typeDesignationGrey: "#A2A2A2",
+            errorRed: "#F45151",
             isWhite: '#ffffff',
+            isBlack: '#000000',
             transparentBlack: 'rgba(0,0,0,.7)',
-            mobileTransparentblack: 'rgba(0,0,0,.85)',
+            mobileTransparentBlack: 'rgba(0,0,0,.85)'
         },
         widths: {
-            xlargeMaxWidth: '1100px',
+            xlargeMaxWidth: '1400px',
             largeMaxWidth: '800px',
             mediumMaxWidth: '600px',
             contentList: '800px',
             mobileMenu: '576px',
-            readingWidth: '80ch'
+            readingWidth: '65ch',
+            textInputMax: '400px'
         },
         padding: {
             sectionPadding: '4rem 2rem'
@@ -25,9 +33,7 @@ export default function siteTheme() {
             medium: '768px',
             large: '992px',
             xLarge: '1200px'
-        },
-        directories: {
-            news: 'news'
         }
     }
 }
+

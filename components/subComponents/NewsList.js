@@ -1,60 +1,72 @@
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import appUrls from "../../storage/baseUrls.json";
+import Image from "next/image";
+import styled from "styled-components";
+import {concatAuthorNames} from "../../helpers/DataManipulators";
+import {PublicationTypeGreyText} from "./PublicationTypeGreyText";
+
+const ArticleLink = styled.article`
+  h2, h3 {
+    font-family: ${({theme}) => theme.fonts.titleText };
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+`
 
 const NewsItem = (props) => (
-    <>
-        <div>
-            <Link href={`/${appUrls.urlDirectories.news}/${props.itemCode}`}>
+    <ArticleLink key={props.ITEM_CODE}>
+        {
+
+            props.displayImg ?
+            <Link href={`/${props.article.TYPE_DESC.toLowerCase()}/${props.article.URL_SLUG}`}>
                 <a>
-                <strong>{props.title}</strong>
+                    <Image src={props.article.SCREENCAP_IMAGE} width={763} height={400} layout='responsive'/>
+                </a>
+            </Link> : ""
+        }
+        <div>
+            <PublicationTypeGreyText>{props.article.TYPE_DESC}</PublicationTypeGreyText>
+            <Link href={`/${props.article.TYPE_DESC.toLowerCase()}/${props.article.URL_SLUG}`}>
+                <a>
+                    <h2 dangerouslySetInnerHTML={{__html: props.article.ITEM_DESC}} />
                 </a>
             </Link>
-            <p>{props.summary}</p>
+            {
+                props.displayByLine ?
+                    <span>
+                        <i>{props.article.FULL_DATE}</i>
+                        { props.article.authorDetailsArray.length ? <>&nbsp;|&nbsp;</> : <></>}
+                        {
+                            (props.listAuthorId && props.article.authorDetailsArray.length ) ? <>with&nbsp;</> : <></>
+                        }
+                        {concatAuthorNames(props.article.authorDetailsArray)}
+                    </span>
+                    : <></>
+            }
         </div>
-    </>
+    </ArticleLink>
 );
 
-const NewsListing = () => {
+const NewsListing = (props) => {
 
-    let [error, setError] = useState(null);
-    let [isLoaded, setIsLoaded] = useState(false);
-    let [items, setItems] = useState([]);
-
-    // Note: the empty deps array [] means
-    // this useEffect will run once
-    // similar to componentDidMount()
-    useEffect(() => {
-        // fetch("https://frc.org/webjson/frc/script_generated/item_listing_NA.json")
-        fetch("https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json")
-        // fetch("/test-json/item_listing_NA.json")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setIsLoaded(true);
-                    setItems(result);
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error.message);
-                }
-            )
-    }, [])
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    } else if (!isLoaded || items.length === 0) {
-        return <div>Loading...</div>;
-    } else {
-        return (
-            items.map(item => (
-                <NewsItem title={item.ITEM_DESC} summary={item.SUMMARY_TEXT} itemCode={item.ITEM_CODE}/>
-            ))
-        );
-    }
+    return (
+        <>
+            {
+                props.list.map((item,idx) => (
+                    <NewsItem
+                        key={idx}
+                        displayImg={props.displayImg}
+                        displaySummary={props.displaySummary}
+                        displayByLine={props.displayByLine}
+                        listAuthorId={props.listAuthorId}
+                        article={item}
+                    />
+                ))
+            }
+        </>
+    );
 }
 
 export default NewsListing;

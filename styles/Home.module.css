@@ -1,0 +1,125 @@
+.yellowHeader {
+    color: var(--theme-colors-primaryYellow);
+}
+
+.newsLetterSection {
+    margin: 4rem 0rem;
+}
+
+.newsLetterHeader {
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+}
+
+.bannerGrid {
+    border-top: solid 2px var(--theme-colors-alternateGrey);
+    border-bottom: solid 2px var(--theme-colors-alternateGrey);
+    margin: 4rem 0rem;
+    padding: 2rem 0rem;
+}
+
+.bannerGrid > div {
+    display: grid;
+    grid-gap: 2rem;
+}
+
+.bannerGrid > div img {
+    max-width: 100%;
+}
+
+.trendingList {
+    display: grid;
+}
+
+.trendingList article {
+    border-bottom: solid 2px var(--theme-colors-alternateGrey);
+    padding: 1rem 0;
+}
+
+.trendingList article span {
+    margin-top: 0px;
+}
+
+.trendingList article:first-child {
+    padding-top: 0;
+}
+
+.trendingList article h3, .trendingList article h2 {
+    font-size: 2rem;
+}
+
+.moreNews {
+    margin-top: 4rem;
+    text-align: right;
+}
+
+.moreNews a {
+    color: var(--theme-colors-primaryYellow);
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.moreNews a span {
+    display: inline-block;
+    transition: all .2s ease;
+}
+
+.moreNews a:hover span {
+    transform: translateX(.5rem);
+}
+
+.leadingStory {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+
+    .bannerGrid {
+        margin: 4rem 0rem;
+        padding: 2rem 0rem;
+    }
+
+    .bannerGrid > div {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem;
+    }
+
+    .leadingStory {
+        margin-top: -4rem;
+    }
+
+    .trendingList article {
+        padding: 1.5rem 0;
+    }
+
+    .trendingList article h3, .trendingList article h2 {
+        font-size: 2rem;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .bannerGrid {
+        margin: 8rem 0rem;
+        padding: 4rem 0rem;
+    }
+
+    .bannerGrid > div {
+        grid-gap: 4rem;
+    }
+
+
+}
+
+@media (min-width: 1200px) {
+    .trendingList article {
+        padding: 2rem 0;
+    }
+
+    .trendingList article h3, .trendingList article h2 {
+        /*font-size: 2.4rem;*/
+    }
+}

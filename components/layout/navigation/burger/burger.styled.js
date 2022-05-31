@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledBurger = styled.button`
-  position: absolute;
-  top: 4rem;
-  right: 3rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -13,7 +13,7 @@ export const StyledBurger = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 70;
   
   &:focus {
     outline: none;
@@ -22,7 +22,7 @@ export const StyledBurger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: #fff;
+    background: ${({ open }) => open ? '#FFF' : '#000'};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
@@ -40,5 +40,10 @@ export const StyledBurger = styled.button`
     :nth-child(3) {
       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
     }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+    top: 4rem;
+    right: 4rem;
   }
 `;

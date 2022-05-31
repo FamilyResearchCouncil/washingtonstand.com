@@ -5,7 +5,10 @@
 
 module.exports = {
   reactStrictMode: true,
-  experimental: {css: true},
+  experimental: {
+    css: true,
+    styledComponents: true
+  },
   images: {
     domains: ['www.frc.org','frc.org','frcaction.org','www.frcaction.org','www.frcblog.com']
   },
