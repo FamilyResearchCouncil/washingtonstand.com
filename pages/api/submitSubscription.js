@@ -37,6 +37,8 @@ export default async function submitSubscription(req, res) {
 
         const clientIp = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.socket.remoteAddress;
 
+        const appealCode = (req.body.appeal_code) ? req.body.appeal_code : "22E115";
+
         let submissionData = {
             ...req.body,
             "forceNew":"Y",
@@ -46,6 +48,7 @@ export default async function submitSubscription(req, res) {
                 "qty_requested":1,
                 "warehouse":"CIS",
                 "send_code":"EM",
+                "appeal_code":appealCode,
                 "requested_flag":"Y"
             }
         }
