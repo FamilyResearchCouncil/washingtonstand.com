@@ -6,7 +6,7 @@ import React from "react";
 const pipeline = new Pipeline(
     {
         account: '1535051769990227710',
-        collection: 'frc-org',
+        collection: 'washington-stand-com',
     },
     'query',
 );
