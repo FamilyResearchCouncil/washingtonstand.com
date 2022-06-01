@@ -7,8 +7,10 @@ const pipeline = new Pipeline(
     {
         account: '1535051769990227710',
         collection: 'washington-stand-com',
-    },
-    'query',
+    },{
+        name: 'website',
+        version: '1'
+    }
 );
 
 const SearchWrapper = styled.div`
