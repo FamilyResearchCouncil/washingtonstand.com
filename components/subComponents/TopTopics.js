@@ -24,6 +24,7 @@ const TopTopics = () => {
                     setError(error.message);
                 }
             ).catch((error) => {
+                setError(error.message);
                 setDisplayHtml({
                     __html: ""
                 })

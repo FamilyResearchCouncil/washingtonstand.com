@@ -3,6 +3,7 @@ import { bool, func } from 'prop-types';
 import { StyledMenu } from './menu.styled';
 import TopTopics from "../../../subComponents/TopTopics";
 import AppSearchIo from "../../../subComponents/AppSearchIo";
+import appUrls from "../../../../storage/baseUrls.json";
 
 const Menu = ({ open }) => (
         <StyledMenu open={open}>
@@ -16,7 +17,7 @@ const Menu = ({ open }) => (
             <Link href="/authors">
                 <a>Authors</a>
             </Link>
-            <a href={`https://www.frc.org/d-2205_73`} target={`_blank`}>
+            <a href={appUrls.external.donate} target={`_blank`}>
                 Donate
             </a>
             <div className={`topicNews`}>
