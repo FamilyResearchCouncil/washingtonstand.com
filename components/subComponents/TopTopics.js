@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {StyledReadingSection} from "./ReadingTextBlock";
+import {StyledContentContainer} from "../layout/sections/contentContainer";
 
 
 const TopTopics = () => {
@@ -36,7 +36,7 @@ const TopTopics = () => {
     } else {
         return (
             <>
-                <StyledReadingSection dangerouslySetInnerHTML={displayHtml} />
+                <StyledContentContainer dangerouslySetInnerHTML={displayHtml} />
             </>
         );
     }
