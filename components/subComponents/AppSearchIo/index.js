@@ -53,6 +53,7 @@ const SearchField = () => {
 
             {query && results.length > 0 && (
                 <ul className="list-disc px-5 space-y-2 mt-5">
+                    {JSON.stringify(results)}
                     {results.map(({ values: { name, id } }) => (
                         <li key={id}>{name}</li>
                     ))}
