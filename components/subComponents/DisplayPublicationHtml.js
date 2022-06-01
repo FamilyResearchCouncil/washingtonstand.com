@@ -7,6 +7,10 @@ const HtmlWrapper = styled.div`
   a:hover {
     color: ${({theme}) => theme.colors.primaryYellow}
   }
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
   iframe {
     max-width: 100%;
     display: block;
