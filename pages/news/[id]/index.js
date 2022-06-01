@@ -15,6 +15,7 @@ import {PublicationTypeGreyText} from "../../../components/subComponents/Publica
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 import SocialSharing from "../../../components/subComponents/SocialSharing";
+import isJson from "../../../helpers/DataVerifiers";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -173,11 +174,13 @@ export const getStaticProps = async (context) => {
         );
 
     await fetch(`https://api.frc.org/api/webtext/${pageProps.ITEM_CODE}.cfm?trackDownload=0`)
-        .then(res => res.text())
+        .then(res => {
+            return (res.ok) ? res.text() : Promise.resolve("");
+        })
         .then(
             (result) => {
                 pageProps.displayHtml = {
-                    __html: result
+                    __html: (isJson(result)) ? "" : result
                 }
             },
             (error) => {
