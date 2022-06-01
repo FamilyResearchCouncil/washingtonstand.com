@@ -62,16 +62,16 @@ const Post = (props) => {
     const [downloadTracked,setDownloadTracked] = useState(false);
 
 
-    useEffect(() =>{
-        if (!downloadTracked){
-            fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=${(process.env.NEXT_PUBLIC_TRACK_DOWNLOAD)?process.env.NEXT_PUBLIC_TRACK_DOWNLOAD:"1"}`)
-                .then(res => res.text())
-                .then(data => {
-                    setDownloadTracked(true);
-                    }
-                );
-        }
-    },[])
+    // useEffect(() =>{
+    //     if (!downloadTracked){
+    //         fetch(`https://api.frc.org/api/webtext/${props.ITEM_CODE}.json?trackDownload=${(process.env.NEXT_PUBLIC_TRACK_DOWNLOAD)?process.env.NEXT_PUBLIC_TRACK_DOWNLOAD:"1"}`)
+    //             .then(res => res.text())
+    //             .then(data => {
+    //                 setDownloadTracked(true);
+    //                 }
+    //             );
+    //     }
+    // },[])
 
     return (
         <>
@@ -173,7 +173,7 @@ export const getStaticProps = async (context) => {
             }
         );
 
-    await fetch(`https://api.frc.org/api/webtext/${pageProps.ITEM_CODE}.cfm?trackDownload=0`)
+    await fetch(`https://api.frc.org/api/webtext/${pageProps.ITEM_CODE}.cfm?trackDownload=1`)
         .then(res => {
             return (res.ok) ? res.text() : Promise.resolve("");
         })
@@ -194,7 +194,7 @@ export const getStaticProps = async (context) => {
 
     return {
         props: {...pageProps},
-        revalidate: 60
+        revalidate: 120
     };
 }
 
