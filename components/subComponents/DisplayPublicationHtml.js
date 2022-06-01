@@ -15,6 +15,14 @@ const HtmlWrapper = styled.div`
     max-width: 100%;
     display: block;
   }
+  blockquote {
+    margin-left: 0;
+    padding-left: 2rem;
+    border-left: solid 3px ${({theme}) => theme.colors.primaryYellow};
+    @media (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+      padding-left: 4rem;
+    }
+  }
 `;
 
 const DisplayPublicationHtml = (props) => (
