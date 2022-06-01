@@ -1,6 +1,9 @@
 import Head from "next/head";
 import {decode} from 'html-entities';
 import {concatAuthorNames} from "../../helpers/DataManipulators";
+import Script from "next/script";
+import * as gtag from "../../lib/ga";
+import React from "react";
 
 const HeadTag = (props) => (
     <>
@@ -21,6 +24,25 @@ const HeadTag = (props) => (
                         <meta name="search_date" data-sj-field="search_date" content={props.article.START_DATE.slice(0,10)} />
                         <meta name="description" data-sj-field="description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
                         <link rel="canonical" href={props.article.CANONICAL_URL} />
+
+                        <Script
+                            strategy="lazyOnload"
+                            dangerouslySetInnerHTML={{
+                            __html: `
+                                  var _sj = _sj || [];
+                                  _sj.push(['project', '1535051769990227710']);
+                                  _sj.push(['collection', 'washington-stand-com']);
+                                  (function () {
+                                    var sj = document.createElement('script');
+                                    sj.type = 'text/javascript';
+                                    sj.async = true;
+                                    sj.src = '//cdn.sajari.com/js/sj.js';
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(sj, s);
+                                  })();
+                            `}}
+                        />
+
                     </>
                     : <></>
             }

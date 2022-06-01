@@ -2,6 +2,7 @@ import { Pipeline, SearchProvider, useSearch, useQuery } from '@sajari/react-hoo
 import { Combobox } from '@sajari/react-components';
 import styled from "styled-components";
 import React from "react";
+import Link from "next/link";
 
 const pipeline = new Pipeline(
     {
@@ -9,7 +10,7 @@ const pipeline = new Pipeline(
         collection: 'washington-stand-com',
     },{
         name: 'website',
-        version: '1'
+        version: '2.1'
     }
 );
 
@@ -53,9 +54,10 @@ const SearchField = () => {
 
             {query && results.length > 0 && (
                 <ul className="list-disc px-5 space-y-2 mt-5">
-                    {JSON.stringify(results)}
-                    {results.map(({ values: { name, id } }) => (
-                        <li key={id}>{name}</li>
+                    {results.map(({ values: { title, id, url } }) => (
+                        <li key={id}>
+                            <Link href={url} ><a>{title}</a></Link>
+                        </li>
                     ))}
                 </ul>
             )}

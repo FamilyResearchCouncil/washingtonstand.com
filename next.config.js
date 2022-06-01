@@ -6,7 +6,9 @@
 module.exports = {
   reactStrictMode: true,
   experimental: {
-    css: true,
+    css: true
+  },
+  compiler: {
     styledComponents: true
   },
   images: {

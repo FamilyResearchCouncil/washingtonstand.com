@@ -8,27 +8,34 @@ const TopTopics = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() =>{
-        fetch(`https://api.frc.org/api/webtext/WX22D07.cfm?trackDownload=0`)
-            .then(res => {
-                return (res.ok) ? res.text() : Promise.resolve("");
-            })
-            .then(
-                (result) => {
-                    setDisplayHtml({
-                        __html: result.replaceAll(`="topic`,`="/topic`)
-                    })
-                    setIsLoaded(true);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error.message);
-                }
-            ).catch((error) => {
+        try {
+            fetch(`https://api.frc.org/api/webtext/WX22D07.cfm?trackDownload=0`)
+                .then(res => {
+                    return (res.ok) ? res.text() : Promise.resolve("");
+                })
+                .then(
+                    (result) => {
+                        setDisplayHtml({
+                            __html: result.replaceAll(`="topic`, `="/topic`)
+                        })
+                        setIsLoaded(true);
+                    },
+                    (error) => {
+                        setIsLoaded(true);
+                        setError(error.message);
+                    }
+                ).catch((error) => {
                 setError(error.message);
                 setDisplayHtml({
                     __html: ""
                 })
             });
+        } catch (e) {
+            setError(error.message);
+            setDisplayHtml({
+                __html: ""
+            })
+        }
     },[])
 
 
