@@ -4,6 +4,7 @@ import { StyledMenu } from './menu.styled';
 import TopTopics from "../../../subComponents/TopTopics";
 import AppSearchIo from "../../../subComponents/AppSearchIo";
 import appUrls from "../../../../storage/baseUrls.json";
+import ErrorBoundary from "../../../ErrorBoundary";
 
 const Menu = ({ open }) => (
         <StyledMenu open={open}>
@@ -21,8 +22,10 @@ const Menu = ({ open }) => (
                 Donate
             </a>
             <div className={`topicNews`}>
-                <strong>NEWS</strong>
-                <TopTopics />
+                <ErrorBoundary>
+                    <strong>NEWS</strong>
+                    <TopTopics />
+                </ErrorBoundary>
             </div>
         </StyledMenu>
     );

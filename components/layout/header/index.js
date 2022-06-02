@@ -6,6 +6,7 @@ import styles from './Header.module.css'
 import Link from "next/link";
 import TopTopics from "../../subComponents/TopTopics";
 import MainLogo from "../../../public/img/WashStand_v5.svg";
+import ErrorBoundary from "../../ErrorBoundary";
 
 const Header = () => {
     const [open, setOpen] = useState(false);
@@ -22,7 +23,9 @@ const Header = () => {
                 </Link>
                 <p className={styles.headingTagLine}>". . . and having done all . . . stand firm." Eph. 6:13</p>
                 <div className={styles.leadTopics}>
-                <TopTopics />
+                <ErrorBoundary>
+                    <TopTopics />
+                </ErrorBoundary>
                 </div>
             </header>
             <div ref={node}>
