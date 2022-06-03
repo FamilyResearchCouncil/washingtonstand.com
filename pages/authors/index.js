@@ -16,6 +16,7 @@ const StaffGrid = styled.div`
     grid-row-gap: 4rem;
     list-style: none;
     text-align: center;
+    padding: 0;
     margin-bottom: 8rem;
     
     a {
