@@ -97,6 +97,7 @@ const Post = (props) => {
                             <SocialSharing {...props} />
                             </TopDisplayDiv>
                             <StyledReadingSection>
+                                {/*{props.FULL_TEXT}*/}
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>
                             </StyledReadingSection>
@@ -136,9 +137,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
 
-    // console.log("type is ", typeof process.env.PUBLICATION_STATUS_CHECK_LIST);
-    // console.log("value is ", process.env.PUBLICATION_STATUS_CHECK_LIST);
-
     const checkIsPublished = (publication) => {
         return (
             "ONLINE,APPROVE".includes(publication.STATUS)
@@ -163,27 +161,12 @@ export const getStaticProps = async (context) => {
                 pageProps.iframeHtml = (pageProps.IFRAME) ? {
                     __html: pageProps.IFRAME
                 } : false;
-                // pageProps.displayHtml = {
-                //     __html: pageProps.FULL_TEXT
-                // }
-            },
-            (error) => {
-                // console.log(error);
-
-            }
-        );
-
-    await fetch(`https://api.frc.org/api/webtext/${pageProps.ITEM_CODE}.cfm?trackDownload=1`)
-        .then(res => {
-            return (res.ok) ? res.text() : Promise.resolve("");
-        })
-        .then(
-            (result) => {
                 pageProps.displayHtml = {
-                    __html: (isJson(result)) ? "" : result
+                    __html: pageProps.FULL_TEXT
                 }
             },
             (error) => {
+                // console.log(error);
 
             }
         );
