@@ -29,7 +29,9 @@ const PublisherBlock = () => (
     <>
         <Wrapper>
             <strong>PUBLISHED BY</strong>
+            <a href={`https://www.frc.org`}>
             <PublisherLogo style={{ height: 100, width: 100 }} alt="Family Research Council"/>
+            </a>
             &copy;{new Date().getFullYear()} Family Research Council<br />
             1-800-225-4008<br />
             801 G Street NW<br />

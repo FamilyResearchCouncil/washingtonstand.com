@@ -23,6 +23,7 @@ export default function MyApp({ Component, pageProps }) {
             router.events.off("routeChangeComplete", handleRouteChange);
         };
     }, [router.events]);
+
     const getLayout = Component.getLayout || ((page) => page);
 
     return getLayout(
