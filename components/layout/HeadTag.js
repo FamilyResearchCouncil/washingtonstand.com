@@ -2,8 +2,6 @@ import Head from "next/head";
 import {decode} from 'html-entities';
 import {concatAuthorNames} from "../../helpers/DataManipulators";
 import Script from "next/script";
-import * as gtag from "../../lib/ga";
-import React from "react";
 
 const HeadTag = (props) => (
     <>
@@ -22,6 +20,7 @@ const HeadTag = (props) => (
                         <meta property="og:url" content="http://www.frc.org/updatearticle/20220519/roe-rage"/>
                         <meta property="article:published_time" content={props.article.START_DATE.slice(0,10)} />
                         <meta name="search_date" data-sj-field="search_date" content={props.article.START_DATE.slice(0,10)} />
+                        <meta name="date" data-sj-field="search_date" content={props.article.START_DATE.slice(0,10)} />
                         <meta name="description" data-sj-field="description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
                         <link rel="canonical" href={props.article.CANONICAL_URL} />
 
