@@ -105,20 +105,7 @@ export async function getStaticProps(context) {
     let displayedItemsArray = [];
     let trendingList = [];
 
-    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_featured_article.json`)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                pageProps.leadStory = result.shift();
-                displayedItemsArray.push(pageProps.leadStory.ITEM_CODE);
-            },
-            (error) => {
-
-            }
-        );
-
-
-    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_top_articles.json`)
+    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_featured_and_top_articles.json`)
         .then(res => res.json())
         .then(
             (result) => {
@@ -127,6 +114,8 @@ export async function getStaticProps(context) {
                 pageProps.topStories.forEach(item => {
                    displayedItemsArray.push(item.ITEM_CODE);
                 });
+
+                pageProps.leadStory = pageProps.topStories.shift();
             },
             (error) => {
                 // console.log(error);
@@ -138,7 +127,7 @@ export async function getStaticProps(context) {
         !displayedItemsArray.includes(item.ITEM_CODE)
     );
 
-    while (pageProps.topStories.length < 4) {
+    while (pageProps.topStories.length < 5) {
         publication = publications.shift();
         displayedItemsArray.push(publication.ITEM_CODE);
         pageProps.topStories.push(publication);
