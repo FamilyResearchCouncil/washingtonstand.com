@@ -28,7 +28,9 @@ export const DisplayAuthImages = (props) => (
                     author.AUTHOR_IMG ?
                     <img key={author.PERSONAL_ID} className={styles.authorImage} src={author.AUTHOR_IMG} />
                     :
-                    <FlameIcon height={10} />
+                    <span className={styles.authorImage}>
+                    <FlameIcon height={8.5} />
+                    </span>
                 }
                 </span>
             ))

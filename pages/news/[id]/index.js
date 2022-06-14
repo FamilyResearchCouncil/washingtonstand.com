@@ -113,7 +113,7 @@ const Post = (props) => {
                     </>
                     :
                     <StyledContentContainer>
-                    <center>Unavailable</center>
+                    <center>This publication is unavailable</center>
                     </StyledContentContainer>
             }
         </>

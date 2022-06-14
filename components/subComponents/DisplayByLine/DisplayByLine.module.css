@@ -13,6 +13,10 @@
     z-index: 1;
 }
 
+span.authorImages {
+    padding: .5rem;
+}
+
 .authorImage:first-child {
     z-index: 5;
 }
