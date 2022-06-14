@@ -14,7 +14,8 @@ services:
             placement:
                 constraints:
                     - node.role == worker
-        command: bash -c "npm run build && npm run postBuild && npm run start"
+        command: npm run start
+#        command: bash -c "npm run build && npm run postBuild && npm run start"
         networks:
             - traefik
             - default
