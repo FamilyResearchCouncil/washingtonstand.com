@@ -4,6 +4,7 @@
 
 .homepageCarousel button {
     background-color: var(--theme-colors-primaryBlue);
+    z-index: 50;
 }
 
 .homepageCarousel button:hover {
