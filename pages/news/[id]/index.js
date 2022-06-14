@@ -15,7 +15,8 @@ import {PublicationTypeGreyText} from "../../../components/subComponents/Publica
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 import SocialSharing from "../../../components/subComponents/SocialSharing";
-import isJson from "../../../helpers/DataVerifiers";
+import Script from "next/script";
+import * as gtag from "../../../lib/ga";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -110,6 +111,25 @@ const Post = (props) => {
                                 <AuthorTeaserBios authors={props.authorDetailsArray} />
                                 : <></>
                         }
+                        {/*Instand indexing for Sajari Search*/}
+                        <Script
+                            strategy="lazyOnload"
+                            dangerouslySetInnerHTML={{
+                                __html: `
+                                 var _sj = _sj || [];
+                                  _sj.push(['project', '1535051769990227710']);
+                                  _sj.push(['collection', 'washington-stand-com']);
+                                  (function () {
+                                    var sj = document.createElement('script');
+                                    sj.type = 'text/javascript';
+                                    sj.async = true;
+                                    sj.src = '//cdn.sajari.com/js/sj.js';
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(sj, s);
+                                  })();
+                            `,
+                            }}
+                        />
                     </>
                     :
                     <StyledContentContainer>
