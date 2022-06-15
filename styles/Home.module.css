@@ -1,6 +1,10 @@
 .yellowHeader {
     color: var(--theme-colors-primaryYellow);
 }
+.titleText {
+    font-family: "'Playfair Display', sans-serif";
+    font-weight: 700;
+}
 
 .newsLetterSection {
     margin: 4rem 0rem;

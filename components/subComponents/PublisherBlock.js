@@ -5,8 +5,7 @@ import {
   FacebookIcon,
   TwitterIcon,
 } from "react-share";
-import SocialDiv from './SocialSharing';
-import SocialSharing from './SocialSharing';
+import { SocialDiv } from './SocialSharing';
 
 const Wrapper = styled.div`
   font-size: 1.2rem;
@@ -47,9 +46,8 @@ const PublisherBlock = () => (
         <a href={`https://frc.org/privacy-policy`}>Privacy Policy</a>  |  <a href={`https://frc.org/contact-frc`}>Contact Us</a>
       </div>
       <SocialDiv>
-        <FacebookIcon borderRadius={8} size={40} href="https://www.facebook.com/WashingtonStand" />
-        <TwitterIcon borderRadius={8} size={40} href="https://twitter.com/WSHStand" />
-        <InstagramIcon borderRadius={8} size={40} href="" />
+        <a href="https://www.facebook.com/WashingtonStand"><FacebookIcon borderRadius={8} size={40} round={true} iconFillColor={'black'}/></a> <a href="https://twitter.com/WSHStand"><TwitterIcon borderRadius={8} size={40} round={true} iconFillColor={'black'}/></a>
+        {/* <a href=""><InstagramIcon borderRadius={8} size={40}/></a> */}
       </SocialDiv>
     </Wrapper>
   </>

@@ -9,7 +9,7 @@ import {
 } from "react-share";
 
 
-const SocialDiv = styled.div`
+export const SocialDiv = styled.div`
   margin: 1.5rem 0;
   button {
     margin-right: .5rem;
