@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 import PublisherLogo from "../../public/img/FRC_2017logo_white.svg";
-import {
-  InstagramIcon,
-  FacebookIcon,
-  TwitterIcon,
-} from "react-share";
-import { SocialDiv } from './SocialSharing';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-
+export const SocialDiv = styled.div`
+  margin-top: 1rem;
+  .round {
+    border-radius: 50%;
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    color: black;
+    background-color: white;
+    margin: .5rem;
+    padding: .5rem;
+  }
+`;
 
 
 
@@ -36,6 +41,12 @@ const Wrapper = styled.div`
       margin-top: -1rem;
     }
   }
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.xLarge}) {
+    div.linkWrapper {
+      margin-top: 0;
+    }
+  }
 `
 
 const PublisherBlock = () => (
@@ -57,9 +68,6 @@ const PublisherBlock = () => (
         <a href="https://twitter.com/WSHStand"><FontAwesomeIcon icon={faTwitter} size="2x" border fixedWidth className="round"/></a>
         <a href="https://twitter.com/WSHStand"> <FontAwesomeIcon icon={faInstagram} size="2x" border fixedWidth className="round"/></a>
       </SocialDiv>
-
-     
-
     </Wrapper>
   </>
 );
