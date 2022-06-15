@@ -6,6 +6,13 @@ import {
   TwitterIcon,
 } from "react-share";
 import { SocialDiv } from './SocialSharing';
+import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+
+
+
 
 const Wrapper = styled.div`
   font-size: 1.2rem;
@@ -46,9 +53,13 @@ const PublisherBlock = () => (
         <a href={`https://frc.org/privacy-policy`}>Privacy Policy</a>  |  <a href={`https://frc.org/contact-frc`}>Contact Us</a>
       </div>
       <SocialDiv>
-        <a href="https://www.facebook.com/WashingtonStand"><FacebookIcon borderRadius={8} size={40} round={true} iconFillColor={'black'}/></a> <a href="https://twitter.com/WSHStand"><TwitterIcon borderRadius={8} size={40} round={true} iconFillColor={'black'}/></a>
-        {/* <a href=""><InstagramIcon borderRadius={8} size={40}/></a> */}
+        <a href="https://www.facebook.com/WashingtonStand"><FontAwesomeIcon icon={faFacebookF} size="2x" border fixedWidth className="round"/></a>
+        <a href="https://twitter.com/WSHStand"><FontAwesomeIcon icon={faTwitter} size="2x" border fixedWidth className="round"/></a>
+        <a href="https://twitter.com/WSHStand"> <FontAwesomeIcon icon={faInstagram} size="2x" border fixedWidth className="round"/></a>
       </SocialDiv>
+
+     
+
     </Wrapper>
   </>
 );

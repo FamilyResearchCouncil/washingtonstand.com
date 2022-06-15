@@ -14,6 +14,15 @@ export const SocialDiv = styled.div`
   button {
     margin-right: .5rem;
   }
+
+  .round {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    color: black;
+    background-color: white;
+    margin: 4px;
+  }
 `;
 
 
