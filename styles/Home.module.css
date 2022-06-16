@@ -1,6 +1,10 @@
 .yellowHeader {
     color: var(--theme-colors-primaryYellow);
 }
+.titleText {
+    font-family: var(--theme-fonts-titleText);
+    font-weight: 700;
+}
 
 .newsLetterSection {
     margin: 4rem 0rem;
