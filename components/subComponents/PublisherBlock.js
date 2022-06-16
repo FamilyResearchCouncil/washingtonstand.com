@@ -7,19 +7,21 @@ export const SocialDiv = styled.div`
   margin-top: 1rem;
   .round {
     border-radius: 50%;
-    display: inline-block;
     width: 4rem;
     height: 4rem;
     color: black;
     background-color: white;
     margin: .5rem;
     padding: .5rem;
+    display: inline-flex;
+    align-centent: center;
+    justify-content: center;
   }
 `;
 
 
-
 const Wrapper = styled.div`
+
   font-size: 1.2rem;
   display: grid;
   max-width: 100%;
@@ -64,9 +66,9 @@ const PublisherBlock = () => (
         <a href={`https://frc.org/privacy-policy`}>Privacy Policy</a>  |  <a href={`https://frc.org/contact-frc`}>Contact Us</a>
       </div>
       <SocialDiv>
-        <a href="https://www.facebook.com/WashingtonStand"><FontAwesomeIcon icon={faFacebookF} size="2x" border fixedWidth className="round"/></a>
-        <a href="https://twitter.com/WSHStand"><FontAwesomeIcon icon={faTwitter} size="2x" border fixedWidth className="round"/></a>
-        <a href="https://twitter.com/WSHStand"> <FontAwesomeIcon icon={faInstagram} size="2x" border fixedWidth className="round"/></a>
+        <a href="https://www.facebook.com/WashingtonStand" className="round"><FontAwesomeIcon icon={faFacebookF}/></a>
+        <a href="https://twitter.com/WSHStand" className="round"><FontAwesomeIcon icon={faTwitter} /></a>
+        <a href="https://www.instagram.com/washingtonstand/" className="round"><FontAwesomeIcon icon={faInstagram}/></a>
       </SocialDiv>
     </Wrapper>
   </>

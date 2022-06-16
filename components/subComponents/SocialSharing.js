@@ -9,19 +9,10 @@ import {
 } from "react-share";
 
 
-export const SocialDiv = styled.div`
+const SocialDiv = styled.div`
   margin: 1.5rem 0;
   button {
     margin-right: .5rem;
-  }
-
-  .round {
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    color: black;
-    background-color: white;
-    margin: 4px;
   }
 `;
 
