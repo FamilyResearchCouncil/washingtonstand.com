@@ -2,7 +2,7 @@
     color: var(--theme-colors-primaryYellow);
 }
 .titleText {
-    font-family: "'Playfair Display', sans-serif";
+    font-family: var(--theme-fonts-titleText);
     font-weight: 700;
 }
 
