@@ -2,13 +2,11 @@ import Link from 'next/link';
 import { bool, func } from 'prop-types';
 import { StyledMenu } from './menu.styled';
 import TopTopics from "../../../subComponents/TopTopics";
-import AppSearchIo from "../../../subComponents/AppSearchIo";
 import appUrls from "../../../../storage/baseUrls.json";
 import ErrorBoundary from "../../../ErrorBoundary";
 
 const Menu = ({ open }) => (
         <StyledMenu open={open}>
-            {/*<AppSearchIo />*/}
             <Link href="/">
                 <a>HOME</a>
             </Link>
