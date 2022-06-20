@@ -29,6 +29,7 @@
     "react-multi-carousel": "^2.8.0",
     "react-paginate": "^7.1.5",
     "react-share": "^4.4.0",
+    "sharp": "^0.30.6",
     "sitemap": "^7.1.1",
     "styled-components": "^5.3.1"
   },
