@@ -18,6 +18,9 @@ const Menu = ({ open }) => (
             <Link href="/authors">
                 <a>Authors</a>
             </Link>
+            <a href="mailto:tips@washingtonstand.com?subject=Story tip for The Washington Stand" target={`_blank`}>
+                Tips
+            </a>
             <a href={appUrls.external.donate} target={`_blank`}>
                 Donate
             </a>
