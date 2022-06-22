@@ -4,7 +4,7 @@ import Link from "next/link";
 import {formatTopicForDocumentTitle} from "../../helpers/DataManipulators";
 
 const TopicListWrapper = styled.div`
-  margin: 4rem 0 8rem;
+  margin: 4rem 0 6rem;
   span {
     margin-right: 1rem;
   }

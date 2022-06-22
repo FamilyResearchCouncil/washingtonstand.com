@@ -98,19 +98,18 @@ const Post = (props) => {
                             <SocialSharing {...props} />
                             </TopDisplayDiv>
                             <StyledReadingSection>
-                                {/*{props.FULL_TEXT}*/}
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>
+                                {
+                                    props.authorDetailsArray.length ?
+                                        <AuthorTeaserBios authors={props.authorDetailsArray} />
+                                        : <></>
+                                }
                             </StyledReadingSection>
                             <FlameImage />
                         </article>
                         <PageToFooterSpacing />
                     </StyledContentContainer>
-                        {
-                            props.authorDetailsArray.length ?
-                                <AuthorTeaserBios authors={props.authorDetailsArray} />
-                                : <></>
-                        }
                     </>
                     :
                     <StyledContentContainer>
