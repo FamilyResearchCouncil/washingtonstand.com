@@ -3,6 +3,7 @@ import { Combobox } from '@sajari/react-components';
 import styled from "styled-components";
 import React from "react";
 import Link from "next/link";
+import {StyledReadingSection} from "../ReadingTextBlock";
 
 const pipeline = new Pipeline(
     {
@@ -14,14 +15,26 @@ const pipeline = new Pipeline(
     }
 );
 
+const ResultList = styled.ul`
+  list-style: none;
+  p {
+    margin: 1rem 0 0;
+  }  
+  li {
+    padding: 2rem;
+    border-bottom: solid 1px ${({theme}) => theme.colors.primaryYellow};
+  }
+`
+
 const SearchWrapper = styled.div`
   margin-bottom: 4rem;
   
   div[role="combobox"] {
     background: transparent;
+    color: black;
     border: none;
     border-radius: 0;
-    max-width: 20rem;
+    max-width: 30rem;
     border-bottom: solid 1px ${({theme}) => theme.colors.primaryGrey};
     margin: 0 auto;
     
@@ -31,9 +44,10 @@ const SearchWrapper = styled.div`
     }
     
     input {
-      padding-left: 0;
+      padding-left: 2rem;
       padding-right: 4rem;
-      color: ${({theme}) => theme.colors.primaryGrey};
+      color: ${({theme}) => theme.colors.alternateGrey};
+      border: solid 1px ${({theme}) => theme.colors.alternateGrey};
     }
     
   }
@@ -42,6 +56,21 @@ const SearchWrapper = styled.div`
 const SearchField = () => {
     const { results = [] } = useSearch();
     const { query, setQuery } = useQuery();
+
+    const trimStringToLastSpace = (string) => {
+        let finalSpace = string.lastIndexOf(" ");
+        let trimmedString = string.substr(0,finalSpace);
+        return `${trimmedString}...`
+    }
+
+    const formatDate = (dateString) => {
+        let printDate = new Date(dateString);
+        return printDate.toLocaleString("en-GB", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        });
+    }
 
     return (
         <>
@@ -53,13 +82,21 @@ const SearchField = () => {
             </SearchWrapper>
 
             {query && results.length > 0 && (
-                <ul className="list-disc px-5 space-y-2 mt-5">
-                    {results.map(({ values: { title, id, url } }) => (
+                <ResultList className="">
+                    {results.map(({ values: { title, id, url, description, published_time, dir1 } }) => (
                         <li key={id}>
-                            <Link href={url} ><a>{title}</a></Link>
+                            <Link href={url} >
+                                <a target={'_blank'}>
+                                    <strong>{title}</strong><br/>
+                                    <small>{formatDate(published_time)} - <i>{dir1.toUpperCase()}</i></small>
+                                    <p>
+                                        <small>{trimStringToLastSpace(description)}</small>
+                                    </p>
+                                </a>
+                            </Link>
                         </li>
                     ))}
-                </ul>
+                </ResultList>
             )}
         </>
     );
@@ -68,7 +105,9 @@ const SearchField = () => {
 const AppSearchIo = () => (
     <>
         <SearchProvider search={{ pipeline }}>
+            <StyledReadingSection>
             <SearchField />
+            </StyledReadingSection>
         </SearchProvider>
     </>
 );

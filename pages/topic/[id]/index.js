@@ -56,7 +56,7 @@ const TopicListWrapper = styled.div`
 const Topics = (props) => {
     return (
         <>
-            <HeadTag title={props.topicTexts.documentTitle} description={props.SUMMARY_TEXT}/>
+            <HeadTag title={props.topicTexts.documentTitle} description={`Washington Stand publications on the topic of ${props.topicTexts.documentTitle}`}/>
             <StyledReadingSection>
                 <TopicH1>{props.topicTexts.displayTitle}</TopicH1>
                 <LeadArticle>

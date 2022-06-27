@@ -76,7 +76,7 @@ const Post = (props) => {
 
     return (
         <>
-            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT} article={props}/>
+            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT.slice(0,100)} article={props}/>
             {
                 props.isPublished ?
                     <>
@@ -98,19 +98,18 @@ const Post = (props) => {
                             <SocialSharing {...props} />
                             </TopDisplayDiv>
                             <StyledReadingSection>
-                                {/*{props.FULL_TEXT}*/}
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>
+                                {
+                                    props.authorDetailsArray.length ?
+                                        <AuthorTeaserBios authors={props.authorDetailsArray} />
+                                        : <></>
+                                }
                             </StyledReadingSection>
                             <FlameImage />
                         </article>
                         <PageToFooterSpacing />
                     </StyledContentContainer>
-                        {
-                            props.authorDetailsArray.length ?
-                                <AuthorTeaserBios authors={props.authorDetailsArray} />
-                                : <></>
-                        }
                     </>
                     :
                     <StyledContentContainer>
