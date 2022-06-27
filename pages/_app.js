@@ -50,6 +50,15 @@ export default function MyApp({ Component, pageProps }) {
                     }}
                 />
             </>
+            <Script
+                strategy="lazyOnload"
+                src={`//cf.journity.com/collector/washingtonstand.com.js`}
+            />
+            <link href="//cf.journity.com/personalizer/washingtonstand.com.css" rel="stylesheet" />
+            <Script
+                strategy="lazyOnload"
+                src={`//cf.journity.com/personalizer/washingtonstand.com.min.js`}
+            />
             <Layout>
                 <Component {...pageProps} />
             </Layout>

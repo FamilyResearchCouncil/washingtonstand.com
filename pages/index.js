@@ -57,7 +57,7 @@ const Home = (props) => (
       <StyledGreySection className={styles.newsLetterSection}>
           <StyledContentContainer>
               <OffsetGrid className={`newsLetterGrid`}>
-                  <h2 className={styles.newsLetterHeader}>SUBSCRIBE TO TWS</h2>
+                  <h2 className={styles.newsLetterHeader}>SUBSCRIBE TO <span className={styles.titleText}>TWS</span></h2>
                   <span/>
                   <NewsLetterForm />
               </OffsetGrid>

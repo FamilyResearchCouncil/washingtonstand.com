@@ -15,7 +15,8 @@ import {PublicationTypeGreyText} from "../../../components/subComponents/Publica
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 import SocialSharing from "../../../components/subComponents/SocialSharing";
-import isJson from "../../../helpers/DataVerifiers";
+import Script from "next/script";
+import * as gtag from "../../../lib/ga";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -75,7 +76,7 @@ const Post = (props) => {
 
     return (
         <>
-            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT} article={props}/>
+            <HeadTag title={props.ITEM_DESC} description={props.SUMMARY_TEXT.slice(0,100)} article={props}/>
             {
                 props.isPublished ?
                     <>
@@ -97,19 +98,18 @@ const Post = (props) => {
                             <SocialSharing {...props} />
                             </TopDisplayDiv>
                             <StyledReadingSection>
-                                {/*{props.FULL_TEXT}*/}
                                 <DisplayPublicationHtml displayHtml={props.displayHtml}/>
                                 <TopicList list={props.TAG_LIST}/>
+                                {
+                                    props.authorDetailsArray.length ?
+                                        <AuthorTeaserBios authors={props.authorDetailsArray} />
+                                        : <></>
+                                }
                             </StyledReadingSection>
                             <FlameImage />
                         </article>
                         <PageToFooterSpacing />
                     </StyledContentContainer>
-                        {
-                            props.authorDetailsArray.length ?
-                                <AuthorTeaserBios authors={props.authorDetailsArray} />
-                                : <></>
-                        }
                     </>
                     :
                     <StyledContentContainer>

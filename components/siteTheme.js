@@ -2,7 +2,7 @@ export default function siteTheme() {
     return {
         fonts: {
             bodyText : "'Poppins', serif",
-            titleText : "'Playfair Display', sans-serif",
+            titleText : "'Playfair Display', sans-serif", 
         },
         colors: {
             primaryBlue: '#4239F7',
