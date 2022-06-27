@@ -6,7 +6,7 @@ services:
         env_file:
             - .env
         deploy:
-            replicas: 3
+            replicas: 4
             labels:
                 - "traefik.enable=true"
                 - "traefik.http.routers.washingtonstand-main.rule=Host(`washingtonstand.com`,`www.washingtonstand.com`)"
