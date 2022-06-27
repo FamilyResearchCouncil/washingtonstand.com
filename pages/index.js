@@ -120,7 +120,9 @@ export async function getStaticProps(context) {
             (error) => {
                 // console.log(error);
             }
-        );
+        ).catch((error) => {
+            console.error(error);
+        });;
 
 
     publications = allPublications.filter(item =>
@@ -155,7 +157,9 @@ export async function getStaticProps(context) {
             (error) => {
                 // console.log(error);
             }
-        );
+        ).catch((error) => {
+            console.error(error);
+        });;
 
     await fetch(`https://api.frc.org/api/webjson/frc/script-generated/washington_stand_around_the_web.json`)
         .then(res => res.json())
@@ -165,7 +169,9 @@ export async function getStaticProps(context) {
             (error) => {
 
             }
-        );
+        ).catch((error) => {
+            console.error(error);
+        });;
 
     await fetch(`https://api.frc.org/api/webtext/WX22D08.cfm?trackDownload=0`)
         .then(res => res.text())
@@ -178,7 +184,9 @@ export async function getStaticProps(context) {
             (error) => {
 
             }
-        );
+        ).catch((error) => {
+            console.error(error);
+        });;
 
     // publications.splice(0, 3);
     publications = publications.filter((pub,idx) => idx < 4);
