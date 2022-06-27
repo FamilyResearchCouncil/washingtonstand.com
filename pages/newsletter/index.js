@@ -1,3 +1,4 @@
+import styles from '../../styles/Home.module.css'
 import {StyledReadingSection} from "../../components/subComponents/ReadingTextBlock";
 import { useRouter } from 'next/router'
 import React, { useState } from "react";
@@ -5,7 +6,6 @@ import appUrls from "../../storage/baseUrls.json"
 import SubmitButton from "../../components/subComponents/SubmitButton";
 import styled from "styled-components";
 import {StyledGreyBox} from "../../components/subComponents/GreyFormBox";
-
 import LoadingIcons from 'react-loading-icons'
 import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
 
@@ -128,7 +128,7 @@ const NewsLetterForm = () => {
         <>
             <StyledReadingSection>
                 <StyledGreyBox>
-                    <h2>FILL OUT THIS FORM TO GET <cite>THE WASHINGTON STAND</cite> DIRECTLY IN YOUR INBOX!</h2>
+                    <h2>FILL OUT THIS FORM TO GET <span className={styles.titleText}>THE WASHINGTON STAND</span> DIRECTLY IN YOUR INBOX!</h2>
                     <SubscriptionForm onSubmit={registerSubscription}>
 
                             <label htmlFor="email_addr">Email</label>
