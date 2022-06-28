@@ -141,10 +141,13 @@ export async function getStaticProps(context) {
             (result) => {
                 pageProps.trending = [];
                 trendingList = result;
-                trendingList = trendingList.splice(trendingList.length - 4, trendingList.length);
                 trendingList.forEach(item => {
-                    publications.forEach((pub, index) => {
-                        if (pub.ITEM_CODE === item.ITEM_CODE && !displayedItemsArray.includes(pub.ITEM_CODE)) {
+                    publications.forEach((pub,index) => {
+                        if (
+                            pub.ITEM_CODE === item.ITEM_CODE &&
+                            !displayedItemsArray.includes(pub.ITEM_CODE) &&
+                            pageProps.trending.length < 5
+                        ) {
                             pageProps.trending.push(pub);
                             displayedItemsArray.push(pub.ITEM_CODE);
                             publications.splice(index, 1);

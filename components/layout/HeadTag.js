@@ -27,6 +27,8 @@ const HeadTag = (props) => (
                         <link rel="icon" href="/favicon.ico" />
                     </>
             }
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:site" content="@WSHStand" />
 
         </Head>
     </>
