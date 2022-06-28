@@ -122,8 +122,4 @@
     .trendingList article {
         padding: 2rem 0;
     }
-
-    .trendingList article h3, .trendingList article h2 {
-        /*font-size: 2.4rem;*/
-    }
 }
