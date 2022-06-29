@@ -157,7 +157,7 @@ export const getStaticProps = async (context) => {
 
     pageProps.iframeHtml = false;
     pageProps.displayHtml = {
-        __html: "<h1>Oops! Page not found</h1><p>We appear to be experiencing technical difficulties. Please feel free to try again.</p>"
+        __html: `<h1>Oops! Page not found</h1><p>We appear to be experiencing technical difficulties. Please feel free to try again or <a href="https://frc.org/contact-frc">contact us</a>.</p>`
     }
     await fetch(`https://api.frc.org/api/frc/web-url-item/${pageId}`)
         .then(res => res.json())
