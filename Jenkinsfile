@@ -26,7 +26,7 @@ node('master') {
 
         stage('build'){
             // build the image tagged with the current branch name
-            sh "docker build -t familyresearchcouncil/washingtonstand:${branch_name} ."
+            sh "docker build --no-cache -t familyresearchcouncil/washingtonstand:${branch_name} ."
         }
 
 
