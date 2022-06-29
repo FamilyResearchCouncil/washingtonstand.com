@@ -155,6 +155,10 @@ export const getStaticProps = async (context) => {
     const pageId = context.params.id;
     let pageProps = {};
 
+    pageProps.iframeHtml = false;
+    pageProps.displayHtml = {
+        __html: "<h1>Oops! Page not found</h1><p>We appear to be experiencing technical difficulties. Please feel free to try again.</p>"
+    }
     await fetch(`https://api.frc.org/api/frc/web-url-item/${pageId}`)
         .then(res => res.json())
         .then(
