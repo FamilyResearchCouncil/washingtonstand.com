@@ -4,6 +4,8 @@ import styled from "styled-components";
 import React from "react";
 import Link from "next/link";
 import {StyledReadingSection} from "../ReadingTextBlock";
+import {LogoStyledText} from "../Fonts";
+import {PageToFooterSpacing} from "../PageToFooterSpacing";
 
 const pipeline = new Pipeline(
     {
@@ -26,6 +28,10 @@ const ResultList = styled.ul`
   }
 `
 
+const PageSpacer = styled.div`
+  min-height: 350px;
+`;
+
 const SearchWrapper = styled.div`
   margin-bottom: 4rem;
   
@@ -34,7 +40,9 @@ const SearchWrapper = styled.div`
     color: black;
     border: none;
     border-radius: 0;
-    max-width: 30rem;
+    width: 100%;
+    max-width: 50rem;
+    padding: 2rem;
     border-bottom: solid 1px ${({theme}) => theme.colors.primaryGrey};
     margin: 0 auto;
     
@@ -53,7 +61,7 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const SearchField = () => {
+const SearchField = (props) => {
     const { results = [] } = useSearch();
     const { query, setQuery } = useQuery();
 
@@ -66,7 +74,7 @@ const SearchField = () => {
     const formatDate = (dateString) => {
         let printDate = new Date(dateString);
         return printDate.toLocaleString("en-GB", {
-            month: "short",
+            month: "long",
             day: "numeric",
             year: "numeric"
         });
@@ -81,32 +89,37 @@ const SearchField = () => {
                 }} />
             </SearchWrapper>
 
-            {query && results.length > 0 && (
+            { (query && results.length > 0) ? (
                 <ResultList className="">
                     {results.map(({ values: { title, id, url, description, published_time, dir1 } }) => (
                         <li key={id}>
                             <Link href={url} >
                                 <a target={'_blank'}>
-                                    <strong>{title}</strong><br/>
+                                    <LogoStyledText>{title}</LogoStyledText><br/>
                                     <small>{formatDate(published_time)} - <i>{dir1.toUpperCase()}</i></small>
                                     <p>
-                                        <small>{trimStringToLastSpace(description)}</small>
+                                        <small>{trimStringToLastSpace(description.substring(0, 120))}</small>
                                     </p>
                                 </a>
                             </Link>
                         </li>
                     ))}
                 </ResultList>
-            )}
+            ) : (
+                <>
+                    <PageSpacer />
+                </>
+            )
+            }
         </>
     );
 }
 
-const AppSearchIo = () => (
+const AppSearchIo = (props) => (
     <>
         <SearchProvider search={{ pipeline }}>
             <StyledReadingSection>
-            <SearchField />
+            <SearchField initialSearch={props.initialSearch} />
             </StyledReadingSection>
         </SearchProvider>
     </>
