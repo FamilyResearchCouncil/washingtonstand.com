@@ -7,20 +7,23 @@ const GetPublications = async(typeArray) => {
 
     let publicationsPromises = [];
     let publications = [];
+    try {
+        for (let i=0; i < publicationTypeArray.length; i++) {
+            const response = await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_${publicationTypeArray[i]}.json?cached=1`);
+            publicationsPromises.push(
+                fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_${publicationTypeArray[i]}.json?cached=1`)
+                .then(res => res.json())
+                .then(data => publications.concat(data))
+            );
+        }
 
-    for (let i=0; i < publicationTypeArray.length; i++) {
-        const response = await fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_${publicationTypeArray[i]}.json?cached=1`);
-        publicationsPromises.push(
-            fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_${publicationTypeArray[i]}.json?cached=1`)
-            .then(res => res.json())
-            .then(data => publications.concat(data))
-        );
+        const allPublications = await Promise.all(publicationsPromises);
+        allPublications.forEach(publicationSet => {
+            publications = publications.concat(publicationSet);
+        })
+    } catch (e) {
+        console.log(`Error in GetPublications for type(s) ${typeArray}`,e);
     }
-
-    const allPublications = await Promise.all(publicationsPromises);
-    allPublications.forEach(publicationSet => {
-        publications = publications.concat(publicationSet);
-    })
 
     const sortedPubs = publications.sort((pubA,pubB) => Date.parse(pubB.START_DATE) - Date.parse(pubA.START_DATE));
 

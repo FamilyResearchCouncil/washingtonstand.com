@@ -19,10 +19,10 @@ const GetAboutText = async() => {
 
                 }
             ).catch((error) => {
-                console.log(error);
+                console.log("Error in GetAboutText",error);
             });
     } catch (e) {
-       console.log(e);
+       console.log("Error in GetAboutText",e);
     }
     return returnData
 }
