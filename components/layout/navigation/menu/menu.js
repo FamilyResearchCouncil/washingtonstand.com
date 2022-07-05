@@ -4,9 +4,11 @@ import { StyledMenu } from './menu.styled';
 import TopTopics from "../../../subComponents/TopTopics";
 import appUrls from "../../../../storage/baseUrls.json";
 import ErrorBoundary from "../../../ErrorBoundary";
+import StartSearch from "../../../subComponents/StartSearch";
 
 const Menu = ({ open }) => (
         <StyledMenu open={open}>
+            <StartSearch />
             <Link href="/">
                 <a>HOME</a>
             </Link>
