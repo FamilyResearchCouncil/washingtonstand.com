@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
     return {
         props: {publications},
-        revalidate: 60
+        revalidate: 120
     };
 }
 
