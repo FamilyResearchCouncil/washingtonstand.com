@@ -1,6 +1,6 @@
 import {Feed} from "feed";
 
-const GenRssFee = (posts) => {
+const GenerateRssFeed = (posts) => {
 
     const siteURL = 'https://washingtonstand.com';
     const date = new Date();
@@ -42,4 +42,4 @@ const GenRssFee = (posts) => {
     });
 };
 
-export default GenRssFee;
+export default GenerateRssFeed;

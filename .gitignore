@@ -107,3 +107,6 @@ dist
 #intellij idea directory
 .idea/
 news-agg.iml
+
+#rss directory
+public/rss/
