@@ -1,8 +1,11 @@
 import { Pipeline, SearchProvider, useSearch, useQuery } from '@sajari/react-hooks';
 import { Combobox } from '@sajari/react-components';
 import styled from "styled-components";
-import React from "react";
+import React, {useEffect} from "react";
 import Link from "next/link";
+import {StyledReadingSection} from "../ReadingTextBlock";
+import {LogoStyledText} from "../Fonts";
+import {PageToFooterSpacing} from "../PageToFooterSpacing";
 
 const pipeline = new Pipeline(
     {
@@ -14,14 +17,32 @@ const pipeline = new Pipeline(
     }
 );
 
+const ResultList = styled.ul`
+  list-style: none;
+  p {
+    margin: 1rem 0 0;
+  }  
+  li {
+    padding: 2rem;
+    border-bottom: solid 1px ${({theme}) => theme.colors.primaryYellow};
+  }
+`
+
+const PageSpacer = styled.div`
+  min-height: 350px;
+`;
+
 const SearchWrapper = styled.div`
   margin-bottom: 4rem;
   
   div[role="combobox"] {
     background: transparent;
+    color: black;
     border: none;
     border-radius: 0;
-    max-width: 20rem;
+    width: 100%;
+    max-width: 50rem;
+    padding: 2rem;
     border-bottom: solid 1px ${({theme}) => theme.colors.primaryGrey};
     margin: 0 auto;
     
@@ -31,44 +52,79 @@ const SearchWrapper = styled.div`
     }
     
     input {
-      padding-left: 0;
+      padding-left: 2rem;
       padding-right: 4rem;
-      color: ${({theme}) => theme.colors.primaryGrey};
+      color: ${({theme}) => theme.colors.alternateGrey};
+      border: solid 1px ${({theme}) => theme.colors.alternateGrey};
     }
     
   }
 `;
 
-const SearchField = () => {
+const trimStringToLastSpace = (string) => {
+    let finalSpace = string.lastIndexOf(" ");
+    let trimmedString = string.substr(0,finalSpace);
+    return `${trimmedString}...`
+}
+
+const formatDate = (dateString) => {
+    let printDate = new Date(dateString);
+    return printDate.toLocaleString("en-GB", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
+}
+
+const SearchField = (props) => {
     const { results = [] } = useSearch();
     const { query, setQuery } = useQuery();
+
+    useEffect(() => {
+        if (props.initialSearch) setQuery(props.initialSearch);
+    },[])
 
     return (
         <>
             <SearchWrapper>
-                {/*<Combobox />*/}
-                <Combobox onChange={(value) => {
-                    setQuery(value)
-                }} />
+                <Combobox
+                    value={(props.initialSearch) ? props.initialSearch : ""}
+                    placeholder="Enter a topic or phrase"
+                    onChange={(value) => { setQuery(value)}} />
             </SearchWrapper>
 
-            {query && results.length > 0 && (
-                <ul className="list-disc px-5 space-y-2 mt-5">
-                    {results.map(({ values: { title, id, url } }) => (
+            { (query && results.length > 0) ? (
+                <ResultList className="">
+                    {results.map(({ values: { title, id, url, description, published_time, dir1 } }) => (
                         <li key={id}>
-                            <Link href={url} ><a>{title}</a></Link>
+                            <Link href={url} >
+                                <a target={'_blank'}>
+                                    <LogoStyledText>{title}</LogoStyledText><br/>
+                                    <small>{formatDate(published_time)} - <i>{dir1.toUpperCase()}</i></small>
+                                    <p>
+                                        <small>{trimStringToLastSpace(description.substring(0, 120))}</small>
+                                    </p>
+                                </a>
+                            </Link>
                         </li>
                     ))}
-                </ul>
-            )}
+                </ResultList>
+            ) : (
+                <>
+                    <PageSpacer />
+                </>
+            )
+            }
         </>
     );
 }
 
-const AppSearchIo = () => (
+const AppSearchIo = (props) => (
     <>
         <SearchProvider search={{ pipeline }}>
-            <SearchField />
+            <StyledReadingSection>
+            <SearchField initialSearch={props.initialSearch} />
+            </StyledReadingSection>
         </SearchProvider>
     </>
 );

@@ -5,6 +5,8 @@ import AboutBlock from "../../subComponents/AboutText";
 import PublisherBlock from "../../subComponents/PublisherBlock";
 import styles from "./Footer.module.css"
 import Script from "next/script";
+import * as gtag from "../../../lib/ga";
+import React from "react";
 
 const FooterGrid = styled.div`
   display: grid;
@@ -48,6 +50,7 @@ const Footer = () => (
                       })();
                 `}}
         />
+
     </footer>
 );
 
