@@ -15,7 +15,7 @@ const HeadTag = (props) => (
                         <meta property="og:title" content={decode(props.title)} />
                         <meta property="og:description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
                         <meta property="og:image" content={props.article.SCREENCAP_IMAGE} />
-                        <meta property="og:url" content="http://www.frc.org/updatearticle/20220519/roe-rage"/>
+                        <meta property="og:url" content={props.article.CANONICAL_URL}/>
                         <meta property="article:published_time" content={props.article.START_DATE.slice(0,10)} />
                         <meta name="date" content={props.article.START_DATE.slice(0,10)} />
                         <meta name="description" data-sj-field="description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
