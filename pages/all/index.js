@@ -3,7 +3,9 @@ import {StyledContentContainer} from "../../components/layout/sections/contentCo
 import GetPublications from "../../helpers/GetPublications";
 import PaginatedItems from "../../components/subComponents/PaginatedList";
 import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
+import GenerateRssFeed from "../../helpers/GenerateRssFeed";
 import React from "react";
+import GetAuthorsDetails from "../../helpers/GetAuthorsDetails";
 
 const NewsPage = (props) => (
     <>
@@ -16,11 +18,17 @@ const NewsPage = (props) => (
 );
 
 export async function getStaticProps() {
+
     const publications = await GetPublications();
+    const authors = await GetAuthorsDetails();
+
+    GenerateRssFeed("all",publications,authors);
+    GenerateRssFeed("news",publications.filter(pub => pub.ITEM_TYPE == "NA"),authors);
+    GenerateRssFeed("commentary",publications.filter(pub => pub.ITEM_TYPE == "CC"),authors);
 
     return {
         props: {publications},
-        revalidate: 60
+        revalidate: 120
     };
 }
 
