@@ -43,7 +43,7 @@ const StyledMenuSearchForm = styled.form`
   
 `
 
-const StartSearch = () => {
+const StartSearch = ({ open, setOpen }) => {
     const router = useRouter()
 
     const startSiteSearch = event => {
@@ -56,12 +56,13 @@ const StartSearch = () => {
             },
             event.target.target
         );
+        setOpen(!open);
     }
 
 
     return (
         <StyledMenuSearchForm method="POST" target={appUrls.urlDirectories.search} onSubmit={startSiteSearch}>
-            <input id="search_phrase" type="text" placeholder="Search..." autoComplete="email_addr" required />
+            <input id="search_phrase" type="text" placeholder="Search..." required />
             <button type="submit">
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="xs"/>
             </button>
