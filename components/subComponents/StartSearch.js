@@ -48,7 +48,6 @@ const StartSearch = () => {
 
     const startSiteSearch = event => {
         event.preventDefault() // don't redirect the page
-        console.log(event);
         router.push({
                 pathname: event.target.target,
                 query: {
