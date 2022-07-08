@@ -90,6 +90,8 @@ export async function getStaticPaths() {
         });
     } );
 
+    topicPathArray = (topicPathArray.length > 30) ? topicPathArray.slice(0,30) : topicPathArray;
+
     topicPathArray = topicPathArray.map((topic) => ({
         params: { id: topic}
     }));
