@@ -16,6 +16,13 @@
         "webText" : "webtext/",
         "webJson" : "webjson/"
     },
+    "frcApiV2" : {
+        "baseUrl" : "https://apiv2.frc.org",
+        "api": "/api",
+        "db" : "/frc",
+        "webText" : "/webtext",
+        "webJson" : "/webjson"
+    },
     "external": {
         "donate": "https://www.frc.org/d-2205_73"
     }
