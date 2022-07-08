@@ -172,8 +172,7 @@ export const getStaticProps = async (context) => {
                 }
             },
             (error) => {
-                // console.log(error);
-
+                console.log(error);
             }
         );
 
