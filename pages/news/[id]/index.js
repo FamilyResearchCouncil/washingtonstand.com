@@ -124,7 +124,7 @@ export const getStaticPaths = async () => {
 
     const publications = await GetPublications(['NA']);
 
-    const trimmedPublicationList = (publications.length > 80) ? publications.slice(0,80) : publications;
+    const trimmedPublicationList = (publications.length > 40) ? publications.slice(0,40) : publications;
 
     const publishPathsArray = trimmedPublicationList.map((pub) => ({
         params: { id: pub.URL_SLUG}
