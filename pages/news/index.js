@@ -3,6 +3,7 @@ import {StyledContentContainer} from "../../components/layout/sections/contentCo
 import GetPublications from "../../helpers/GetPublications";
 import PaginatedItems from "../../components/subComponents/PaginatedList";
 import {PageToFooterSpacing} from "../../components/subComponents/PageToFooterSpacing";
+import {mapArrayRemovingKeys} from "../../helpers/DataManipulators";
 
 const NewsPage = (props) => (
     <>
@@ -15,7 +16,10 @@ const NewsPage = (props) => (
 );
 
 export async function getStaticProps() {
-    const publications = await GetPublications(['NA']);
+
+    let publications = await GetPublications(['NA']);
+
+    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","ITEM_TYPE","TYPE_DESC","SCREENCAP_IMAGE","AUTHOR_ID_LIST","FULL_DATE","START_DATE","authorDetailsArray"]);
 
     return {
         props: {publications},

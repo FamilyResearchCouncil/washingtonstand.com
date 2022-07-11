@@ -1,5 +1,15 @@
 
+export const mapArrayRemovingKeys = (publicationArray, keysToKepArray) => {
+    return publicationArray.map(publication => {
+       let newPublicationData = {}
+       keysToKepArray.forEach(keyName => { newPublicationData[keyName] = publication[keyName] });
+       return newPublicationData;
+    });
+}
 
+// accepts a comma separated list or array of author ID and
+// an array of all the author data and returns an array of data for only the
+// authors in the list.
 export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray) => {
 
     const defaultAuthorObject = {
@@ -23,6 +33,7 @@ export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray
     });
 }
 
+// concatenates author names into a displayable comma separated list
 export const concatAuthorNames = (authorsDetailArray) => {
     let authorString = authorsDetailArray.map((author,idx) => {
         let spacerString = "";
@@ -36,6 +47,8 @@ export const concatAuthorNames = (authorsDetailArray) => {
     return authorString;
 }
 
+// formats a dash separated topic slug for use in a document
+// title tag
 export const formatTopicForDocumentTitle = (topicSlug) => {
     let wordArray = topicSlug.split("-").map(word => {
         let title=`${word.charAt(0).toUpperCase()+word.slice(1)}`;
@@ -44,6 +57,8 @@ export const formatTopicForDocumentTitle = (topicSlug) => {
     return wordArray.join(" ");
 }
 
+// formats a dash separated topic slug for display in an
+// <h*> tag.
 export const formatTopicForDisplay = (topicSlug) => {
     let wordArray = topicSlug.split("-").map(word => word.toUpperCase());
     return wordArray.join(" ");
