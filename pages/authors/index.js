@@ -113,8 +113,10 @@ export async function getStaticProps() {
 
     let pageProps = {}
 
-    await fetch(`https://api.frc.org/api/webtext/WX22E14.cfm?trackDownload=0`)
-        .then(res => res.text())
+    await fetch(`https://apiv2.frc.org/api/webtext/WX22E14.cfm?trackDownload=0`)
+        .then(res => {
+            return (res.ok) ? res.text() : Promise.resolve("");
+        })
         .then(
             (result) => {
                 pageProps.staffAuthorHtml = {
@@ -126,8 +128,10 @@ export async function getStaticProps() {
             }
         );
 
-    await fetch(`https://api.frc.org/api/webtext/WX22E18.cfm?trackDownload=0`)
-        .then(res => res.text())
+    await fetch(`https://apiv2.frc.org/api/webtext/WX22E18.cfm?trackDownload=0`)
+        .then(res => {
+            return (res.ok) ? res.text() : Promise.resolve("");
+        })
         .then(
             (result) => {
                 pageProps.contributorAuthorHtml = {

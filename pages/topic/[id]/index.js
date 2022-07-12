@@ -90,6 +90,8 @@ export async function getStaticPaths() {
         });
     } );
 
+    topicPathArray = (topicPathArray.length > 30) ? topicPathArray.slice(0,30) : topicPathArray;
+
     topicPathArray = topicPathArray.map((topic) => ({
         params: { id: topic}
     }));
@@ -107,7 +109,7 @@ export async function getStaticProps(context) {
 
     let pageProps = {};
 
-    await fetch(`https://api.frc.org/api/webjson/frc/script-generated/tag_listing_${pageId}.json`)
+    await fetch(`https://apiv2.frc.org/api/webjson/frc/script-generated/tag_listing_${pageId}.json`)
         .then(res => res.json())
         .then(
             (result) => {

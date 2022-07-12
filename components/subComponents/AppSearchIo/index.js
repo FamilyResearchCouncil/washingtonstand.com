@@ -1,7 +1,7 @@
 import { Pipeline, SearchProvider, useSearch, useQuery } from '@sajari/react-hooks';
 import { Combobox } from '@sajari/react-components';
 import styled from "styled-components";
-import React from "react";
+import React, {useEffect} from "react";
 import Link from "next/link";
 import {StyledReadingSection} from "../ReadingTextBlock";
 import {LogoStyledText} from "../Fonts";
@@ -61,32 +61,36 @@ const SearchWrapper = styled.div`
   }
 `;
 
+const trimStringToLastSpace = (string) => {
+    let finalSpace = string.lastIndexOf(" ");
+    let trimmedString = string.substr(0,finalSpace);
+    return `${trimmedString}...`
+}
+
+const formatDate = (dateString) => {
+    let printDate = new Date(dateString);
+    return printDate.toLocaleString("en-GB", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
+}
+
 const SearchField = (props) => {
     const { results = [] } = useSearch();
     const { query, setQuery } = useQuery();
 
-    const trimStringToLastSpace = (string) => {
-        let finalSpace = string.lastIndexOf(" ");
-        let trimmedString = string.substr(0,finalSpace);
-        return `${trimmedString}...`
-    }
-
-    const formatDate = (dateString) => {
-        let printDate = new Date(dateString);
-        return printDate.toLocaleString("en-GB", {
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        });
-    }
+    useEffect(() => {
+        if (props.initialSearch) setQuery(props.initialSearch);
+    },[])
 
     return (
         <>
             <SearchWrapper>
-                {/*<Combobox />*/}
-                <Combobox onChange={(value) => {
-                    setQuery(value)
-                }} />
+                <Combobox
+                    value={(props.initialSearch) ? props.initialSearch : ""}
+                    placeholder="Enter a topic or phrase"
+                    onChange={(value) => { setQuery(value)}} />
             </SearchWrapper>
 
             { (query && results.length > 0) ? (

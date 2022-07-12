@@ -157,7 +157,7 @@ export async function getStaticProps(context) {
 
     let pageProps = authors.filter(author => author.AUTHOR_SLUG === pageId).pop();
 
-    await fetch(`https://api.frc.org/api/webtext/${pageProps.BIO_ITEM}.json?trackDownload=0`)
+    await fetch(`https://apiv2.frc.org/api/webtext/${pageProps.BIO_ITEM}.json?trackDownload=0`)
         .then(res => res.json())
         .then(
             (result) => {
