@@ -8,7 +8,7 @@ function PublicationContextProvider({ children }) {
     const [isLoading, setIsLoading] = useState(true);
 
     if(isLoading){
-        fetch("https://api.frc.org/api/webjson/frc/script-generated/item_listing_NA.json")
+        fetch("https://apiv2.frc.org/api/webjson/frc/script-generated/item_listing_NA.json")
             .then(res => res.json())
             .then(
                 (result) => {

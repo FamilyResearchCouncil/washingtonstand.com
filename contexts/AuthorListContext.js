@@ -9,7 +9,7 @@ function StaffContextProvider({ children }) {
 
     if(isLoading) {
         // Fetch data
-        fetch("https://api.frc.org/api/webjson/frc/script-generated/news_author_details_array.json")
+        fetch("https://apiv2.frc.org/api/webjson/frc/script-generated/news_author_details_array.json")
             .then(res => res.json())
             .then(
                 (result) => {

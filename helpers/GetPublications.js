@@ -10,7 +10,7 @@ const GetPublications = async(typeArray) => {
     try {
         for (let i=0; i < publicationTypeArray.length; i++) {
             publicationsPromises.push(
-                fetch(`https://api.frc.org/api/webjson/frc/script-generated/item_listing_${publicationTypeArray[i]}.json?cached=3`)
+                fetch(`https://apiv2.frc.org/api/webjson/frc/script-generated/item_listing_${publicationTypeArray[i]}.json?cached=3`)
                 .then(res => res.json())
                 .then(data => publications.concat(data))
             );
