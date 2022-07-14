@@ -44,9 +44,7 @@ const AboutBlock = (props) => {
                     <h2 style={styling.h2}>ABOUT</h2>
                     <TextDiv>
                         {/*<AboutText displayHtml={displayHtml}/>*/}
-                        <p>
-                            <p>The Washington Stand is Family Research Council’s outlet for news and commentary from a biblical worldview. The Washington Stand is based in Washington, D.C. and is published by FRC, whose mission is to advance faith, family, and freedom in public policy and the culture from a biblical worldview. We invite you to stand with us by&nbsp;<a href="https://www.frc.org/d-2205_73" target="_blank">partnering with FRC</a>.</p>
-                        </p>
+                        <p>The Washington Stand is Family Research Council’s outlet for news and commentary from a biblical worldview. The Washington Stand is based in Washington, D.C. and is published by FRC, whose mission is to advance faith, family, and freedom in public policy and the culture from a biblical worldview. We invite you to stand with us by&nbsp;<a href="https://www.frc.org/d-2205_73" target="_blank">partnering with FRC</a>.</p>
                     </TextDiv>
                 </StyledReadingSection>
             </>

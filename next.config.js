@@ -2,9 +2,6 @@ const childProcess = require('child_process')
 
 module.exports = {
   reactStrictMode: true,
-  experimental: {
-    css: true
-  },
   compiler: {
     styledComponents: true
   },
