@@ -30,20 +30,22 @@ node('master') {
         }
 
 
-        stage('deploy') {
+        if ("$branch_name" == 'main' || "$branch_name" == 'staging'){
 
-            if ("$branch_name" == 'main' || "$branch_name" == 'staging'){
+            stage('deploy') {
 
-            // push the image to dockerhub so it is available to pull
-            sh "docker push familyresearchcouncil/washingtonstand:${branch_name}"
 
-            // copy the files necessary to deploy the application
-            sh "scp deploy.sh docker-compose.*.yml docker01:/docker/containers/washingtonstand"
+                // push the image to dockerhub so it is available to pull
+                sh "docker push familyresearchcouncil/washingtonstand:${branch_name}"
 
-            // run the deploy script, passing the current branch as the argument
-            sh "ssh docker01 /docker/containers/washingtonstand/deploy.sh ${branch_name}"
+                // copy the files necessary to deploy the application
+                sh "scp deploy.sh docker-compose.*.yml docker01:/docker/containers/washingtonstand"
+
+                // run the deploy script, passing the current branch as the argument
+                sh "ssh docker01 /docker/containers/washingtonstand/deploy.sh ${branch_name}"
 
             }
+
         }
 
     } catch(error) {
