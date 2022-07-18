@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
     let publications = await GetPublications(['NA']);
 
-    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","TYPE_DESC","SCREENCAP_IMAGE","FULL_DATE","START_DATE","authorDetailsArray"]);
+    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","URL_SLUG","TYPE_DESC","SCREENCAP_IMAGE","FULL_DATE","START_DATE","authorDetailsArray"]);
 
     return {
         props: {publications},
