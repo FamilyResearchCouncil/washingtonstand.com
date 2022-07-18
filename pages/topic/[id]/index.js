@@ -3,7 +3,10 @@ import HeadTag from "../../../components/layout/HeadTag";
 import {StyledReadingSection} from "../../../components/subComponents/ReadingTextBlock";
 import GetPublications from "../../../helpers/GetPublications";
 import PaginatedItems from "../../../components/subComponents/PaginatedList";
-import getTopicFormatForDisplayAndTitle, {getPublicationAuthorArray} from "../../../helpers/DataManipulators";
+import getTopicFormatForDisplayAndTitle, {
+    getPublicationAuthorArray,
+    mapArrayRemovingKeys
+} from "../../../helpers/DataManipulators";
 import GetAuthorsDetails from "../../../helpers/GetAuthorsDetails";
 import styled from "styled-components";
 import Link from "next/link";
@@ -131,6 +134,8 @@ export async function getStaticProps(context) {
         // console.log(thisPub);
         return thisPub;
     })
+
+    pageProps.publicationList =  mapArrayRemovingKeys(pageProps.publicationList,["ITEM_CODE","URL_SLUG","ITEM_DESC","ITEM_TYPE","TYPE_DESC","SCREENCAP_IMAGE","AUTHOR_ID_LIST","FULL_DATE","START_DATE","authorDetailsArray"]);
 
     pageProps.firstPublication = pageProps.publicationList.shift();
     pageProps.topicTexts = getTopicFormatForDisplayAndTitle(pageId);

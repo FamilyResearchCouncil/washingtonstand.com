@@ -18,7 +18,7 @@ const NewsPage = (props) => (
 export async function getStaticProps() {
     let publications = await GetPublications(['CC']);
 
-    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","URL_SLUG","ITEM_TYPE","TYPE_DESC","SCREENCAP_IMAGE","AUTHOR_ID_LIST","FULL_DATE","START_DATE","authorDetailsArray"]);
+    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","TYPE_DESC","SCREENCAP_IMAGE","FULL_DATE","START_DATE","authorDetailsArray"]);
 
     return {
         props: {publications},

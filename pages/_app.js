@@ -59,6 +59,13 @@ export default function MyApp({ Component, pageProps }) {
                 strategy="lazyOnload"
                 src={`//cf.journity.com/personalizer/washingtonstand.com.min.js`}
             />
+            <Script
+                strategy="lazyOnload"
+                src={`//js.alocdn.com/c/j6i5yycs.js`}
+                data-id="alocdn-ldr" data-label="LABEL"
+            />
+            {/*<script type="text/javascript" data-id="alocdn-ldr" data-label="LABEL" async defer src="//js.alocdn.com/c/j6i5yycs.js"></script>*/}
+
             <Layout>
                 <Component {...pageProps} />
             </Layout>

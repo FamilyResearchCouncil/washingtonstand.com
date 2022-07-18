@@ -1,8 +1,8 @@
 
-export const mapArrayRemovingKeys = (publicationArray, keysToKepArray) => {
+export const mapArrayRemovingKeys = (publicationArray, keysToKeepArray) => {
     return publicationArray.map(publication => {
        let newPublicationData = {}
-       keysToKepArray.forEach(keyName => { newPublicationData[keyName] = publication[keyName] });
+       keysToKeepArray.forEach(keyName => { newPublicationData[keyName] = publication[keyName] });
        return newPublicationData;
     });
 }
