@@ -27,7 +27,7 @@ export async function getStaticProps() {
     GenerateRssFeed("news",publications.filter(pub => pub.ITEM_TYPE == "NA"),authors);
     GenerateRssFeed("commentary",publications.filter(pub => pub.ITEM_TYPE == "CC"),authors);
 
-    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","TYPE_DESC","SCREENCAP_IMAGE","FULL_DATE","START_DATE","authorDetailsArray"]);
+    publications =  mapArrayRemovingKeys(publications,["ITEM_CODE","ITEM_DESC","URL_SLUG","TYPE_DESC","SCREENCAP_IMAGE","FULL_DATE","START_DATE","authorDetailsArray"]);
 
     return {
         props: {publications},
