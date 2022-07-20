@@ -111,7 +111,7 @@ export async function getStaticProps(context) {
         .then(res => res.json())
         .then(
             (result) => {
-                pageProps.topStories = result;
+                pageProps.topStories = (result.length > 6) ? result.slice(0,6) : result;
 
                 pageProps.topStories.forEach(item => {
                     displayedItemsArray.push(item.ITEM_CODE);
