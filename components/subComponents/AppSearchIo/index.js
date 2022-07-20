@@ -100,7 +100,10 @@ const SearchField = (props) => {
                             <Link href={url} >
                                 <a target={'_blank'}>
                                     <LogoStyledText>{title}</LogoStyledText><br/>
-                                    <small>{formatDate(published_time)} - <i>{dir1.toUpperCase()}</i></small>
+                                    <small>
+                                        { published_time ? `${formatDate(published_time)} - `: "" }
+                                        <i>{dir1.toUpperCase()}</i>
+                                    </small>
                                     <p>
                                         <small>{trimStringToLastSpace(description.substring(0, 120))}</small>
                                     </p>

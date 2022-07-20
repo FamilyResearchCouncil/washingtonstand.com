@@ -15,8 +15,7 @@ import {PublicationTypeGreyText} from "../../../components/subComponents/Publica
 import AuthorTeaserBios from "../../../components/subComponents/AuthorTeaserBios";
 import {PageToFooterSpacing} from "../../../components/subComponents/PageToFooterSpacing";
 import SocialSharing from "../../../components/subComponents/SocialSharing";
-import Script from "next/script";
-import * as gtag from "../../../lib/ga";
+import { DateTime } from "luxon";
 
 const leadStoryTypeStyle = {
     display: "block",
@@ -113,7 +112,14 @@ const Post = (props) => {
                     </>
                     :
                     <StyledContentContainer>
-                    <center>This publication is unavailable</center>
+                        <PageToFooterSpacing />
+                        <center>
+                            <h2>Oops!</h2>
+                            <p>
+                            This publication is currently unavailable.
+                            </p>
+                        </center>
+                        <PageToFooterSpacing />
                     </StyledContentContainer>
             }
         </>
@@ -140,13 +146,23 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
 
     const checkIsPublished = (publication) => {
+
+        let rightNowDateTime = DateTime.now().setZone('America/New_York');
+        let startDateTime = DateTime.fromISO(`${publication.START_DATE.replace(" ","T")}-04:00`).setZone('America/New_York');
+
+        let statusCheck = process.env.PUBLICATION_STATUS_CHECK_LIST || "ONLINE";
+
+        console.log(statusCheck);
+
         return (
-            "ONLINE,APPROVE".includes(publication.STATUS)
+            statusCheck.includes(publication.STATUS)
+            &&
+            startDateTime < rightNowDateTime
             &&
             (
                 isNaN(Date.parse(publication.END_DATE))
                 ||
-                Date.parse(publication.END_DATE) > Date.now()
+                DateTime.fromISO(publication.END_DATE.replace(" ","T")).setZone('America/New_York') > rightNowDateTime
             )
         )
     }
