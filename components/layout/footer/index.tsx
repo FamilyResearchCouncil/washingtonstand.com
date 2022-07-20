@@ -1,11 +1,10 @@
 import {StyledBlackSection} from "../sections/BlackSection";
 import {StyledContentContainer} from "../sections/contentContainer";
-import styled from 'styled-components';
+import styled from "styled-components";
 import AboutBlock from "../../subComponents/AboutText";
 import PublisherBlock from "../../subComponents/PublisherBlock";
 import styles from "./Footer.module.css"
 import Script from "next/script";
-import * as gtag from "../../../lib/ga";
 import React from "react";
 
 const FooterGrid = styled.div`
