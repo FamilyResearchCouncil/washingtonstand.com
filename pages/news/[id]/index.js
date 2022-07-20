@@ -150,8 +150,12 @@ export const getStaticProps = async (context) => {
         let rightNowDateTime = DateTime.now().setZone('America/New_York');
         let startDateTime = DateTime.fromISO(`${publication.START_DATE.replace(" ","T")}-04:00`).setZone('America/New_York');
 
+        let statusCheck = process.env.PUBLICATION_STATUS_CHECK_LIST || "ONLINE";
+
+        console.log(statusCheck);
+
         return (
-            "ONLINE,APPROVE".includes(publication.STATUS)
+            statusCheck.includes(publication.STATUS)
             &&
             startDateTime < rightNowDateTime
             &&
