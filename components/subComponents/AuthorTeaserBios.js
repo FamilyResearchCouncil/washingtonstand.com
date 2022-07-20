@@ -10,10 +10,7 @@ const AuthorTeaserBios = (props) => (
     <>
         {
             props.authors.map(author => (
-                <>
-                    <p key={author.PERSONAL_ID} style={paragraphStyles}>{author.TEASER_BIO}</p>
-                </>
-
+                <p key={author.PERSONAL_ID} style={paragraphStyles}>{author.TEASER_BIO}</p>
             ))
         }
     </>

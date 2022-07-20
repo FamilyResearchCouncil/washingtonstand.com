@@ -152,8 +152,6 @@ export const getStaticProps = async (context) => {
 
         let statusCheck = process.env.PUBLICATION_STATUS_CHECK_LIST || "ONLINE";
 
-        console.log(statusCheck);
-
         return (
             statusCheck.includes(publication.STATUS)
             &&
