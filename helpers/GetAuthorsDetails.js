@@ -1,3 +1,7 @@
+/**
+ * GetAuthorsDetails - fetches all author details, which are parsed/used in numerous locations throughout the application
+ * @returns {array}
+ */
 const GetAuthorsDetails = async() => {
 
     let authors = []

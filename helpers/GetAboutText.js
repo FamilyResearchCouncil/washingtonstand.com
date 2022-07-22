@@ -1,5 +1,11 @@
 import isJson from "./DataVerifiers";
 
+/**
+ * GetAboutText - fetches About Text HTML
+ * @uses isJson to confirm that the response is not JSON
+ * @returns {object}
+ */
+
 const GetAboutText = async() => {
 
     let returnData = {

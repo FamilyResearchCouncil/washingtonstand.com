@@ -5,12 +5,12 @@ import {concatAuthorNames} from "../../helpers/DataManipulators";
 const HeadTag = (props) => (
     <>
         <Head>
-
+            <title>{decode(props.title)}</title>
+            <meta name="description" data-sj-field="description" content={props.description} />
+            <link rel="icon" href="/favicon.ico" />
             {
                 props.article ?
                     <>
-                        <title>{decode(props.title)}</title>
-                        <link rel="icon" href="/favicon.ico" />
                         <meta name="author" content={concatAuthorNames(props.article.authorDetailsArray)} />
                         <meta property="og:title" content={decode(props.title)} />
                         <meta property="og:description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
@@ -21,11 +21,7 @@ const HeadTag = (props) => (
                         <meta name="description" data-sj-field="description" content={props.article.SUMMARY_TEXT.slice(0,160)} />
                         <link rel="canonical" href={props.article.CANONICAL_URL} />
                     </>
-                    : <>
-                        <title>{decode(props.title)}</title>
-                        <meta name="description" content={props.description} />
-                        <link rel="icon" href="/favicon.ico" />
-                    </>
+                    : <></>
             }
             <meta name="twitter:card" content="summary_large_image" />
             <meta property="twitter:site" content="@WSHStand" />

@@ -4,6 +4,14 @@ import {decode} from 'html-entities';
 import {getPublicationAuthorArray} from "./DataManipulators";
 import appUrls from "../storage/baseUrls.json"
 
+/**
+ * transformAuthorsArray - accepts an array of author objects and transforms it into
+ * an array of objects to match the needs of the rss feed package.
+ *
+ * @param {array}  [authorsArray] - must be array of objects with at least an AUTHOR_NAME and AUTHOR_SLUG properties.
+ * @returns {array}
+ */
+
 const transformAuthorsArray = (authorsArray) => {
     return authorsArray.map(author => {
         return {
@@ -12,6 +20,17 @@ const transformAuthorsArray = (authorsArray) => {
         }
     })
 }
+
+/**
+ * GenerateRssFeed - used to generate rss feeds in the public/ directory
+ *
+ * @param {string}  publicationType - string to describe the type of the feed and the name of the directory
+ * that will be created for the feed files to live in.
+ * @param {array} posts - array of objects representative of posts to include in the RSS feed
+ * @param {array} authors - array of authors to be parsed by getPublicationAuthorArray to create an array of
+ * author objects out of a comma separated list of author IDs
+ * @returns n/a
+ */
 
 const GenerateRssFeed = (publicationType,posts,authors) => {
 

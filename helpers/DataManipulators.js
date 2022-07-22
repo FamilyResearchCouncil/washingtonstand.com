@@ -1,4 +1,14 @@
 
+/**
+ * mapArrayRemovingKeys - used to transform arrays of objects to smaller object that only contain specified properties,
+ * used in publication listing pages (all/, news/, commentary/)
+ *
+ * @param {array} publicationArray - array of objects representative of publications
+ * @param {array} keysToKeepArray - array of key names in the publication object that will be included in the returned
+ * array of objects.
+ * @returns {array}
+ */
+
 export const mapArrayRemovingKeys = (publicationArray, keysToKeepArray) => {
     return publicationArray.map(publication => {
        let newPublicationData = {}
@@ -7,9 +17,15 @@ export const mapArrayRemovingKeys = (publicationArray, keysToKeepArray) => {
     });
 }
 
-// accepts a comma separated list or array of author ID and
-// an array of all the author data and returns an array of data for only the
-// authors in the list.
+
+/**
+ * getPublicationAuthorArray - used to generate an array of author objects from an array or comma separated list of author ID
+ *
+ * @param {array||string} publicationAuthorList - an array or comma separated list of author IDs
+ * @param {array} allAuthorsArray - an array of objects that represent individual author data
+ * @returns {array}
+ */
+
 export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray) => {
 
     const defaultAuthorObject = {
@@ -33,7 +49,14 @@ export const getPublicationAuthorArray = (publicationAuthorList, allAuthorsArray
     });
 }
 
-// concatenates author names into a displayable comma separated list
+
+/**
+ * concatAuthorNames - used to generate a comma separated list of author names from an array of author objects.
+ *
+ * @param {array} authorsDetailArray - an array of objects representing author details. Each should have an AUTHOR_NAME property.
+ * @returns {string}
+ */
+
 export const concatAuthorNames = (authorsDetailArray) => {
     let authorString = authorsDetailArray.map((author,idx) => {
         let spacerString = "";
@@ -47,8 +70,12 @@ export const concatAuthorNames = (authorsDetailArray) => {
     return authorString;
 }
 
-// formats a dash separated topic slug for use in a document
-// title tag
+/**
+ * formatTopicForDocumentTitle - accepts a dash separated slug and returns a string formatted for the HTML title tag
+ *
+ * @param {string} topicSlug - a comma separated string representing a slug used in the /topic directory
+ * @returns {string}
+ */
 export const formatTopicForDocumentTitle = (topicSlug) => {
     let wordArray = topicSlug.split("-").map(word => {
         let title=`${word.charAt(0).toUpperCase()+word.slice(1)}`;
@@ -57,13 +84,24 @@ export const formatTopicForDocumentTitle = (topicSlug) => {
     return wordArray.join(" ");
 }
 
-// formats a dash separated topic slug for display in an
-// <h*> tag.
+/**
+ * formatTopicForDisplay - accepts a dash separated slug and returns a string formatted for display in an HTML element. Usually an <h1>
+ *
+ * @param {string} topicSlug - a comma separated string representing a slug used in the /topic directory
+ * @returns {string}
+ */
+
 export const formatTopicForDisplay = (topicSlug) => {
     let wordArray = topicSlug.split("-").map(word => word.toUpperCase());
     return wordArray.join(" ");
 }
 
+/**
+ * getTopicFormatForDisplayAndTitle - accepts a dash separated slug and returns an object with it formatted for both a <title> and <h1>
+ *
+ * @param {string} topicSlug - a comma separated string representing a slug used in the /topic directory
+ * @returns {object}
+ */
 const getTopicFormatForDisplayAndTitle = (topicSlug) => {
     let topicDetails = {};
     topicDetails.displayTitle = formatTopicForDisplay(topicSlug);

@@ -1,6 +1,12 @@
 import GetAuthorsDetails from "./GetAuthorsDetails";
 import {getPublicationAuthorArray} from "./DataManipulators";
 
+/**
+ * GetPublications - fetches publications based on an array of types.
+ * @param {array}  [typeArray=['NA','CC']] - must be array of strings of item type codes.
+ * @returns {array}
+ */
+
 const GetPublications = async(typeArray) => {
 
     const publicationTypeArray = typeArray ? typeArray : ['NA','CC'];
